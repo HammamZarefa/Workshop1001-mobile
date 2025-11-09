@@ -5,6 +5,27 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/logo.png',
+              width: 200,
+              height: 200,
+            ),
+            Text(
+              'CODA',
+              style: TextStyle(
+                color: Colors.orange,
+                fontSize: 50,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
