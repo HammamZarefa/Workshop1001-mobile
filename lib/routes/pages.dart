@@ -6,5 +6,6 @@ final pages = <GetPage>[
   GetPage(
     name: AppRoutes.splashscreen,
     page: () => const SplashScreen(),
+
   )
 ];
