@@ -1,3 +1,5 @@
 class imageAssets {
-  String logo = "";
+    static const String imageUrl = "images";
+
+ static String logo = "$imageUrl/logo.png";
 }
