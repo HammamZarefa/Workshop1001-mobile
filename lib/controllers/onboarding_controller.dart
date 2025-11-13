@@ -6,8 +6,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class OnboardingController extends GetxController {
-  // final myServices = Get.find<sharedPref>();
-
   final PageController pageController = PageController();
   GetStorage box = GetStorage();
   late int pageCount = pages.length;
@@ -15,15 +13,28 @@ class OnboardingController extends GetxController {
   RxString button_title = 'Next'.obs;
   List<onboardingModel> pages = [
     onboardingModel(
-        image: imageAssets.logo, title: "Welcome to CODA App, Let's shop"),
+      title: "CODA",
+      subtitle: "Welcome to CODA! Start your shopping journey",
+      description:
+          "Discover amazing stores and products around you. Let’s make shopping fun and easy!",
+      image: imageAssets.logo,
+    ),
     onboardingModel(
-        image: imageAssets.logo,
-        title:
-            "We help people conect with store around Unated State of Swaida"),
-    onboardingModel(image: imageAssets.logo, title: "title3"),
+      title: "CODA",
+      subtitle: "Find the best stores near you",
+      description:
+          "We help people connect with local stores across the United States, so you never miss a deal!",
+      image: imageAssets.logo,
+    ),
+    onboardingModel(
+      title: "CODA",
+      subtitle: "Enjoy seamless shopping experience",
+      description:
+          "Track your orders, explore new products, and enjoy a hassle-free shopping experience with CODA.",
+      image: imageAssets.logo,
+    ),
   ];
   Future<void> next() async {
-    ;
     if (currentpage < pageCount - 1) {
       pageController.animateToPage(currentpage + 1,
           duration: Duration(milliseconds: 20), curve: Curves.easeInOut);
@@ -31,8 +42,6 @@ class OnboardingController extends GetxController {
       textbutton();
       update();
     } else {
-      //  await myServices.sharedPreferences.setBool('onboarding_done', true);
-
       gotohome();
     }
 
@@ -40,7 +49,7 @@ class OnboardingController extends GetxController {
   }
 
   gotohome() {
-    box.write( "isOnboardinrShow", true);
+    box.write("isOnboardinrShow", true);
     Get.offAllNamed(AppRoutes.homescreen);
   }
 
@@ -52,6 +61,7 @@ class OnboardingController extends GetxController {
 
   @override
   void onInit() {
+    box;
     currentpage;
     button_title;
     // TODO: implement onInit

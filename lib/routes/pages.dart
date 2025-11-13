@@ -17,4 +17,8 @@ final pages = <GetPage>[
     name: AppRoutes.onboarding,
     page: () => const onpoardingScreen(),
   ),
+//    GetPage(
+//     name: AppRoutes.login,
+//     page: () => const loginscreen(),
+//   ),
 ];

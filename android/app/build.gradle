@@ -10,6 +10,8 @@ android {
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
     // ndkVersion "25.1.8937393"
+    //  ndkVersion "android-ndk-r26c"
+
 
 
     compileOptions {
