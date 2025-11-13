@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 final pages = <GetPage>[
   GetPage(
     name: AppRoutes.splashscreen,
-    page: () => const SplashScreen(),
+    page: () => SplashScreen(),
 
   )
 ];

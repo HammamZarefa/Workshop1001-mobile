@@ -1,12 +1,20 @@
+import 'package:coda_workshop/controllers/splash_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+class SplashScreen extends StatefulWidget {
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  final SplashController controller=Get.put(SplashController());  
 
   @override
+
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
+    return Container(
+      child:  Center(
         child: Column(
     mainAxisAlignment: MainAxisAlignment.center,
           children: [

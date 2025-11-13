@@ -1,5 +1,5 @@
-import 'package:coda_workshop/routes/pages.dart';
 import 'package:coda_workshop/routes/routes.dart';
+import 'package:coda_workshop/screens/Onboarding/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,12 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-
       debugShowCheckedModeBanner: false,
       title: 'CODA',
       initialRoute: AppRoutes.splashscreen,
-      getPages: pages,
-      
+      home: OnboardingScreen(),
     );
   }
 }
