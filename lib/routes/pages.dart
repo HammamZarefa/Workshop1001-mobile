@@ -1,4 +1,5 @@
 import 'package:coda_workshop/routes/routes.dart';
+import 'package:coda_workshop/screens/Auth/loginScreen.dart';
 import 'package:coda_workshop/screens/onboarding_screen.dart';
 import 'package:coda_workshop/screens/home/home.dart';
 import 'package:coda_workshop/screens/splash_screen/splash_screen.dart';
@@ -17,8 +18,8 @@ final pages = <GetPage>[
     name: AppRoutes.onboarding,
     page: () => const onpoardingScreen(),
   ),
-//    GetPage(
-//     name: AppRoutes.login,
-//     page: () => const loginscreen(),
-//   ),
+   GetPage(
+    name: AppRoutes.login,
+    page: () => const loginscreen(),
+  ),
 ];

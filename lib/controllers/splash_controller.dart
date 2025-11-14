@@ -13,7 +13,7 @@ class SplashController extends GetxController {
     print("isOnboardinrShow: ${box.read("isOnboardinrShow")}");
 
     bool? isShow = box.read("isOnboardinrShow");
-    if (isShow == null || isShow == true) {
+    if (isShow == null || isShow == true) {//false
       Get.offNamed(AppRoutes.onboarding);
     } else {
       Get.offNamed(AppRoutes.login);

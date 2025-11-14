@@ -4,27 +4,22 @@ import 'package:get/get.dart';
 import 'package:coda_workshop/controllers/onboarding_controller.dart';
 
 class OnboardingPageView extends StatelessWidget {
-  final OnboardingController controller = OnboardingController();
-
-  OnboardingPageView({super.key});
+   OnboardingController controller = Get.put(OnboardingController());//////*********** */
+void Function(int)? onPageChanged;
+  OnboardingPageView({super.key,required this.onPageChanged});
 
   @override
   Widget build(BuildContext context) {
     return PageView.builder(
       controller: controller.pageController,
-      onPageChanged: (value) {
-        controller.currentpage = value;
-        controller.textbutton();
-       controller.update();
-        print("Current page: ${controller.currentpage}");
-      },
+      onPageChanged: onPageChanged,
       itemCount: controller.pageCount,
       itemBuilder: (context, index) {
         final page = controller.pages[index];
 
         return Scaffold(
           body: Padding(
-            padding: const EdgeInsets.all(10), // 👈 استخدم const EdgeInsets.all بدل EdgeInsetsGeometry
+            padding: const EdgeInsets.all(10), 
             child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

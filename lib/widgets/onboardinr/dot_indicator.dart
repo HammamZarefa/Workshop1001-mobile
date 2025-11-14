@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class dotIndicator extends StatelessWidget {
-  const dotIndicator({super.key});
-
+   dotIndicator({super.key});
+  OnboardingController controller = Get.put(OnboardingController());//*** */
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OnboardingController>(
@@ -14,7 +14,7 @@ class dotIndicator extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ...List.generate(
-                  pages.length,
+                  controller.pages.length,///****** */
                   (index) => AnimatedContainer(
                     duration: Duration(
                       milliseconds: 350,

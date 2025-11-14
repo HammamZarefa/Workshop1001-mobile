@@ -42,21 +42,22 @@ class OnboardingController extends GetxController {
       textbutton();
       update();
     } else {
-      gotohome();
+      gotologin();
     }
 
     update();
   }
 
-  gotohome() {
+  gotologin() {
     box.write("isOnboardinrShow", true);
-    Get.offAllNamed(AppRoutes.homescreen);
+    Get.offAllNamed(AppRoutes.login);
   }
 
   textbutton() {
     currentpage < pageCount - 1
         ? button_title.value = "Next"
         : button_title.value = "Containue";
+    
   }
 
   @override
