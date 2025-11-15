@@ -1,4 +1,4 @@
-import 'package:coda_workshop/constant/colors.dart';
+
 import 'package:coda_workshop/controllers/onboarding_controller.dart';
 import 'package:coda_workshop/widgets/onboardinr/dot_indicator.dart';
 import 'package:coda_workshop/widgets/onboardinr/onBoardingBotton.dart';

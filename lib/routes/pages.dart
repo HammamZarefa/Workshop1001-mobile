@@ -20,6 +20,6 @@ final pages = <GetPage>[
   ),
    GetPage(
     name: AppRoutes.login,
-    page: () => const loginscreen(),
+    page: () =>  loginscreen(),
   ),
 ];
