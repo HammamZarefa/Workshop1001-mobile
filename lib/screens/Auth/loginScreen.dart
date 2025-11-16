@@ -1,4 +1,4 @@
-import 'package:coda_workshop/api/functions/validInput.dart';
+import 'package:coda_workshop/functions/validInput.dart';
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/constant/imageAssets.dart';
 import 'package:coda_workshop/controllers/Auth/login_controller.dart';

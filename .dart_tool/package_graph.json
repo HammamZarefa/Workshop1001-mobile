@@ -8,6 +8,7 @@
       "version": "1.0.0+1",
       "dependencies": [
         "cupertino_icons",
+        "dio",
         "flutter",
         "get",
         "get_storage",
@@ -41,6 +42,19 @@
         "stream_channel",
         "test_api",
         "vector_math"
+      ]
+    },
+    {
+      "name": "dio",
+      "version": "5.9.0",
+      "dependencies": [
+        "async",
+        "collection",
+        "dio_web_adapter",
+        "http_parser",
+        "meta",
+        "mime",
+        "path"
       ]
     },
     {
@@ -177,11 +191,6 @@
       ]
     },
     {
-      "name": "web",
-      "version": "1.1.1",
-      "dependencies": []
-    },
-    {
       "name": "http_parser",
       "version": "4.1.2",
       "dependencies": [
@@ -198,6 +207,11 @@
         "collection",
         "meta"
       ]
+    },
+    {
+      "name": "web",
+      "version": "1.1.1",
+      "dependencies": []
     },
     {
       "name": "path_provider",
@@ -359,6 +373,21 @@
         "meta",
         "path"
       ]
+    },
+    {
+      "name": "dio_web_adapter",
+      "version": "2.1.1",
+      "dependencies": [
+        "dio",
+        "http_parser",
+        "meta",
+        "web"
+      ]
+    },
+    {
+      "name": "mime",
+      "version": "2.0.0",
+      "dependencies": []
     }
   ],
   "configVersion": 1
