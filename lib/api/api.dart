@@ -1,194 +1,92 @@
 // api config
+
+import 'package:coda_workshop/api/app_config.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+import 'package:get_storage/get_storage.dart';
 
 class Api {
-  Api({
-    this.dio,
-  });
-  Dio? dio = Dio();
+  final dio = createDio;
+
+  Api._internal();
+
+  static final _singleton = Api._internal();
+
+  factory Api() => _singleton;
+
+  static Dio get createDio {
+    var dio = Dio(BaseOptions(
+      baseUrl: appConfig,
+      receiveTimeout: const Duration(seconds: 60), // 25 seconds
+      connectTimeout: const Duration(seconds: 25),
+      sendTimeout: const Duration(seconds: 25),
+    ));
+
+    dio.interceptors.addAll({
+      AppInterceptors(dio),
+    });
+    return dio;
+  }
+}
+
+class AppInterceptors extends Interceptor {
+  final Dio? dio;
+
+  GetStorage box = GetStorage();
+
+  AppInterceptors(this.dio);
+
   @override
-  Dio clone(
-      {BaseOptions? options,
-      Interceptors? interceptors,
-      HttpClientAdapter? httpClientAdapter,
-      Transformer? transformer}) {
-    // TODO: implement clone
-    throw UnimplementedError();
+  void onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
+    final token = box.read('token');
+
+    if (kDebugMode) {
+      print('token is $token');
+    }
+
+    options.headers = {
+      "Content-Type": "application/json",
+      "accept": "application/json",
+      "Authorization": "Bearer $token"
+    };
+
+    return handler.next(options);
   }
 
   @override
-  void close({bool force = false}) {
-    // TODO: implement close
+  void onResponse(
+    response,
+    ResponseInterceptorHandler handler,
+  ) {
+    print(
+      'RESPONSE[${response.statusCode}] => Data: ${response.data}',
+    );
+    return super.onResponse(response, handler);
   }
 
   @override
-  Future<Response<T>> delete<T>(String path,
-      {Object? data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken}) {
-    // TODO: implement delete
-    throw UnimplementedError();
-  }
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    print(
+      'ERROR[${err.response!.statusCode}] => PATH: ${err.response!.data}',
+    );
 
-  @override
-  Future<Response<T>> deleteUri<T>(Uri uri,
-      {Object? data, Options? options, CancelToken? cancelToken}) {
-    // TODO: implement deleteUri
-    throw UnimplementedError();
-  }
+    if (err.response!.statusCode == 401) {
+      print(
+        'ERROR[${err.response!.statusCode}]}',
+      );
+    } else if (err.response!.statusCode == 403) {
+      print(
+        'ERROR[${err.response!.statusCode}]}',
+      );
+    } else if (err.response!.statusCode == 500) {
+      print(
+        'ERROR[${err.response!.statusCode}]}',
+      );
+    }
 
-  @override
-  Future<Response> download(String urlPath, savePath,
-      {ProgressCallback? onReceiveProgress,
-      Map<String, dynamic>? queryParameters,
-      CancelToken? cancelToken,
-      bool deleteOnError = true,
-      FileAccessMode fileAccessMode = FileAccessMode.write,
-      String lengthHeader = Headers.contentLengthHeader,
-      Object? data,
-      Options? options}) {
-    // TODO: implement download
-    throw UnimplementedError();
-  }
+    handler.next(err);
 
-  @override
-  Future<Response<T>> fetch<T>(RequestOptions requestOptions) {
-    // TODO: implement fetch
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Response<T>> get<T>(String path,
-      {Object? data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onReceiveProgress}) {
-    // TODO: implement get
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Response<T>> getUri<T>(Uri uri,
-      {Object? data,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onReceiveProgress}) {
-    // TODO: implement getUri
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Response<T>> head<T>(String path,
-      {Object? data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken}) {
-    // TODO: implement head
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Response<T>> headUri<T>(Uri uri,
-      {Object? data, Options? options, CancelToken? cancelToken}) {
-    // TODO: implement headUri
-    throw UnimplementedError();
-  }
-
-  @override
-  // TODO: implement interceptors
-  Interceptors get interceptors => throw UnimplementedError();
-
-  @override
-  Future<Response<T>> patch<T>(String path,
-      {Object? data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress}) {
-    // TODO: implement patch
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Response<T>> patchUri<T>(Uri uri,
-      {Object? data,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress}) {
-    // TODO: implement patchUri
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Response<T>> post<T>(String path,
-      {Object? data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress}) {
-    // TODO: implement post
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Response<T>> postUri<T>(Uri uri,
-      {Object? data,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress}) {
-    // TODO: implement postUri
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Response<T>> put<T>(String path,
-      {Object? data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress}) {
-    // TODO: implement put
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Response<T>> putUri<T>(Uri uri,
-      {Object? data,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress}) {
-    // TODO: implement putUri
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Response<T>> request<T>(String url,
-      {Object? data,
-      Map<String, dynamic>? queryParameters,
-      CancelToken? cancelToken,
-      Options? options,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress}) {
-    // TODO: implement request
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Response<T>> requestUri<T>(Uri uri,
-      {Object? data,
-      CancelToken? cancelToken,
-      Options? options,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress}) {
-    // TODO: implement requestUri
-    throw UnimplementedError();
+    return null;
   }
 }
