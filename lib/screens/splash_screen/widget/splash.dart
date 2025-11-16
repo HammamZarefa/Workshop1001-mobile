@@ -1,10 +1,7 @@
 
-
-
-
-
-import 'package:coda_workshop/constant/imagasset.dart';
+import 'package:coda_workshop/utiles/constant/imagasset.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Splash extends StatelessWidget {
   const Splash({super.key});
@@ -17,10 +14,6 @@ class Splash extends StatelessWidget {
       
       children: [
 
- 
-
-
-
 Column(
 mainAxisAlignment: MainAxisAlignment.center,
 children: [
@@ -29,7 +22,7 @@ children: [
 Container(
 
 child: 
-Image.asset(AppImageAsset.logo,height: 150,width: 150,)
+Image.asset(AppImageAsset.logo,height: Get.height*0.4,width: Get.width*0.4,)
 
 ),
   
