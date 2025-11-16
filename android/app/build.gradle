@@ -9,6 +9,10 @@ android {
     namespace = "com.example.coda_workshop"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
+    // ndkVersion "25.1.8937393"
+    //  ndkVersion "android-ndk-r26c"
+
+
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -33,7 +37,7 @@ android {
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
+            // Signing with the debug keys for now, so flutter run --release works.
             signingConfig = signingConfigs.debug
         }
     }

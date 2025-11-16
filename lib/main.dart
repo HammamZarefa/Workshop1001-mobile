@@ -3,20 +3,20 @@ import 'package:coda_workshop/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() {
+void main()  {
   runApp(const MyApp());
+  
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'CODA',
-     // initialRoute: AppRoutes.splashscreen,
-     initialRoute: AppRoutes.screenlogin,
+      initialRoute: AppRoutes.splashscreen,
+    // initialRoute: AppRoutes.login,
       getPages: pages,
     );
   }

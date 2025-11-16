@@ -1,4 +1,5 @@
-import 'package:coda_workshop/controllers/aouth/logincontroller.dart';
+import 'package:coda_workshop/screens/aouth/login/validinput.dart';
+import 'package:coda_workshop/screens/aouth/login/widget_Login/logincontroller.dart';
 import 'package:coda_workshop/screens/aouth/login/widget_Login/buttoin.dart';
 import 'package:coda_workshop/screens/aouth/login/widget_Login/forgetpassword.dart';
 import 'package:coda_workshop/screens/aouth/login/widget_Login/gotogoogleandfacebook.dart';
@@ -7,9 +8,10 @@ import 'package:coda_workshop/screens/aouth/login/widget_Login/subtitle.dart';
 import 'package:coda_workshop/screens/aouth/login/widget_Login/textdonthaveanacount.dart';
 import 'package:coda_workshop/screens/aouth/login/widget_Login/textformfiled.dart';
 import 'package:coda_workshop/screens/aouth/login/widget_Login/title.dart';
-import 'package:coda_workshop/screens/validinput.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+
 
 class Screenlogin extends StatelessWidget {
   const Screenlogin({super.key});
