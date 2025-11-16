@@ -27,7 +27,7 @@ void Function(int)? onPageChanged;
                   Padding(
                     padding: const EdgeInsets.only(top: 70, bottom: 10),
                     child: Text(
-                      page.title,
+                      page.title!,
                       style: TextStyle(
                         color: appColors.primary,
                         fontSize: 40,
@@ -40,7 +40,7 @@ void Function(int)? onPageChanged;
                     child: SizedBox(
                       height: Get.height * 0.05,
                       child: Text(
-                        page.subtitle,
+                        page.subtitle!,
                         style: const TextStyle(fontSize: 18),
                         textAlign: TextAlign.center,
                       ),
@@ -49,15 +49,15 @@ void Function(int)? onPageChanged;
                   const SizedBox(height: 70),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
-                    child: Image.asset(
-                      page.image,
+                    child: Image.network(
+                      page.images![index].url!,
                       width: Get.width * 0.7,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
-                      page.description,
+                      page.description!,
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.grey[600]),
                     ),
