@@ -1,6 +1,6 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/onboarding_controller.dart';
-import 'package:coda_workshop/routes/pages.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

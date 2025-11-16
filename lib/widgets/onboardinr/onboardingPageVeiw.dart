@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coda_workshop/controllers/onboarding_controller.dart';
 
+// ignore: must_be_immutable
 class OnboardingPageView extends StatelessWidget {
    OnboardingController controller = Get.put(OnboardingController());//////*********** */
 void Function(int)? onPageChanged;

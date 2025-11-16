@@ -1,37 +1,25 @@
-// class onboardingModel {
-//   final String title;
-//     final String subtitle;
-//     final String description;
-
-//   final String image;
-//   onboardingModel({required this.subtitle,required this.description, required this.image, required this.title});
-// }
-
-
-
- 
-class OnBordingModel {
+class OnBoardingModel {
   int? status;
   String? message;
-  List<OnBordingModelData>? data;
+  List<responceModelData>? data;
 
-  OnBordingModel({this.status, this.message, this.data});
+  OnBoardingModel({this.status, this.message, this.data});
 
-  OnBordingModel.fromJson(Map<String, dynamic> json) {
+  OnBoardingModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
-      data = <OnBordingModelData>[];
+      data = <responceModelData>[];
       json['data'].forEach((v) {
-        data!.add(new OnBordingModelData.fromJson(v));
+        data!.add(responceModelData.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -39,7 +27,7 @@ class OnBordingModel {
   }
 }
 
-class OnBordingModelData {
+class responceModelData {
   int? id;
   String? title;
   String? subtitle;
@@ -48,7 +36,7 @@ class OnBordingModelData {
   String? createdAt;
   String? updatedAt;
 
-  OnBordingModelData(
+  responceModelData(
       {this.id,
       this.title,
       this.subtitle,
@@ -57,7 +45,7 @@ class OnBordingModelData {
       this.createdAt,
       this.updatedAt});
 
- OnBordingModelData.fromJson(Map<String, dynamic> json) {
+  responceModelData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     subtitle = json['subtitle'];
@@ -65,7 +53,7 @@ class OnBordingModelData {
     if (json['images'] != null) {
       images = <Images>[];
       json['images'].forEach((v) {
-        images!.add(new Images.fromJson(v));
+        images!.add(Images.fromJson(v));
       });
     }
     createdAt = json['created_at'];
@@ -73,16 +61,16 @@ class OnBordingModelData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['subtitle'] = this.subtitle;
-    data['description'] = this.description;
-    if (this.images != null) {
-      data['images'] = this.images!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['subtitle'] = subtitle;
+    data['description'] = description;
+    if (images != null) {
+      data['images'] = images!.map((v) => v.toJson()).toList();
     }
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }
@@ -101,10 +89,11 @@ class Images {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['url'] = this.url;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['url'] = url;
+    data['name'] = name;
     return data;
   }
 }
+//////batoul

@@ -11,11 +11,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(SplashController());
-    return
-    
-    
-    
-    GetBuilder<SplashController>(builder: (controller) =>  Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Image.asset(
@@ -35,6 +31,6 @@ class SplashScreen extends StatelessWidget {
           ),
         )
       ]),
-    ),);
+    );
   }
 }
