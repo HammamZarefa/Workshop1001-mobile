@@ -1,20 +1,15 @@
 import 'package:coda_workshop/constant/colors.dart';
-import 'package:coda_workshop/screens/ForgetPassword/forgetPassword.dart';
-import 'package:coda_workshop/screens/Signup/signup.dart';
 import 'package:coda_workshop/widgets/Auth/authTextFeild.dart';
 import 'package:coda_workshop/widgets/custom_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 
-class loginscreen extends StatelessWidget {
-  const loginscreen({super.key});
+class Completesignup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Sign Up'),
         centerTitle: true,
         leading: backWidget(),
       ),
@@ -25,14 +20,14 @@ class loginscreen extends StatelessWidget {
           children: [
             Column(
               children: [
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                 Text(
-                  'Welcome Back',
+                  'Complete Profile',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Sign in with your email and password or continue with social media',
+                  'Complete your details or continue with social media',
                   style: TextStyle(fontSize: 12),
                   textAlign: TextAlign.center,
                 ),
@@ -40,45 +35,39 @@ class loginscreen extends StatelessWidget {
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.05),
             AuthTextFeild(
-              labelText: 'Email',
-              hintText: "Email",
+              labelText: 'First Name',
+              hintText: "Enter your first name",
               obscureText: false,
-              prefixIcon: Icons.email,
+              prefixIcon: Icons.person,
             ),
             const SizedBox(height: 10),
             AuthTextFeild(
-              labelText: 'Password',
-              hintText: "Password",
-              obscureText: true,
-              prefixIcon: Icons.lock,
+              labelText: 'Last Name',
+              hintText: "Enter your last name",
+              obscureText: false,
+              prefixIcon: Icons.person,
             ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Checkbox(
-                  value: false,
-                  onChanged: (value) => true,
-                  activeColor: Colors.black,
-                ),
-                Text("Remember me"),
-                Container(
-                    padding: EdgeInsets.only(left: 100),
-                    child:InkWell(
-                      onTap: () {Get.to(Forgetpassword());},
-                      child: Text(
-                        'Forget Password',
-                        
-                      ),
-                    )),
-              ],
+                        const SizedBox(height: 10),
+            AuthTextFeild(
+              labelText: 'Phone Number',
+              hintText: "Enter your phone number",
+              obscureText: false,
+              prefixIcon: Icons.phone_android,
             ),
             const SizedBox(height: 10),
+            AuthTextFeild(
+              labelText: 'Address',
+              hintText: "Enter your address",
+              obscureText: false,
+              prefixIcon: Icons.location_pin,
+              
+            ),
+            SizedBox(
+              height: 10,
+            ),
             SizedBox(
               width: double.infinity,
-              height: 50,
+              height: 30,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: appColors.primary,
@@ -91,7 +80,7 @@ class loginscreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -112,17 +101,7 @@ class loginscreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('Don\'t have an account?  '),
-                InkWell(
-                  child: Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      color: appColors.primary,
-                    ),
-                  ),
-                                   onTap: () {
-                    Get.to(SignupScreen());
-                  },
-                ),
+                Text('Login',style: TextStyle(color: appColors.primary),),
               ],
             ),
           ],

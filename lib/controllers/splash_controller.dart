@@ -6,7 +6,7 @@ import 'package:get_storage/get_storage.dart';
 class SplashController extends GetxController {
   GetStorage box = GetStorage();
   Timer get time => Timer(
-        Duration(seconds: 5),
+        Duration(seconds: 3),
         () => splashTimer(),
       );
   splashTimer() {

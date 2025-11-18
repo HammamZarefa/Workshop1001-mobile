@@ -1,4 +1,3 @@
-import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/onboarding_controller.dart';
 import 'package:coda_workshop/widgets/onboardinr/dot_indicator.dart';
 import 'package:coda_workshop/widgets/onboardinr/onBoardingBotton.dart';
@@ -14,7 +13,6 @@ class onpoardingScreen extends StatelessWidget {
     OnboardingController controller = Get.put(OnboardingController());
     return Stack(
       children: [
-
         OnboardingPageView(
           onPageChanged: (value) {
             controller.currentpage = value;
@@ -26,11 +24,11 @@ class onpoardingScreen extends StatelessWidget {
         Column(
           children: [
             SizedBox(
-              height: 570,
+              height: 30,
             ),
             dotIndicator(),
             SizedBox(
-              height: 100,
+              height: 30,
             ),
             ClipRRect(
                 borderRadius: BorderRadiusGeometry.circular(15),
