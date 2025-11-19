@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'CODA',
       initialRoute: AppRoutes.splashscreen,
-    // initialRoute: AppRoutes.login,
+    // initialRoute: AppRoutes.Complet_profile,
       getPages: pages,
     );
   }
