@@ -1,5 +1,4 @@
 import 'package:coda_workshop/constant/colors.dart';
-import 'package:coda_workshop/controllers/SignUpController.dart';
 import 'package:coda_workshop/screens/Auth/loginScreen.dart';
 import 'package:coda_workshop/screens/Signup/CompleteSignup.dart';
 import 'package:coda_workshop/widgets/Auth/authTextFeild.dart';
@@ -40,7 +39,7 @@ class SignupScreen extends StatelessWidget {
               labelText: 'Email',
               hintText: "Enter your email",
               obscureText: false,
-              prefixIcon: Icons.email,
+              prefixIcon: Icons.email_outlined,
 
             ),
             const SizedBox(height: 20),
@@ -48,18 +47,18 @@ class SignupScreen extends StatelessWidget {
               labelText: 'Password',
               hintText: "Enter your password",
               obscureText: true,
-              prefixIcon: Icons.lock,
+              prefixIcon: Icons.lock_outlined,
             ),
-                        const SizedBox(height: 20),
+            const SizedBox(height: 20),
             AuthTextFeild(
               labelText: 'Confirm Password',
               hintText: "Confirm password",
               obscureText: true,
-              prefixIcon: Icons.lock,
+              prefixIcon: Icons.lock_outlined,
             ),
             const SizedBox(height: 10),
             SizedBox(
-                            width: double.infinity,
+              width: double.infinity,
               height: 50,
               child: ElevatedButton(
                 

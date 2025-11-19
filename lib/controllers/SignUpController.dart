@@ -14,18 +14,17 @@ final address=TextEditingController();
 
 var isloading =false.obs;
 
-final AuthService _service = AuthService();
+final SignUpservices _service = SignUpservices();
 
 
 Future<void> signUp() async {
   isloading.value = true;
-
-  bool success = await _service.signUp(
-       email.value, password.value,_service,confirmPassword.value, firstname.value, lastname.value, phone.value, address.value);
+  var success = await _service.signup(email: 
+       email.text,password:  password.text, confirmPassword:confirmPassword.text, firstname:  firstname.text,secondname:  lastname.text,phone:  phone.text,address:  address.text);
 
   isloading.value = false;
 
-  if (success) {
+  if (success==true) {
     Get.snackbar("Success", "Account Created!");
   } else {
     Get.snackbar("Error", "Signup failed");

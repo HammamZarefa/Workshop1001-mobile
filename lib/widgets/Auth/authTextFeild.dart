@@ -1,4 +1,3 @@
-import 'package:coda_workshop/constant/colors.dart';
 import 'package:flutter/material.dart';
 
 class AuthTextFeild extends StatelessWidget {
@@ -26,7 +25,8 @@ class AuthTextFeild extends StatelessWidget {
         labelText: labelText,
          floatingLabelBehavior: FloatingLabelBehavior.always,
         hintText: hintText,
-        suffixIcon: Icon(prefixIcon,size: 20,color: Colors.black.withOpacity(0.5),),        
+        
+        suffixIcon: Icon(prefixIcon,size: 25,color: Colors.black.withOpacity(0.4),),        
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
         ),

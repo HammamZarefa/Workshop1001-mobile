@@ -21,3 +21,18 @@ class backWidget extends StatelessWidget {
     
   }
 }
+
+class checkbox extends StatelessWidget {
+  const checkbox({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Checkbox(
+      value: false,
+      onChanged: (value) => true,
+      activeColor: Colors.black,
+    );
+  }
+}

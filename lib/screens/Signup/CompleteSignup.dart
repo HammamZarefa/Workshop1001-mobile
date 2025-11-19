@@ -1,9 +1,15 @@
 import 'package:coda_workshop/constant/colors.dart';
+import 'package:coda_workshop/controllers/SignUpController.dart';
+import 'package:coda_workshop/screens/Auth/loginScreen.dart';
+import 'package:coda_workshop/services/auth_service.dart';
 import 'package:coda_workshop/widgets/Auth/authTextFeild.dart';
 import 'package:coda_workshop/widgets/custom_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Completesignup extends StatelessWidget {
+   Completesignup({super.key});
+Signupcontroller signupcontroller=Get.put(Signupcontroller());
 
   @override
   Widget build(BuildContext context) {
@@ -38,21 +44,21 @@ class Completesignup extends StatelessWidget {
               labelText: 'First Name',
               hintText: "Enter your first name",
               obscureText: false,
-              prefixIcon: Icons.person,
+              prefixIcon: Icons.person_outline,
             ),
             const SizedBox(height: 10),
             AuthTextFeild(
               labelText: 'Last Name',
               hintText: "Enter your last name",
               obscureText: false,
-              prefixIcon: Icons.person,
+              prefixIcon: Icons.person_outline,
             ),
-                        const SizedBox(height: 10),
+            const SizedBox(height: 10),
             AuthTextFeild(
               labelText: 'Phone Number',
               hintText: "Enter your phone number",
               obscureText: false,
-              prefixIcon: Icons.phone_android,
+              prefixIcon: Icons.phone_android_outlined,
             ),
             const SizedBox(height: 10),
             AuthTextFeild(
@@ -72,7 +78,9 @@ class Completesignup extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: appColors.primary,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                signupcontroller.signUp();
+                },
                 child: const Text(
                   "Continue",
                   style: TextStyle(fontSize: 18, color: Colors.white),
@@ -88,7 +96,7 @@ class Completesignup extends StatelessWidget {
                 IconButton(
                     onPressed: () {},
                     icon: Icon(
-                      Icons.facebook,
+                      Icons.facebook_outlined,
                       size: 40,
                     )),
                 IconButton(
@@ -97,13 +105,17 @@ class Completesignup extends StatelessWidget {
                     onPressed: () {}, icon: Icon(Icons.facebook, size: 40)),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Don\'t have an account?  '),
-                Text('Login',style: TextStyle(color: appColors.primary),),
-              ],
-            ),
+                        InkWell(
+                  onTap: () {
+                    Get.to(loginscreen());
+                  },
+                  child: Text(
+                    'Login',
+                    style: TextStyle(
+                      color: appColors.primary,
+                    ),
+                  ),
+                ),
           ],
         ),
       ),

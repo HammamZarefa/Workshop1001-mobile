@@ -58,19 +58,16 @@ class loginscreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Checkbox(
-                  value: false,
-                  onChanged: (value) => true,
-                  activeColor: Colors.black,
-                ),
+                checkbox(),
                 Text("Remember me"),
                 Container(
                     padding: EdgeInsets.only(left: 100),
-                    child:InkWell(
-                      onTap: () {Get.to(Forgetpassword());},
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(Forgetpassword());
+                      },
                       child: Text(
                         'Forget Password',
-                        
                       ),
                     )),
               ],
@@ -119,7 +116,7 @@ class loginscreen extends StatelessWidget {
                       color: appColors.primary,
                     ),
                   ),
-                                   onTap: () {
+                  onTap: () {
                     Get.to(SignupScreen());
                   },
                 ),

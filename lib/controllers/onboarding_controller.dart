@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'package:coda_workshop/constant/imageAssets.dart';
 import 'package:coda_workshop/models/onboardingModel.dart';
 import 'package:coda_workshop/routes/routes.dart';
 import 'package:coda_workshop/services/onboardingservices.dart';
