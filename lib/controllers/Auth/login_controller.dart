@@ -1,3 +1,5 @@
+import 'package:coda_workshop/routes/routes.dart';
+import 'package:coda_workshop/services/Auth/login_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -5,34 +7,57 @@ import 'package:get_storage/get_storage.dart';
 class LoginController extends GetxController {
   bool tick = false;
   bool isShow = false;
+  String? hintemail;
+
+  String? hintpassword;
   TextEditingController? email;
   TextEditingController? password;
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   GetStorage box = GetStorage();
-  login() {
+  validate() {
     var formdata = formState.currentState;
     if (formdata!.validate()) {
-      return "valid";
+      box.write('email', email!.text);
+      box.write('password', password!.text);
+      login();
     } else {
-      return "not valoid";
+      return "not valid";
     }
   }
 
+  Future login() async {
+    try {
+      var response =
+          await logInServive().postLogInData(email!.text, password!.text);
+      if (response != null) {
+        if ((response["token"] != null)) {
+          box.write("token", response["token"]);
+          Get.offAllNamed(AppRoutes.homescreen);
+        } else {
+          Get.snackbar("Error", response["message"] ?? "Unknown error");
+        }
+      } else {
+        Get.snackbar("Error", "Server error");
+      }
+    } catch (e) {}
+  }
+
+  gotoSignup() {
+    Get.toNamed(AppRoutes.signup);
+  }
+
   rememberMeTick() {
-    if (tick == false) {
-      tick = true;
-      box.write(
-        "remember",true
-      );
+    if (box.read("tick") == true) {
+      box.write("tick", false);
       update();
-    } else if (tick == true) {
-      tick = false;
-box.write(
-        "remember",false
-      );
+    } else if (box.read("tick") == false) {
+      box.write("tick", true);
+      hintpassword = box.read('password');
+      hintemail = box.read('email');
       update();
     } else {
-      tick = false;
+      box.write("tick", true);
+      update();
     }
   }
 
@@ -52,9 +77,11 @@ box.write(
 
   @override
   void onInit() {
+    hintpassword = box.read('password');
+    hintemail = box.read('email');
     email = TextEditingController();
     password = TextEditingController();
-    tick;
+    tick = box.read("tick") ?? false;
     isShow;
     // TODO: implement onInit
     super.onInit();

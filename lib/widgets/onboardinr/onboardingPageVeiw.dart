@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:coda_workshop/controllers/onboarding_controller.dart';
 
 class OnboardingPageView extends StatelessWidget {
-   OnboardingController controller = Get.put(OnboardingController());//////*********** */
-void Function(int)? onPageChanged;
-  OnboardingPageView({super.key,required this.onPageChanged});
+  final OnboardingController controller = Get.find<OnboardingController>();
+  void Function(int)? onPageChanged;
+    OnboardingPageView({super.key, required this.onPageChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ void Function(int)? onPageChanged;
 
         return Scaffold(
           body: Padding(
-            padding: const EdgeInsets.all(10), 
+            padding: const EdgeInsets.all(10),
             child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,16 +46,21 @@ void Function(int)? onPageChanged;
                       ),
                     ),
                   ),
-                  const SizedBox(height: 70),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Image.network(
-                      page.images![index].url!,
-                      width: Get.width * 0.7,
+                  const SizedBox(height: 35),
+                  SizedBox(
+                    height: Get.height * 0.3,
+                    width: Get.width * 0.8,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        page.images!.first.url!,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding:
+                        const EdgeInsets.only(right: 20, left: 20, top: 40),
                     child: Text(
                       page.description!,
                       textAlign: TextAlign.center,

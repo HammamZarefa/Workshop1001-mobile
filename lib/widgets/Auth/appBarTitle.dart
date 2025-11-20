@@ -7,6 +7,7 @@ class appParTilte extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      
       backgroundColor: appColors.background,
       title: Center(
         child: Text(

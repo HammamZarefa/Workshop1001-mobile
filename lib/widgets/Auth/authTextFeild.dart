@@ -10,6 +10,8 @@ class Authtextfeild extends StatelessWidget {
   TextEditingController? mycontroller;
   TextInputType? keyboardType = TextInputType.text;
   String? Function(String?)? validator;
+  void Function(String?)? onSaved;
+
   Authtextfeild({
     super.key,
     required this.hintText,
@@ -18,13 +20,15 @@ class Authtextfeild extends StatelessWidget {
     required this.obscureText,
     this.onPressed,
     this.keyboardType,
-   required this.mycontroller,
-   required this.validator,
+    required this.mycontroller,
+    required this.validator,
+    this.onSaved,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onSaved: onSaved,
       validator: validator,
       controller: mycontroller,
       cursorColor: appColors.primary,
