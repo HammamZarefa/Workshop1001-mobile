@@ -63,7 +63,7 @@ class loginscreen extends StatelessWidget {
                           child: Authtextfeild(
                             validator: (val) =>
                                 validInput(val!, 5, 15, 'password'),
-                            mycontroller: controller.password,
+                            mycontroller: controller.password!,
                             // hintText: "Enter your Password",
                             hintText: controller.box.read('tick') == false
                                 ? "Enter your Password"

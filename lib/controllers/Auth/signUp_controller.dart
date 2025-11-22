@@ -103,7 +103,6 @@ class signUpController extends GetxController {
     lastName!.dispose();
     phone!.dispose();
     address!.dispose();
-
     super.dispose();
   }
 }

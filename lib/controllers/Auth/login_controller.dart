@@ -32,7 +32,7 @@ class LoginController extends GetxController {
       if (response != null) {
         if ((response["token"] != null)) {
           box.write("token", response["token"]);
-          Get.offAllNamed(AppRoutes.homescreen);
+          Get.offAllNamed(AppRoutes.mainScreen);
         } else {
           Get.snackbar("Error", response["message"] ?? "Unknown error");
         }

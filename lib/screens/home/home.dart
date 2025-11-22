@@ -1,12 +1,17 @@
 import 'package:coda_workshop/constant/colors.dart';
-import 'package:coda_workshop/constant/imageAssets.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
+import 'package:coda_workshop/controllers/nav_controller.dart';
+import 'package:coda_workshop/widgets/home/banner.dart';
+import 'package:coda_workshop/widgets/home/categureList.dart';
+import 'package:coda_workshop/widgets/home/pupolarProduct.dart';
+import 'package:coda_workshop/widgets/home/specialList.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class homeScreen extends StatelessWidget {
   homeScreen({super.key});
   final homeController controller = Get.put(homeController());
+  final NavController navController = Get.put(NavController());
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +24,10 @@ class homeScreen extends StatelessWidget {
         }
 
         final banner = controller.pannerData.first;
+        final categores = controller.catigures.first;
 
         return Scaffold(
+          backgroundColor: appColors.background,
           body: ListView(
             children: [
               Padding(
@@ -75,64 +82,62 @@ class homeScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              BannerCard(
+                image: banner.image,
+                title: banner.title,
+                description: banner.description,
+                backgroundColor: appColors.pannerColor!,
+              ),
               Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Stack(
-                  children: [
-                    Container(
-                      height: 100,
-                      width: 500,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: appColors.pannerColor),
-                      child: ClipRRect(
-                        borderRadius: BorderRadiusGeometry.circular(25),
-                        child: Image.network(
-                          banner.image ?? "",
-                          fit: BoxFit.fill,
-                          errorBuilder: (context, error, stack) =>
-                              Image.asset(imageAssets.twitter),
-                        ),
-                      ),
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  bottom: 10,
+                  left: 250.0,
+                ),
+                child: Container(
+                  height: 25,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: MaterialButton(
+                    onPressed: () {},
+                    child: Text(
+                      "See all ->",
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Container(
-                      height: 500,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: Colors.transparent),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 20),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: Text(
-                              banner.title ?? "title",
-                              style: TextStyle(
-                                color: appColors.background,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: Text(
-                              banner.description ?? "description",
-                              style: TextStyle(
-                                fontSize: 30,
-                                color: appColors.background,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
+              CategoriesList(controller: controller),
+              // Padding(
+              //   padding: const EdgeInsets.only(
+              //       right: 20.0, left: 20, top: 0, bottom: 10),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       Text(
+              //         "Special for you",
+              //         style:
+              //             TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              //       ),
+              //       MaterialButton(
+              //         onPressed: () {},
+              //         child: Text(
+              //           "See more",
+              //           style: TextStyle(
+              //               fontWeight: FontWeight.bold,
+              //               color: Colors.grey,
+              //               fontSize: 16),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              specialList(controller: controller),
+              popularList(controller:controller),
             ],
           ),
+          
         );
       },
     );
