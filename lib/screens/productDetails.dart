@@ -35,10 +35,13 @@ class ProductDetails extends StatelessWidget {
               style: TextStyle(fontSize: 22, color: Colors.orange),
             ),
 
+Icon(product.favorite== false ? Icons.favorite_border
 
 
+ : Icons.favorite)
 
-                Icon(product.favorite as IconData?)
+
+              // Icon(product.favorite as IconData?)
             ])
           ],
         ),

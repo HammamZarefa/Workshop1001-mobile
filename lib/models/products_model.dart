@@ -1,4 +1,5 @@
-class ProductModel {
+class 
+ProductModel {
   final String image;
   final String name;
   final double price;

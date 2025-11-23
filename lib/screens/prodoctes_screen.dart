@@ -26,6 +26,7 @@ class ProductsScreen extends StatelessWidget {
             
             
             GridView.builder(
+             // physics: NeverScrollableScrollPhysics(),
               itemCount: controller.products.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -57,6 +58,7 @@ class ProductsScreen extends StatelessWidget {
                     //   borderRadius: BorderRadius.circular(15),
                     // ),
                     child: ListView(
+                      physics: NeverScrollableScrollPhysics(),
                       children: [
 
 
@@ -109,7 +111,10 @@ IconButton(onPressed:() {
 }, 
 
 
-icon:Icon(  item.favorite== false ? Icons.favorite_border
+icon:
+
+
+Icon(  item.favorite== false ? Icons.favorite_border
 
 
  : Icons.favorite

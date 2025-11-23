@@ -13,10 +13,10 @@ class VierificationController extends GetxController {
 
   Future gotosussifulsinup() async {
     if (otp.isEmpty) {
-      Get.defaultDialog(
-        title: "تنبيه",
-        middleText: "يرجى إدخال رمز التحقق قبل المتابعة.",
-      );
+      // Get.defaultDialog(
+      //   title: "تنبيه",
+      //   middleText: "يرجى إدخال رمز التحقق قبل المتابعة.",
+      // );
       
 
       try {
