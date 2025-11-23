@@ -7,4 +7,6 @@ class AppRoutes {
   static const String Complet_profile = '/Complet_profile';
   static const String Forget_password = '/Forget_password';
   static const String Otp_Vierification = '/Otp_Vierification';
+   static const String SucssfulSinin= '/SucssfulSinin';
+    static const String ProdoctesScreen= '/ProdoctesScreen';
 }

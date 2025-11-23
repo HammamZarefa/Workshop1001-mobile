@@ -1,22 +1,20 @@
 import 'package:coda_workshop/api/api.dart';
 import 'package:dio/dio.dart';
 
-class LoginService {
-  Future<dynamic> postLoginData(
-           email,
-    String password,
-  
+class OtpVierificationService {
+  Future<dynamic> postOtpvierificaionData(
+    email,
+    String otp,
 
-
+      
 
   ) async {
     try {
       var res = await Api().dio.post(
-            'api/v1/login',
+            'api/v1/register',
             data: {
               "email": email,
-              "password": password,
-             
+                "otp": otp,
             },
             
           );
@@ -24,12 +22,14 @@ class LoginService {
       print("REQUEST BODY:");
       print({
         "email": email,
-        "password": password,
-     
+         "otp": otp,
+       
       });
       return res.data;
     } catch (e) {
-      print("Login error: $e");
+      print("otp vierification error: $e");
     }
   }
 }
+
+

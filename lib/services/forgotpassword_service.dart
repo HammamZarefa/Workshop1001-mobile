@@ -1,10 +1,10 @@
 import 'package:coda_workshop/api/api.dart';
 import 'package:dio/dio.dart';
 
-class LoginService {
-  Future<dynamic> postLoginData(
-           email,
-    String password,
+class ForgotpasswordService {
+  Future<dynamic> postForgotpasswordData(
+    email,
+    
   
 
 
@@ -15,7 +15,7 @@ class LoginService {
             'api/v1/login',
             data: {
               "email": email,
-              "password": password,
+              
              
             },
             
@@ -24,12 +24,12 @@ class LoginService {
       print("REQUEST BODY:");
       print({
         "email": email,
-        "password": password,
+        
      
       });
       return res.data;
     } catch (e) {
-      print("Login error: $e");
+      print("Forgotpassword error: $e");
     }
   }
 }

@@ -5,8 +5,10 @@ import 'package:coda_workshop/screens/Auth/Forget_password.dart';
 import 'package:coda_workshop/screens/Auth/Otp_vierification.dart';
 import 'package:coda_workshop/screens/Auth/loginScreen.dart';
 import 'package:coda_workshop/screens/Auth/signUp.dart';
+import 'package:coda_workshop/screens/Auth/sucssful_Sinin.dart';
 import 'package:coda_workshop/screens/onboarding_screen.dart';
 import 'package:coda_workshop/screens/home/home.dart';
+import 'package:coda_workshop/screens/prodoctes_screen.dart';
 import 'package:coda_workshop/screens/splash_screen/splash_screen.dart';
 import 'package:get/get.dart';
 
@@ -61,6 +63,20 @@ final pages = <GetPage>[
  GetPage(
     name: AppRoutes.Otp_Vierification,
     page: () =>  OtpVierification(),
+  ),
+
+
+
+ GetPage(
+    name: AppRoutes.SucssfulSinin,
+    page: () =>  SucssfulSinin(),
+  ),
+
+
+
+ GetPage(
+    name: AppRoutes.ProdoctesScreen,
+    page: () =>  ProductsScreen(),
   ),
 
 
