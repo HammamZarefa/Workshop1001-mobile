@@ -6,6 +6,7 @@ import 'package:coda_workshop/screens/Auth/Otp_vierification.dart';
 import 'package:coda_workshop/screens/Auth/loginScreen.dart';
 import 'package:coda_workshop/screens/Auth/signUp.dart';
 import 'package:coda_workshop/screens/Auth/sucssful_Sinin.dart';
+import 'package:coda_workshop/screens/favorite_screen.dart';
 import 'package:coda_workshop/screens/onboarding_screen.dart';
 import 'package:coda_workshop/screens/home/home.dart';
 import 'package:coda_workshop/screens/prodoctes_screen.dart';
@@ -78,6 +79,15 @@ final pages = <GetPage>[
     name: AppRoutes.ProdoctesScreen,
     page: () =>  ProductsScreen(),
   ),
+
+
+ GetPage(
+    name: AppRoutes.FavoritesScreen,
+    page: () => FavoritesScreen(),
+  ),
+
+
+
 
 
 

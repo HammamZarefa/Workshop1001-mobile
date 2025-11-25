@@ -9,4 +9,5 @@ class AppRoutes {
   static const String Otp_Vierification = '/Otp_Vierification';
    static const String SucssfulSinin= '/SucssfulSinin';
     static const String ProdoctesScreen= '/ProdoctesScreen';
+     static const String FavoritesScreen= '/FavoritesScreen';
 }

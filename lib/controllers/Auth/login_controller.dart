@@ -41,8 +41,10 @@ Future login() async {
        if (response != null) {
       if ((response["token"] != null)) {
     
+        box.write("token",response["token"]  );
+
         
-         Get.offNamed(AppRoutes.homescreen, arguments: {
+         Get.offNamed(AppRoutes.ProdoctesScreen, arguments: {
             "email": email?.text,
             "token": response["token"],});
         

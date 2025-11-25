@@ -13,27 +13,7 @@ class OnboardingController extends GetxController {
   int currentpage = 0;
   RxString button_title = 'Next'.obs;
   List<responceModelData> pages = [
-    // OnBoardingModel(
-    //   title: "CODA",
-    //   subtitle: "Welcome to CODA! Start your shopping journey",
-    //   description:
-    //       "Discover amazing stores and products around you. Let’s make shopping fun and easy!",
-    //   image: imageAssets.logo,
-    // ),
-    // OnBoardingModel(
-    //   title: "CODA",
-    //   subtitle: "Find the best stores near you",
-    //   description:
-    //       "We help people connect with local stores across the United States, so you never miss a deal!",
-    //   image: imageAssets.logo,
-    // ),
-    // OnBoardingModel(
-    //   title: "CODA",
-    //   subtitle: "Enjoy seamless shopping experience",
-    //   description:
-    //       "Track your orders, explore new products, and enjoy a hassle-free shopping experience with CODA.",
-    //   image: imageAssets.logo,
-    // ),
+   
   ];
 
   Future<OnBoardingModel> getOndoardingData() async {
