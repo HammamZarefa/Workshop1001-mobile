@@ -4,7 +4,6 @@ import 'package:coda_workshop/models/categoryModel.dart';
 import 'package:coda_workshop/models/popularProdutsModel.dart';
 import 'package:coda_workshop/models/specialModel.dart';
 import 'package:coda_workshop/services/home/bannerServices.dart';
-import 'package:coda_workshop/widgets/home/specialList.dart';
 import 'package:get/state_manager.dart';
 import 'package:get_storage/get_storage.dart' hide Data;
 

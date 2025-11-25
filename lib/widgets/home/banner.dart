@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 
 class BannerCard extends StatelessWidget {
   final String? image;

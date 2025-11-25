@@ -1,6 +1,7 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
 import 'package:coda_workshop/controllers/nav_controller.dart';
+import 'package:coda_workshop/screens/cart.dart';
 import 'package:coda_workshop/widgets/home/banner.dart';
 import 'package:coda_workshop/widgets/home/categureList.dart';
 import 'package:coda_workshop/widgets/home/pupolarProduct.dart';
@@ -67,7 +68,9 @@ class homeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(60),
                         ),
                         child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.to(cartScreen());
+                            },
                             icon: Icon(Icons.shopping_cart_outlined))),
                     Container(
                         height: 40,
@@ -134,10 +137,9 @@ class homeScreen extends StatelessWidget {
               //   ),
               // ),
               specialList(controller: controller),
-              popularList(controller:controller),
+              popularList(controller: controller),
             ],
           ),
-          
         );
       },
     );
