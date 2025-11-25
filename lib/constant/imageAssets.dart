@@ -5,6 +5,7 @@ class imageAssets {
   static String google = "$imageUrl/google.png";
   static String facebook = "$imageUrl/facebook.png";
   static String twitter = "$imageUrl/twitter.png";
+  static String code = "$imageUrl/code.png";
 
 
 }

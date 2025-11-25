@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 class cartScreen extends StatelessWidget {
   cartScreen({super.key});
   final CartController controller = Get.put(CartController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,79 +43,232 @@ class cartScreen extends StatelessWidget {
               return Center(child: Text("Cart is empty"));
             }
 
-            return ListView.builder(
-              itemCount: controller.products.length,
-              itemBuilder: (context, index) {
-                final item = controller.products[index];
+            return ListView(
+              children: [
+                Container(
+                  height: 530,
+                  child: ListView.builder(
+                    itemCount: controller.products.length,
+                    itemBuilder: (context, index) {
+                      final item = controller.products[index];
 
-                return Slidable(
-  key: ValueKey(item.id),
-
-  endActionPane: ActionPane(
-    motion: ScrollMotion(),
-
-    children: [
-      SlidableAction(
-        onPressed: (_) {
-          controller.deleteProduct(item.id!);
-        },
-        backgroundColor: Colors.red,
-        foregroundColor: Colors.white,
-        icon: Icons.delete,
-        label: "Delete",
-      ),
-    ],
-  ),
-
-  child: Container(
-    margin: EdgeInsets.symmetric(vertical: 8),
-    child: Row(
-      children: [
-        Container(
-          margin: EdgeInsets.only(right: 10),
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: appColors.lightGrey,
-          ),
-          height: 90,
-          width: 80,
-          child: Image.asset(item.image, fit: BoxFit.contain),
-        ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(item.name, style: TextStyle(fontSize: 20)),
-              SizedBox(height: 5),
-              Text(
-                "\$${item.price}  x${item.count}",
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: appColors.primary,
+                      return Slidable(
+                        key: ValueKey(item.id),
+                        endActionPane: ActionPane(
+                          motion: ScrollMotion(),
+                          extentRatio: 0.15,    
+                          children: [
+                            CustomSlidableAction(
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(20),
+                                  bottomRight: Radius.circular(20)),
+                              onPressed: (_) {
+                                controller.deleteProduct(item.id!);
+                              },
+                              backgroundColor: Colors.red.shade50,
+                              foregroundColor: Colors.red.shade300,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.delete_outlined,
+                                    size: 30,
+                                  ),
+                                  SizedBox(height: 5),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        child: Container(
+                          margin: EdgeInsets.symmetric(vertical: 8),
+                          child: Row(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(right: 10),
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: appColors.lightGrey,
+                                ),
+                                height: 90,
+                                width: 85,
+                                child: Image.asset(item.image,
+                                    fit: BoxFit.contain),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(item.name,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500)),
+                                    SizedBox(height: 5),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "\$${item.price}",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            color: appColors.primary,
+                                          ),
+                                        ),
+                                        Text(
+                                          " x${item.count}",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 17,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-  ),
-);
+                Column(
+                  children: [
+                    Row(
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 10),
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                              color: appColors.lightGrey,
+                              borderRadius: BorderRadius.circular(40)),
+                          child: Icon(
+                            Icons.receipt_rounded,
+                            color: appColors.primary,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 150,
+                        ),
+                        MaterialButton(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Text(
+                            "Add voucher code >",
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          onPressed: () {
+                            TextEditingController voucherCtrl =
+                                TextEditingController();
 
-              },
+                            Get.dialog(
+                              AlertDialog(
+                                title: Text("Enter Voucher Code"),
+                                content: TextField(
+                                  cursorColor: appColors.primary,
+                                  controller: voucherCtrl,
+                                  decoration: InputDecoration(
+                                    hintText: "Enter your code",
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: appColors.primary, width: 2),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: appColors.primary, width: 2),
+                                    ),
+                                  ),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    child: Text(
+                                      "Cancel",
+                                      style:
+                                          TextStyle(color: appColors.primary),
+                                    ),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      final code = voucherCtrl.text.trim();
+                                      controller.applyVoucher(code);
+                                    },
+                                    child: Text("Apply",
+                                        style: TextStyle(
+                                            color: appColors.primary)),
+                                  )
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GetBuilder<CartController>(
+                          builder: (controller) => Text(
+                            "Total:\n\$${controller.totalPrice.toStringAsFixed(2)}",
+                            style: TextStyle(
+                                fontSize: 17, fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                        Container(
+                          width: 170,
+                          height: 47,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(17),
+                              color: appColors.primary),
+                          child: FloatingActionButton(
+                            elevation: 0,
+                            backgroundColor: Colors.transparent,
+                            onPressed: () {
+                              controller.addProductToCart();
+                              controller.getCartProducts();
+                            },
+                            child: Text(
+                              "Check Out",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 17),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
             );
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: appColors.pannerColor,
-        onPressed: () {
-          controller.addProductToCart();
-          controller.getCartProducts();
-        },
-        child: Icon(Icons.add),
-      ),
+      // floatingActionButton: Container(
+      //   width: 170,
+      //   height: 47,
+      //   decoration: BoxDecoration(
+      //       borderRadius: BorderRadius.circular(17), color: appColors.primary),
+      //   child: FloatingActionButton(
+      //     elevation: 0,
+      //     backgroundColor: Colors.transparent,
+      //     onPressed: () {
+      //       controller.addProductToCart();
+      //       controller.getCartProducts();
+      //     },
+      //     child: Text(
+      //       "Check Out",
+      //       style: TextStyle(color: Colors.white, fontSize: 17),
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
