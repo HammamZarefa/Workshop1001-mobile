@@ -1,5 +1,5 @@
 import 'package:coda_workshop/constant/colors.dart';
-import 'package:coda_workshop/constant/imageAssets.dart';
+import 'package:coda_workshop/constant/ImageAssets.dart';
 import 'package:coda_workshop/controllers/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +15,7 @@ class SplashScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Image.asset(
-          imageAssets.logo,
+          ImageAssets.logo,
           height: Get.height * 0.2,
         ),
         SizedBox(
@@ -25,7 +25,7 @@ class SplashScreen extends StatelessWidget {
           child: Text(
             "CODA",
             style: TextStyle(
-                color: appColors.primary,
+                color: AppColors.primary,
                 fontSize: 40,
                 fontWeight: FontWeight.bold),
           ),

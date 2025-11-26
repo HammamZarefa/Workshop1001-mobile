@@ -3,9 +3,9 @@ import 'package:coda_workshop/controllers/onboarding_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class dotIndicator extends StatelessWidget {
-   dotIndicator({super.key});
-  OnboardingController controller = Get.put(OnboardingController());//*** */
+class DotIndicator extends StatelessWidget {
+  DotIndicator({super.key});
+  OnboardingController controller = Get.put(OnboardingController()); //*** */
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OnboardingController>(
@@ -13,7 +13,9 @@ class dotIndicator extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ...List.generate(
-                  controller.pages.length,///****** */
+                  controller.pages.length,
+
+                  ///****** */
                   (index) => AnimatedContainer(
                     duration: Duration(
                       milliseconds: 350,
@@ -23,7 +25,7 @@ class dotIndicator extends StatelessWidget {
                     width: controller.currentpage == index ? 15 : 5,
                     decoration: BoxDecoration(
                         color: controller.currentpage == index
-                            ? appColors.primary
+                            ? AppColors.primary
                             : Colors.grey[400],
                         borderRadius: BorderRadius.circular(90)),
                   ),

@@ -28,7 +28,7 @@ class LoginController extends GetxController {
   Future login() async {
     try {
       var response =
-          await logInServive().postLogInData(email!.text, password!.text);
+          await LogInServive().postLogInData(email!.text, password!.text);
       if (response != null) {
         if ((response["token"] != null)) {
           box.write("token", response["token"]);

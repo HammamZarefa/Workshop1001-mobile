@@ -1,7 +1,7 @@
-class specialModel {
+class SpecialModel {
   String? image;
   String? title;
-    String? subtitle;
+  String? subtitle;
 
-  specialModel({this.image, this.title,this.subtitle});
+  SpecialModel({this.image, this.title, this.subtitle});
 }

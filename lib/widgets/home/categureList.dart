@@ -3,7 +3,7 @@ import 'package:coda_workshop/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesList extends StatelessWidget {
-  final homeController controller;
+  final HomeController controller;
 
   const CategoriesList({super.key, required this.controller});
 
@@ -24,14 +24,14 @@ class CategoriesList extends StatelessWidget {
                   height: 50,
                   width: 50,
                   decoration: BoxDecoration(
-                    color: appColors.lightOrange,
+                    color: AppColors.lightOrange,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset(
                       category.image!,
-                      color: appColors.primary,
+                      color: AppColors.primary,
                     ),
                   ),
                 ),

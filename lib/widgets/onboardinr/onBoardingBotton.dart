@@ -1,19 +1,21 @@
 // import 'package:flutter/cupertino.dart';
 
-// class onBoardingBotton {
+// class OnBoardingBotton {
 //   PageController? controller;
 
-//   onBoardingBotton({required this.controller});
+//   OnBoardingBotton({required this.controller});
 
 // }
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:flutter/material.dart';
- 
-class onBoardingBotton extends StatelessWidget {
-final  void Function()? onPressed;
- final String? bottomTitle;
-  onBoardingBotton({
-    super.key, this.onPressed, this.bottomTitle,
+
+class OnBoardingBotton extends StatelessWidget {
+  final void Function()? onPressed;
+  final String? bottomTitle;
+  OnBoardingBotton({
+    super.key,
+    this.onPressed,
+    this.bottomTitle,
   });
 
   @override
@@ -22,9 +24,9 @@ final  void Function()? onPressed;
       onPressed: onPressed,
       child: Text(
         bottomTitle!,
-        style: TextStyle(fontSize: 20, color: appColors.background),
+        style: TextStyle(fontSize: 20, color: AppColors.background),
       ),
-      color: appColors.primary,
+      color: AppColors.primary,
       minWidth: 300,
       height: 50,
     );

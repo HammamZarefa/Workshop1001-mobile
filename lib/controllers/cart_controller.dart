@@ -1,5 +1,5 @@
 import 'package:coda_workshop/api/database/sqlite.dart';
-import 'package:coda_workshop/constant/imageAssets.dart';
+import 'package:coda_workshop/constant/ImageAssets.dart';
 import 'package:coda_workshop/models/product_model.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
@@ -23,7 +23,7 @@ class CartController extends GetxController {
 
   void applyVoucher(String code) {
     offer = box.read("offer");
-    if (offer == false||offer==null) {
+    if (offer == false || offer == null) {
       if (code == "Off10") {
         box.write("offer", true);
 
@@ -59,22 +59,33 @@ class CartController extends GetxController {
     return total - discountValue;
   }
 
-  Future addProductToCart(
-
-      ) async {
-    await DBHelper.instance.insert({
-      "name": "Wireless Controller for PS4",
-      "image": imageAssets.google,
-      "count": 2,
-      "price": 64.99,
-    });
-    await DBHelper.instance.insert({
-      "name": "tablo",
-      "image": imageAssets.facebook,
-      "count": 4,
-      "price": 25.10,
-    });
-  }
+  // Future addProductToCart() async {
+  //   await DBHelper.instance.insert({
+  //     "name": "Wireless Controller for PS4",
+  //     "image": ImageAssets.google,
+  //     "count": 2,
+  //     "price": 64.99,
+  //   });
+  //   await DBHelper.instance.insert({
+  //     "name": "tablo",
+  //     "image": ImageAssets.facebook,
+  //     "count": 4,
+  //     "price": 25.10,
+  //   });
+  // }
+Future addProductToCart({
+  required String name,
+  required String image,
+  required int count,
+  required double price,
+}) async {
+  await DBHelper.instance.insert({
+    "name": name,
+    "image": image,
+    "count": count,
+    "price": price,
+  });
+}
 
   Future deleteProduct(int id) async {
     await DBHelper.instance.delete(id);

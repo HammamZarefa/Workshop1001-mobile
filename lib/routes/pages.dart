@@ -1,7 +1,7 @@
 import 'package:coda_workshop/controllers/onboarding_controller.dart';
 import 'package:coda_workshop/routes/routes.dart';
 import 'package:coda_workshop/screens/Auth/completeSignup.dart';
-import 'package:coda_workshop/screens/Auth/loginScreen.dart';
+import 'package:coda_workshop/screens/Auth/Loginscreen.dart';
 import 'package:coda_workshop/screens/Auth/signUp.dart';
 import 'package:coda_workshop/screens/mainScreen.dart';
 import 'package:coda_workshop/screens/onboarding_screen.dart';
@@ -15,27 +15,27 @@ final pages = <GetPage>[
     page: () => const SplashScreen(),
   ),
   GetPage(
-    name: AppRoutes.homescreen,
-    page: () =>  homeScreen(),
+    name: AppRoutes.HomeScreen,
+    page: () => HomeScreen(),
   ),
   GetPage(
     name: AppRoutes.onboarding,
-    page: () => onpoardingScreen(),
+    page: () => OnpoardingScreen(),
     binding: BindingsBuilder(() {
       Get.put(OnboardingController());
     }),
   ),
   GetPage(
     name: AppRoutes.login,
-    page: () => loginscreen(),
+    page: () => Loginscreen(),
   ),
   GetPage(
     name: AppRoutes.signup,
     page: () => Signup(),
   ),
   GetPage(
-    name: AppRoutes.completeSignup,
-    page: () => completeSignup(),
+    name: AppRoutes.CompleteSignup,
+    page: () => CompleteSignup(),
   ),
   GetPage(
     name: AppRoutes.mainScreen,

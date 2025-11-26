@@ -1,27 +1,4 @@
-// import 'package:coda_workshop/constant/colors.dart';
-// import 'package:coda_workshop/widgets/Auth/RaisedGradientButton.dart';
-// import 'package:flutter/material.dart';
 
-// class authMaterialButton extends StatelessWidget {
-//   final void Function()? onPressed;
-
-//   authMaterialButton({super.key, required this.onPressed});
-//   @override
-//   Widget build(BuildContext context) {
-//     return ClipRRect(
-//         borderRadius: BorderRadiusGeometry.circular(17),
-//         child: RaisedGradientButton(
-//           onPressed: onPressed,
-//           child: Text(
-//             "Continue",
-//             style: TextStyle(fontSize: 20, color: appColors.background),
-//           ),
-//           // color: appColors.primary,
-//           // minWidth: 300,
-//           height: 50,
-//         ));
-//   }
-// }
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +27,7 @@ class AuthGradientButton extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               Colors.pink,
-              appColors.primary,
+              AppColors.primary,
             ],
           ),
           borderRadius: BorderRadius.circular(17),
@@ -71,7 +48,7 @@ class AuthGradientButton extends StatelessWidget {
                 title,
                 style: TextStyle(
                   fontSize: 20,
-                  color: appColors.background,
+                  color: AppColors.background,
                 ),
               ),
             ),

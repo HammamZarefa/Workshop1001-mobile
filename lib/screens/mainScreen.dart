@@ -12,9 +12,9 @@ class MainScreen extends StatelessWidget {
   final NavController navController = Get.put(NavController());
 
   final List<Widget> pages = [
-    homeScreen(),
-    favorite(),
-    profile(),
+    HomeScreen(),
+    Favorite(),
+    Profile(),
   ];
 
   @override
@@ -27,8 +27,8 @@ class MainScreen extends StatelessWidget {
             iconSize: 27,
             currentIndex: nav.currentIndex,
             onTap: nav.changeIndex,
-            backgroundColor: appColors.background,
-            selectedItemColor: appColors.primary,
+            backgroundColor: AppColors.background,
+            selectedItemColor: AppColors.primary,
             unselectedItemColor: Colors.grey,
             type: BottomNavigationBarType.fixed,
             elevation: 0,

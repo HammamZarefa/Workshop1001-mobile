@@ -5,18 +5,18 @@ import 'package:coda_workshop/screens/cart.dart';
 import 'package:coda_workshop/widgets/home/banner.dart';
 import 'package:coda_workshop/widgets/home/categureList.dart';
 import 'package:coda_workshop/widgets/home/pupolarProduct.dart';
-import 'package:coda_workshop/widgets/home/specialList.dart';
+import 'package:coda_workshop/widgets/home/SpecialList.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class homeScreen extends StatelessWidget {
-  homeScreen({super.key});
-  final homeController controller = Get.put(homeController());
+class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
+  final HomeController controller = Get.put(HomeController());
   final NavController navController = Get.put(NavController());
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<homeController>(
+    return GetBuilder<HomeController>(
       builder: (controller) {
         if (controller.pannerData.isEmpty) {
           return Scaffold(
@@ -28,7 +28,7 @@ class homeScreen extends StatelessWidget {
         final categores = controller.catigures.first;
 
         return Scaffold(
-          backgroundColor: appColors.background,
+          backgroundColor: AppColors.background,
           body: ListView(
             children: [
               Padding(
@@ -40,7 +40,7 @@ class homeScreen extends StatelessWidget {
                       width: 220,
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       decoration: BoxDecoration(
-                        color: appColors.lightGrey,
+                        color: AppColors.lightGrey,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Row(
@@ -64,19 +64,19 @@ class homeScreen extends StatelessWidget {
                         height: 40,
                         width: 40,
                         decoration: BoxDecoration(
-                          color: appColors.lightGrey,
+                          color: AppColors.lightGrey,
                           borderRadius: BorderRadius.circular(60),
                         ),
                         child: IconButton(
                             onPressed: () {
-                              Get.to(cartScreen());
+                              Get.to(CartScreen());
                             },
                             icon: Icon(Icons.shopping_cart_outlined))),
                     Container(
                         height: 40,
                         width: 40,
                         decoration: BoxDecoration(
-                          color: appColors.lightGrey,
+                          color: AppColors.lightGrey,
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: IconButton(
@@ -89,7 +89,7 @@ class homeScreen extends StatelessWidget {
                 image: banner.image,
                 title: banner.title,
                 description: banner.description,
-                backgroundColor: appColors.pannerColor!,
+                backgroundColor: AppColors.pannerColor!,
               ),
               Padding(
                 padding: const EdgeInsets.only(
@@ -136,8 +136,8 @@ class homeScreen extends StatelessWidget {
               //     ],
               //   ),
               // ),
-              specialList(controller: controller),
-              popularList(controller: controller),
+              SpecialList(controller: controller),
+              PopularList(controller: controller),
             ],
           ),
         );

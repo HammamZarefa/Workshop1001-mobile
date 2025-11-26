@@ -2,10 +2,10 @@ import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 
-class specialList extends StatelessWidget {
-  final homeController controller;
+class SpecialList extends StatelessWidget {
+  final HomeController controller;
 
-  specialList({super.key, required this.controller});
+  SpecialList({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class specialList extends StatelessWidget {
                     height: 100,
                     width: 220,
                     decoration: BoxDecoration(
-                      color: appColors.lightOrange,
+                      color: AppColors.lightOrange,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Stack(
@@ -78,12 +78,12 @@ class specialList extends StatelessWidget {
                                 specialItem.title!,
                                 style: TextStyle(
                                     fontSize: 20,
-                                    color: appColors.background,
+                                    color: AppColors.background,
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 specialItem.subtitle!,
-                                style: TextStyle(color: appColors.background),
+                                style: TextStyle(color: AppColors.background),
                               ),
                             ],
                           ),

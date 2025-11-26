@@ -14,14 +14,14 @@ import 'package:get/get_core/src/get_main.dart';
 
 class Signup extends StatelessWidget {
   Signup({super.key});
-  signUpController controller = Get.put(signUpController());
+  SignUpController controller = Get.put(SignUpController());
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<signUpController>(
+    return GetBuilder<SignUpController>(
         builder: (controller) => Form(
               key: controller.formstate,
               child: Scaffold(
-                backgroundColor: appColors.background,
+                backgroundColor: AppColors.background,
                 body: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: ListView(
@@ -29,11 +29,11 @@ class Signup extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 50.0),
-                        child: appParTilte(
+                        child: AppParTilte(
                           appbarTilte: 'Sign Up',
                         ),
                       ),
-                      authTitle(
+                      AuthTitle(
                         title: 'Register Account',
                       ),
                       Padding(
@@ -41,7 +41,7 @@ class Signup extends StatelessWidget {
                           top: 5,
                           bottom: 10,
                         ),
-                        child: authSubTitle(
+                        child: AuthSubTitle(
                           subtitle:
                               'Complete your details or continue\n with social media',
                         ),
@@ -124,20 +124,20 @@ class Signup extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          appsButton(
-                            image: imageAssets.google,
+                          AppsButton(
+                            image: ImageAssets.google,
                           ),
                           SizedBox(
                             width: 25,
                           ),
-                          appsButton(
-                            image: imageAssets.facebook,
+                          AppsButton(
+                            image: ImageAssets.facebook,
                           ),
                           SizedBox(
                             width: 25,
                           ),
-                          appsButton(
-                            image: imageAssets.twitter,
+                          AppsButton(
+                            image: ImageAssets.twitter,
                           ),
                         ],
                       ),

@@ -25,7 +25,7 @@ class Inkwelltext extends StatelessWidget {
           child: Text(
             SecondText!,
             style: TextStyle(
-                color: appColors.primary,
+                color: AppColors.primary,
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
