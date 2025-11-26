@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class onpoardingScreen extends StatelessWidget {
-       onpoardingScreen({super.key});
+  onpoardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,9 @@
 import 'package:coda_workshop/controllers/onboarding_controller.dart';
 import 'package:coda_workshop/routes/routes.dart';
-import 'package:coda_workshop/screens/Auth/Complet_profieal.dart';
-import 'package:coda_workshop/screens/Auth/Forget_password.dart';
-import 'package:coda_workshop/screens/Auth/Otp_vierification.dart';
+import 'package:coda_workshop/screens/Auth/completeSignup.dart';
 import 'package:coda_workshop/screens/Auth/loginScreen.dart';
 import 'package:coda_workshop/screens/Auth/signUp.dart';
-import 'package:coda_workshop/screens/Auth/sucssful_Sinin.dart';
-import 'package:coda_workshop/screens/favorite_screen.dart';
+import 'package:coda_workshop/screens/mainScreen.dart';
 import 'package:coda_workshop/screens/onboarding_screen.dart';
 import 'package:coda_workshop/screens/home/home.dart';
 import 'package:coda_workshop/screens/prodoctes_screen.dart';
@@ -18,9 +15,9 @@ final pages = <GetPage>[
     name: AppRoutes.splashscreen,
     page: () => const SplashScreen(),
   ),
-   GetPage(
+  GetPage(
     name: AppRoutes.homescreen,
-    page: () => const homeScreen(),
+    page: () =>  homeScreen(),
   ),
   GetPage(
     name: AppRoutes.onboarding,
@@ -29,11 +26,21 @@ final pages = <GetPage>[
       Get.put(OnboardingController());
     }),
   ),
-
-
-   GetPage(
+  GetPage(
     name: AppRoutes.login,
-    page: () =>  loginscreen(),
+    page: () => loginscreen(),
+  ),
+  GetPage(
+    name: AppRoutes.signup,
+    page: () => Signup(),
+  ),
+  GetPage(
+    name: AppRoutes.completeSignup,
+    page: () => completeSignup(),
+  ),
+  GetPage(
+    name: AppRoutes.mainScreen,
+    page: () => MainScreen(),
   ),
 
 

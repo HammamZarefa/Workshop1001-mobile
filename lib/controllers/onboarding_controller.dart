@@ -1,4 +1,3 @@
-import 'package:coda_workshop/constant/imageAssets.dart';
 import 'package:coda_workshop/models/onboardingModel.dart';
 import 'package:coda_workshop/routes/routes.dart';
 import 'package:coda_workshop/services/obnboafding_service.dart';
@@ -15,16 +14,17 @@ class OnboardingController extends GetxController {
   List<responceModelData> pages = [
    
   ];
+  
 
   Future<OnBoardingModel> getOndoardingData() async {
     try {
       var res = await ObnboardingService().getOnboarging();
       pages = res.data!;
-      pageCount=pages.length;
+          pageCount = pages.length;
+
       update();
     } catch (e) {}
-          return OnBoardingModel();
-
+    return OnBoardingModel();
   }
   Future<void> next() async {
     if (currentpage < pageCount - 1) {
