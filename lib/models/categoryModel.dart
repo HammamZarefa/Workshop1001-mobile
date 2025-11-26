@@ -1,5 +1,5 @@
-class categoryModel {
+class CategoryModel {
   String? image;
   String? name;
-  categoryModel({this.image, this.name});
+  CategoryModel({this.image, this.name});
 }

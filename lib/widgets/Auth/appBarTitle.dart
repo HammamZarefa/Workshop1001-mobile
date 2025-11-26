@@ -1,14 +1,13 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:flutter/material.dart';
 
-class appParTilte extends StatelessWidget {
-  appParTilte({super.key, required this.appbarTilte});
+class AppParTilte extends StatelessWidget {
+  AppParTilte({super.key, required this.appbarTilte});
   String? appbarTilte;
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      
-      backgroundColor: appColors.background,
+      backgroundColor: AppColors.background,
       title: Center(
         child: Text(
           appbarTilte!,

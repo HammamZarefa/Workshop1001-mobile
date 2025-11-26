@@ -1,6 +1,6 @@
+import 'package:coda_workshop/constant/imageAssets.dart';
 import 'package:coda_workshop/functions/validInput.dart';
 import 'package:coda_workshop/constant/colors.dart';
-import 'package:coda_workshop/constant/imageAssets.dart';
 import 'package:coda_workshop/controllers/Auth/login_controller.dart';
 import 'package:coda_workshop/widgets/Auth/appBarTitle.dart';
 import 'package:coda_workshop/widgets/Auth/appsButton.dart';
@@ -13,8 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class loginscreen extends StatelessWidget {
-  loginscreen({super.key});
+class Loginscreen extends StatelessWidget {
+  Loginscreen({super.key});
   LoginController controller = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
@@ -22,21 +22,21 @@ class loginscreen extends StatelessWidget {
         builder: (controller) => Form(
               key: controller.formState,
               child: Scaffold(
-                backgroundColor: appColors.background,
+                backgroundColor: AppColors.background,
                 body: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: ListView(
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      appParTilte(
+                      AppParTilte(
                         appbarTilte: "Sign in",
                       ),
-                      authTitle(
+                      AuthTitle(
                         title: "Welcome Back",
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 5, bottom: 10),
-                        child: authSubTitle(
+                        child: AuthSubTitle(
                           subtitle:
                               "Sign in with your email and password \n or continue with social media",
                         ),
@@ -83,9 +83,9 @@ class loginscreen extends StatelessWidget {
                       Row(
                         children: [
                           Checkbox(
-                            checkColor: appColors.primary,
-                            activeColor: appColors.background,
-                            // activeColor: appColors.primary,
+                            checkColor: AppColors.primary,
+                            activeColor: AppColors.background,
+                            // activeColor: AppColors.primary,
 
                             value: controller.box.read("tick") != null
                                 ? controller.box.read("tick")
@@ -131,20 +131,20 @@ class loginscreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          appsButton(
-                            image: imageAssets.google,
+                          AppsButton(
+                            image: ImageAssets.google,
                           ),
                           SizedBox(
                             width: 25,
                           ),
-                          appsButton(
-                            image: imageAssets.facebook,
+                          AppsButton(
+                            image: ImageAssets.facebook,
                           ),
                           SizedBox(
                             width: 25,
                           ),
-                          appsButton(
-                            image: imageAssets.twitter,
+                          AppsButton(
+                            image: ImageAssets.twitter,
                           ),
                         ],
                       ),

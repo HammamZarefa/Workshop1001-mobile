@@ -2,10 +2,10 @@ import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 
-class popularList extends StatelessWidget {
-  final homeController controller;
+class PopularList extends StatelessWidget {
+  final HomeController controller;
 
-  popularList({super.key, required this.controller});
+  PopularList({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class popularList extends StatelessWidget {
                         height: 110,
                         width: 110,
                         decoration: BoxDecoration(
-                          color: appColors.lightGrey,
+                          color: AppColors.lightGrey,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Padding(

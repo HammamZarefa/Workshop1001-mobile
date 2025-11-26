@@ -6,7 +6,7 @@ import 'package:coda_workshop/controllers/onboarding_controller.dart';
 class OnboardingPageView extends StatelessWidget {
   final OnboardingController controller = Get.find<OnboardingController>();
   void Function(int)? onPageChanged;
-    OnboardingPageView({super.key, required this.onPageChanged});
+  OnboardingPageView({super.key, required this.onPageChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class OnboardingPageView extends StatelessWidget {
                     child: Text(
                       page.title!,
                       style: TextStyle(
-                        color: appColors.primary,
+                        color: AppColors.primary,
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
                       ),

@@ -1,7 +1,7 @@
 import 'package:coda_workshop/api/api.dart';
 import 'package:dio/dio.dart';
 
-class signUpServive {
+class SignUpServive {
   Future<dynamic> postSignUpData(
     String email,
     String password,

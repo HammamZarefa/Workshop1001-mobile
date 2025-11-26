@@ -1,5 +1,5 @@
-class populerModel{
-String? image;
-String? name;
-populerModel({this.image,this.name});
+class PopulerModel {
+  String? image;
+  String? name;
+  PopulerModel({this.image, this.name});
 }

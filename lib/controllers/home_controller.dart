@@ -4,54 +4,45 @@ import 'package:coda_workshop/models/categoryModel.dart';
 import 'package:coda_workshop/models/popularProdutsModel.dart';
 import 'package:coda_workshop/models/specialModel.dart';
 import 'package:coda_workshop/services/home/bannerServices.dart';
-import 'package:coda_workshop/widgets/home/specialList.dart';
 import 'package:get/state_manager.dart';
 import 'package:get_storage/get_storage.dart' hide Data;
 
-class homeController extends GetxController {
+class HomeController extends GetxController {
   List<Data> pannerData = [];
-  List<categoryModel> catigures = [
-    categoryModel(image: imageAssets.facebook, name: "facebook"),
-    categoryModel(image: imageAssets.twitter, name: "twitter"),
-    categoryModel(image: imageAssets.facebook, name: "facebook"),
-    categoryModel(image: imageAssets.twitter, name: "twitter"),
-    categoryModel(image: imageAssets.facebook, name: "facebook"),
-    categoryModel(image: imageAssets.twitter, name: "twitter"),
-    categoryModel(image: imageAssets.facebook, name: "facebook"),
-    categoryModel(image: imageAssets.twitter, name: "twitter"),
+  List<CategoryModel> catigures = [
+    CategoryModel(image: ImageAssets.facebook, name: "facebook"),
+    CategoryModel(image: ImageAssets.twitter, name: "twitter"),
+    CategoryModel(image: ImageAssets.facebook, name: "facebook"),
+    CategoryModel(image: ImageAssets.twitter, name: "twitter"),
+    CategoryModel(image: ImageAssets.facebook, name: "facebook"),
+    CategoryModel(image: ImageAssets.twitter, name: "twitter"),
+    CategoryModel(image: ImageAssets.facebook, name: "facebook"),
+    CategoryModel(image: ImageAssets.twitter, name: "twitter"),
   ];
-  List<specialModel> special = [
-    specialModel(
-        image: imageAssets.logo, title: "Smartphone", subtitle: "18 Brands"),
-    specialModel(
-        image: imageAssets.facebook,
+  List<SpecialModel> special = [
+    SpecialModel(
+        image: ImageAssets.logo, title: "Smartphone", subtitle: "18 Brands"),
+    SpecialModel(
+        image: ImageAssets.facebook,
         title: "Smartphone",
         subtitle: "18 Brands"),
-    specialModel(
-        image: imageAssets.facebook,
+    SpecialModel(
+        image: ImageAssets.facebook,
         title: "Smartphone",
         subtitle: "18 Brands"),
-    specialModel(
-        image: imageAssets.twitter, title: "Smartphone", subtitle: "18 Brands"),
-    specialModel(
-        image: imageAssets.google, title: "Smartphone", subtitle: "18 Brands"),
+    SpecialModel(
+        image: ImageAssets.twitter, title: "Smartphone", subtitle: "18 Brands"),
+    SpecialModel(
+        image: ImageAssets.google, title: "Smartphone", subtitle: "18 Brands"),
   ];
-  List<populerModel> popular = [
-    populerModel(
-        image: imageAssets.logo,name: "Wireless Controller" ),
-    populerModel(
-        image: imageAssets.facebook,
-        name: "Nike Sport White- man pant"
-       ),
-    populerModel(
-        image: imageAssets.facebook,
-        name: "Gloves "
-       ),
-    populerModel(
-        image: imageAssets.twitter,        name: "Nike Sport White- man pant"
-),
-    populerModel(
-        image: imageAssets.google, name: "Wireless Controller"),
+  List<PopulerModel> popular = [
+    PopulerModel(image: ImageAssets.logo, name: "Wireless Controller"),
+    PopulerModel(
+        image: ImageAssets.facebook, name: "Nike Sport White- man pant"),
+    PopulerModel(image: ImageAssets.facebook, name: "Gloves "),
+    PopulerModel(
+        image: ImageAssets.twitter, name: "Nike Sport White- man pant"),
+    PopulerModel(image: ImageAssets.google, name: "Wireless Controller"),
   ];
   Future getPanner() async {
     final box = GetStorage();
@@ -74,9 +65,7 @@ class homeController extends GetxController {
 
   @override
   void onInit() {
-    //    Future.delayed(const Duration(milliseconds: 300), () {
-    //   getPanner();
-    // });
+  
     getPanner();
     print("onInit called");
     // TODO: implement onInit

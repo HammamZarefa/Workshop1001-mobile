@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:get_storage/get_storage.dart';
 
-class signUpController extends GetxController {
+class SignUpController extends GetxController {
   bool isShow = false;
   TextEditingController? email;
   TextEditingController? password;
@@ -23,7 +23,7 @@ class signUpController extends GetxController {
   validateSignup() {
     var formdata = formstate.currentState;
     if (formdata!.validate()) {
-      Get.toNamed(AppRoutes.completeSignup);
+      Get.toNamed(AppRoutes.CompleteSignup);
     }
   }
 
@@ -36,16 +36,16 @@ class signUpController extends GetxController {
 
   Future signup() async {
     try {
-          print("=== VALUES FROM CONTROLLERS ===");
-    print("email: ${email!.text}");
-    print("password: ${password!.text}");
-    print("repassword: ${repassword!.text}");
-    print("firstName: ${firstName!.text}");
-    print("lastName: ${lastName!.text}");
-    print("phone: ${phone!.text}");
-    print("address: ${address!.text}");
-    print("================================");
-      var response = await signUpServive().postSignUpData(
+      print("=== VALUES FROM CONTROLLERS ===");
+      print("email: ${email!.text}");
+      print("password: ${password!.text}");
+      print("repassword: ${repassword!.text}");
+      print("firstName: ${firstName!.text}");
+      print("lastName: ${lastName!.text}");
+      print("phone: ${phone!.text}");
+      print("address: ${address!.text}");
+      print("================================");
+      var response = await SignUpServive().postSignUpData(
         email!.text,
         password!.text,
         repassword!.text,
@@ -54,18 +54,16 @@ class signUpController extends GetxController {
         phone!.text,
         address!.text,
       );
-       if (response != null) {
-      if ((response["token"] != null)) {
-        Get.offAllNamed(AppRoutes.login);
+      if (response != null) {
+        if ((response["token"] != null)) {
+          Get.offAllNamed(AppRoutes.login);
+        } else {
+          Get.snackbar("Error", response["message"] ?? "Unknown error");
+        }
       } else {
-        Get.snackbar("Error", response["message"] ?? "Unknown error");
+        Get.snackbar("Error", "Server error");
       }
-    } else {
-      Get.snackbar("Error", "Server error");
-    }
     } catch (e) {}
-
-  
   }
 
   showPassword() {

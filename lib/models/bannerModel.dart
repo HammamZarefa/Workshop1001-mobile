@@ -1,19 +1,19 @@
-class bannerModel {
+class BannerModel {
   List<Data>? data;
 
-  bannerModel({this.data});
+  BannerModel({this.data});
 
-  bannerModel.fromJson(Map<String, dynamic> json) {
+  BannerModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add( Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -50,12 +50,12 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['title'] = title;
     data['description'] = description;
     data['link'] = link;
-    data['is_active'] =isActive;
+    data['is_active'] = isActive;
     data['sort_order'] = sortOrder;
     data['image'] = image;
     return data;

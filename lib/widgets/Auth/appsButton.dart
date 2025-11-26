@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class appsButton extends StatelessWidget {
-  appsButton({super.key, required this.image, this.onTap});
+class AppsButton extends StatelessWidget {
+  AppsButton({super.key, required this.image, this.onTap});
   String? image;
   void Function()? onTap;
   @override
@@ -12,7 +12,7 @@ class appsButton extends StatelessWidget {
           height: 35,
           width: 35,
           decoration: BoxDecoration(
-              // borderRadius: BorderRadius.circular(60), 
+              // borderRadius: BorderRadius.circular(60),
               color: Colors.grey[100]),
           child: Padding(
             padding: const EdgeInsets.all(7.0),

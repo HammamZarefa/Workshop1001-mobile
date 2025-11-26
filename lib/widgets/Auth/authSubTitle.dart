@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class authSubTitle extends StatelessWidget {
-   authSubTitle({super.key,required this.subtitle});
+class AuthSubTitle extends StatelessWidget {
+  AuthSubTitle({super.key, required this.subtitle});
   String? subtitle;
   @override
   Widget build(BuildContext context) {

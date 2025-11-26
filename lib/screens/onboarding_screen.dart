@@ -5,8 +5,8 @@ import 'package:coda_workshop/widgets/onboardinr/onboardingPageVeiw.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class onpoardingScreen extends StatelessWidget {
-  onpoardingScreen({super.key});
+class OnpoardingScreen extends StatelessWidget {
+  OnpoardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +26,13 @@ class onpoardingScreen extends StatelessWidget {
               SizedBox(
                 height: 570,
               ),
-              dotIndicator(),
+              DotIndicator(),
               SizedBox(
                 height: 100,
               ),
               ClipRRect(
                   borderRadius: BorderRadiusGeometry.circular(15),
-                  child: Obx(() => onBoardingBotton(
+                  child: Obx(() => OnBoardingBotton(
                         onPressed: () {
                           controller.next();
                         },

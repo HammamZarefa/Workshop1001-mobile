@@ -9,32 +9,32 @@ import 'package:coda_workshop/widgets/Auth/authTitle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class completeSignup extends StatelessWidget {
-  completeSignup({super.key});
+class CompleteSignup extends StatelessWidget {
+  CompleteSignup({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<signUpController>(
+    return GetBuilder<SignUpController>(
         builder: (controller) => Form(
               key: controller.completeForm,
               child: Scaffold(
-                backgroundColor: appColors.background,
+                backgroundColor: AppColors.background,
                 body: ListView(
                   physics: NeverScrollableScrollPhysics(),
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(right: 50.0),
-                      child: appParTilte(
+                      child: AppParTilte(
                         appbarTilte: 'Sign Up',
                       ),
                     ),
-                    authTitle(title: "Complete Profile"),
+                    AuthTitle(title: "Complete Profile"),
                     Padding(
                       padding: const EdgeInsets.only(
                         top: 5,
                         bottom: 10,
                       ),
-                      child: authSubTitle(
+                      child: AuthSubTitle(
                         subtitle:
                             'Complete your details or continue\n with social media',
                       ),

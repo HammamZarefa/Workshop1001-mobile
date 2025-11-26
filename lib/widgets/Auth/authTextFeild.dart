@@ -31,7 +31,7 @@ class Authtextfeild extends StatelessWidget {
       onSaved: onSaved,
       validator: validator,
       controller: mycontroller,
-      cursorColor: appColors.primary,
+      cursorColor: AppColors.primary,
       keyboardType: keyboardType,
       obscureText: obscureText,
       decoration: InputDecoration(
