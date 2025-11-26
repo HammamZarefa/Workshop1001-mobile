@@ -1,5 +1,6 @@
 import 'package:coda_workshop/constant/colors.dart';
-import 'package:coda_workshop/controllers/Auth/signUp_controller.dart';
+import 'package:coda_workshop/controllers/Auth/SinUp_controller.dart';
+
 import 'package:coda_workshop/functions/validInput.dart';
 import 'package:coda_workshop/widgets/Auth/appBarTitle.dart';
 import 'package:coda_workshop/widgets/Auth/authMaterialButton.dart';
@@ -14,7 +15,7 @@ class CompleteSignup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SignUpController>(
+    return GetBuilder<SinUpController>(
         builder: (controller) => Form(
               key: controller.completeForm,
               child: Scaffold(
@@ -76,7 +77,7 @@ class CompleteSignup extends StatelessWidget {
                         icon: Icons.phone_android,
                         obscureText: false,
                         keyboardType: TextInputType.phone,
-                        mycontroller: controller.phone,
+                        mycontroller: controller.phonenumper,
                         validator: (Value) {
                           return validInput(Value!, 9, 20, "phone");
                         },
@@ -90,7 +91,7 @@ class CompleteSignup extends StatelessWidget {
                         labelText: "Adrress",
                         icon: Icons.location_history,
                         obscureText: false,
-                        mycontroller: controller.address,
+                        mycontroller: controller.locition,
                         validator: (Value) {
                           return validInput(Value!, 5, 20, "location");
                         },

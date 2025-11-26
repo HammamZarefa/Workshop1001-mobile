@@ -25,21 +25,21 @@ class CompletProfile extends StatelessWidget {
         builder: (controller) => Form(
               key: controller.completeForm,
               child: Scaffold(
-                backgroundColor: appColors.background,
+                backgroundColor: AppColors.background,
                 body: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: ListView(
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      appParTilte(
+                      AppParTilte(
                         appbarTilte: "Sign UP",
                       ),
-                      authTitle(
+                      AuthTitle(
                         title: "Complete Profile",
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 5, bottom: 10),
-                        child: authSubTitle(
+                        child: AuthSubTitle(
                           subtitle:
                               "Complete your details or contiue  \n with social media",
                         ),
@@ -134,7 +134,7 @@ class CompletProfile extends StatelessWidget {
                     SizedBox(height: 20,),
                       Padding(
                         padding: const EdgeInsets.only(top: 5, bottom: 10),
-                        child: authSubTitle(
+                        child: AuthSubTitle(
                           subtitle:
                               "By continuing your confirm that you agree  \n wath our term and Condition",
                         ),

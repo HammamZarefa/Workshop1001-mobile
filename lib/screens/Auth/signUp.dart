@@ -1,5 +1,6 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/constant/imageAssets.dart';
+import 'package:coda_workshop/controllers/Auth/SinUp_controller.dart';
 import 'package:coda_workshop/controllers/Auth/signUp_controller.dart';
 import 'package:coda_workshop/functions/validInput.dart';
 import 'package:coda_workshop/widgets/Auth/appBarTitle.dart';
@@ -14,10 +15,10 @@ import 'package:get/get_core/src/get_main.dart';
 
 class Signup extends StatelessWidget {
   Signup({super.key});
-  SignUpController controller = Get.put(SignUpController());
+  SinUpController controller = Get.put(SinUpController());
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SignUpController>(
+    return GetBuilder<SinUpController>(
         builder: (controller) => Form(
               key: controller.formstate,
               child: Scaffold(
@@ -92,7 +93,7 @@ class Signup extends StatelessWidget {
                             controller.update();
                           },
                           obscureText: controller.isShow,
-                          mycontroller: controller.repassword,
+                          mycontroller: controller.password_confirmation,
                           validator: (val) {
                             // التحقق الأساسي بواسطة validInput
                             String? validation =

@@ -26,21 +26,21 @@ class Forget_password extends StatelessWidget {
         builder: (controller) => Form(
               key: controller.formState,
               child: Scaffold(
-                backgroundColor: appColors.background,
+                backgroundColor: AppColors.background,
                 body: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: ListView(
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      appParTilte(
+                      AppParTilte(
                         appbarTilte: "Forgot password",
                       ),
-                      authTitle(
+                      AuthTitle(
                         title: "Forgot password",
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 5, bottom: 10),
-                        child: authSubTitle(
+                        child: AuthSubTitle(
                           subtitle:
                               "please enter your email and we will send  \n you a link to return to your account",
                         ),

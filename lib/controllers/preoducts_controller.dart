@@ -7,7 +7,7 @@ class ProductController extends GetxController {
 
   List<Data> products = [];
   GetStorage box = GetStorage();
-
+List<Gallery>? imaghes=Data().gallery;
   int page = 1;              
   bool isLoading = false;      
   bool isMoreLoading = false;  
@@ -25,8 +25,8 @@ class ProductController extends GetxController {
       isLoading = true;
       update();
 
-      var token = box.read("token");
-      print("Token: $token");
+      // var token = box.read("token");
+      // print("Token: $token");
 
       var res = await ProdoctService().getproducts(page: page, limit: limit);
 

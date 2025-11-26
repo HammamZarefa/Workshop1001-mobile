@@ -22,13 +22,12 @@ class LoginController extends GetxController {
       login();
     } else {
       return "not valid";
-    }
-    } catch (e) {}
+    }}
+   
 
-  
-  }
 
-  Future login() async {
+   
+ Future login() async {
     try {
       var response =
           await LogInServive().postLogInData(email!.text, password!.text);
@@ -45,8 +44,13 @@ class LoginController extends GetxController {
     } catch (e) {}
   }
 
+
+
+
+
+
   gotoSignup() {
-    Get.toNamed(AppRoutes.signup);
+    Get.toNamed(AppRoutes.SinUp);
   }
 
   rememberMeTick() {
@@ -109,4 +113,8 @@ Get.toNamed(AppRoutes.SinUp);
     password!.dispose();
     super.dispose();
   }
-}
+  
+  }
+
+ 
+

@@ -1,10 +1,8 @@
 import 'package:coda_workshop/routes/routes.dart';
-import 'package:coda_workshop/screens/Auth/Forget_password.dart';
-import 'package:coda_workshop/services/Login_Service.dart';
+
 import 'package:coda_workshop/services/forgotpassword_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class ForgotPasswordcontroller extends GetxController {
   

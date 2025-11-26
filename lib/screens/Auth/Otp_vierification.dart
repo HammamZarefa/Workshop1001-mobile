@@ -25,21 +25,21 @@ class OtpVierification extends StatelessWidget {
         builder: (controller) => Form(
              // key: controller.formState,
               child: Scaffold(
-                backgroundColor: appColors.background,
+                backgroundColor: AppColors.background,
                 body: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: ListView(
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      appParTilte(
+                      AppParTilte(
                         appbarTilte: "Otp Verification",
                       ),
-                      authTitle(
+                      AuthTitle(
                         title: "Otp Verification",
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 5, bottom: 10),
-                        child: authSubTitle(
+                        child: AuthSubTitle(
                           subtitle:
                               "We sent your code to email \n This code will expired",
                         ),

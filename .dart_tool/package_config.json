@@ -15,7 +15,7 @@
     },
     {
       "name": "carousel_slider",
-      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/carousel_slider-5.1.1",
+      "rootUri": "file:///C:/Users/acer/AppData/Local/Pub/Cache/hosted/pub.dev/carousel_slider-5.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -80,14 +80,16 @@
       "languageVersion": "3.5"
     },
     {
-      "name": "flutter_slidable",
-      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_slidable-4.0.3",
-      "packageUri": "lib/",
-      "languageVersion": "3.6"
       "name": "flutter_otp_text_field",
       "rootUri": "file:///C:/Users/acer/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_otp_text_field-1.5.1+1",
       "packageUri": "lib/",
       "languageVersion": "3.1"
+    },
+    {
+      "name": "flutter_slidable",
+      "rootUri": "file:///C:/Users/acer/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_slidable-4.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
     },
     {
       "name": "flutter_test",
@@ -235,35 +237,30 @@
     },
     {
       "name": "sqflite",
-      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/sqflite-2.4.2",
       "rootUri": "file:///C:/Users/acer/AppData/Local/Pub/Cache/hosted/pub.dev/sqflite-2.4.2",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
     {
       "name": "sqflite_android",
-      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/sqflite_android-2.4.2+2",
       "rootUri": "file:///C:/Users/acer/AppData/Local/Pub/Cache/hosted/pub.dev/sqflite_android-2.4.2+2",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
     {
       "name": "sqflite_common",
-      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/sqflite_common-2.5.6",
       "rootUri": "file:///C:/Users/acer/AppData/Local/Pub/Cache/hosted/pub.dev/sqflite_common-2.5.6",
       "packageUri": "lib/",
       "languageVersion": "3.8"
     },
     {
       "name": "sqflite_darwin",
-      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/sqflite_darwin-2.4.2",
       "rootUri": "file:///C:/Users/acer/AppData/Local/Pub/Cache/hosted/pub.dev/sqflite_darwin-2.4.2",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
     {
       "name": "sqflite_platform_interface",
-      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/sqflite_platform_interface-2.4.0",
       "rootUri": "file:///C:/Users/acer/AppData/Local/Pub/Cache/hosted/pub.dev/sqflite_platform_interface-2.4.0",
       "packageUri": "lib/",
       "languageVersion": "3.5"
@@ -288,7 +285,6 @@
     },
     {
       "name": "synchronized",
-      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/synchronized-3.4.0",
       "rootUri": "file:///C:/Users/acer/AppData/Local/Pub/Cache/hosted/pub.dev/synchronized-3.4.0",
       "packageUri": "lib/",
       "languageVersion": "3.8"
