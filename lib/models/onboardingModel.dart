@@ -1,4 +1,3 @@
-
 class OnBoardingModel {
   int? status;
   String? message;
@@ -97,4 +96,3 @@ class Images {
     return data;
   }
 }
-

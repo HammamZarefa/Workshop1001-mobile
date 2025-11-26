@@ -26,7 +26,6 @@ class OnboardingController extends GetxController {
     } catch (e) {}
     return OnBoardingModel();
   }
-
   Future<void> next() async {
     if (currentpage < pageCount - 1) {
       pageController.animateToPage(currentpage + 1,

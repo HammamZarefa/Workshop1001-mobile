@@ -12,6 +12,7 @@
         "dio",
         "flutter",
         "flutter_slidable",
+        "flutter_otp_text_field",
         "get",
         "get_storage",
         "http",
