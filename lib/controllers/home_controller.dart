@@ -45,15 +45,15 @@ class HomeController extends GetxController {
     PopulerModel(image: ImageAssets.google, name: "Wireless Controller"),
   ];
   Future getPanner() async {
-    final box = GetStorage();
-    var token = box.read("token");
-
-    if (token == null) {
-      await Future.doWhile(() async {
-        return token == null;
-      });
+    try {
+      var response = await homeServices().getbanner();
+      pannerData = response.data ?? [];
+      update();
+    } catch (e) {
+      print("Error in getPanner: $e");
     }
-
+  }
+  Future getcategories() async {
     try {
       var response = await homeServices().getbanner();
       pannerData = response.data ?? [];

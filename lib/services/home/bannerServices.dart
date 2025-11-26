@@ -14,4 +14,16 @@ class homeServices {
     }
     return BannerModel(data: []);
   }
+   Future<BannerModel> getcategories() async {
+    try {
+      var res = await Api().dio.get(
+            'api/v1/categories',
+          );
+      print("API Response: ${res.data}");
+      return BannerModel.fromJson(res.data);
+    } catch (e) {
+      print("Error in getbanner: $e");
+    }
+    return BannerModel(data: []);
+  }
 }
