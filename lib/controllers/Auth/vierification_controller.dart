@@ -13,12 +13,7 @@ class VierificationController extends GetxController {
 
   Future gotosussifulsinup() async {
     if (otp.isEmpty) {
-      // Get.defaultDialog(
-      //   title: "تنبيه",
-      //   middleText: "يرجى إدخال رمز التحقق قبل المتابعة.",
-      // );
       
-
       try {
         var response = await OtpVierificationService().postOtpvierificaionData(email, otp);
 
@@ -54,7 +49,7 @@ class VierificationController extends GetxController {
 
         if (response != null) {
           if ((response["token"] != null)) {
-            Get.offNamed(AppRoutes.homescreen, );
+            Get.offNamed(AppRoutes.HomeScreen, );
           } else {
             Get.snackbar("Error", response["message"] ?? "Unknown error");
           }

@@ -1,13 +1,13 @@
 class BannerModel {
-  List<Data>? data;
+  List<BanerData>? data;
 
   BannerModel({this.data});
 
   BannerModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <BanerData>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(BanerData.fromJson(v));
       });
     }
   }
@@ -21,7 +21,7 @@ class BannerModel {
   }
 }
 
-class Data {
+class BanerData {
   int? id;
   String? title;
   String? description;
@@ -30,7 +30,7 @@ class Data {
   int? sortOrder;
   String? image;
 
-  Data(
+  BanerData(
       {this.id,
       this.title,
       this.description,
@@ -39,7 +39,7 @@ class Data {
       this.sortOrder,
       this.image});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  BanerData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     description = json['description'];

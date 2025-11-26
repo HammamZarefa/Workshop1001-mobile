@@ -1,24 +1,15 @@
 import 'package:coda_workshop/constant/imageAssets.dart';
 import 'package:coda_workshop/models/bannerModel.dart';
-import 'package:coda_workshop/models/categoryModel.dart';
-import 'package:coda_workshop/models/popularProdutsModel.dart';
+import 'package:coda_workshop/models/categoryModel.dart' hide Data;
+import 'package:coda_workshop/models/products_model.dart';
 import 'package:coda_workshop/models/specialModel.dart';
-import 'package:coda_workshop/services/home/bannerServices.dart';
+import 'package:coda_workshop/services/home/homeServeces.dart';
+import 'package:coda_workshop/services/prodoct_service.dart';
 import 'package:get/state_manager.dart';
-import 'package:get_storage/get_storage.dart' hide Data;
 
 class HomeController extends GetxController {
-  List<Data> pannerData = [];
-  List<CategoryModel> catigures = [
-    CategoryModel(image: ImageAssets.facebook, name: "facebook"),
-    CategoryModel(image: ImageAssets.twitter, name: "twitter"),
-    CategoryModel(image: ImageAssets.facebook, name: "facebook"),
-    CategoryModel(image: ImageAssets.twitter, name: "twitter"),
-    CategoryModel(image: ImageAssets.facebook, name: "facebook"),
-    CategoryModel(image: ImageAssets.twitter, name: "twitter"),
-    CategoryModel(image: ImageAssets.facebook, name: "facebook"),
-    CategoryModel(image: ImageAssets.twitter, name: "twitter"),
-  ];
+  List<BanerData> pannerData = [];
+  List<CategoryData> catigures = [];
   List<SpecialModel> special = [
     SpecialModel(
         image: ImageAssets.logo, title: "Smartphone", subtitle: "18 Brands"),
@@ -35,15 +26,8 @@ class HomeController extends GetxController {
     SpecialModel(
         image: ImageAssets.google, title: "Smartphone", subtitle: "18 Brands"),
   ];
-  List<PopulerModel> popular = [
-    PopulerModel(image: ImageAssets.logo, name: "Wireless Controller"),
-    PopulerModel(
-        image: ImageAssets.facebook, name: "Nike Sport White- man pant"),
-    PopulerModel(image: ImageAssets.facebook, name: "Gloves "),
-    PopulerModel(
-        image: ImageAssets.twitter, name: "Nike Sport White- man pant"),
-    PopulerModel(image: ImageAssets.google, name: "Wireless Controller"),
-  ];
+  List<Data> popular = [];
+
   Future getPanner() async {
     try {
       var response = await homeServices().getbanner();
@@ -53,20 +37,34 @@ class HomeController extends GetxController {
       print("Error in getPanner: $e");
     }
   }
+
   Future getcategories() async {
     try {
-      var response = await homeServices().getbanner();
-      pannerData = response.data ?? [];
+      var response = await homeServices().getcategories();
+      catigures = response.data ?? [];
       update();
     } catch (e) {
-      print("Error in getPanner: $e");
+      print("Error in getcategories: $e");
+    }
+  }
+
+  Future getPopular() async {
+    try {
+      var response = await ProdoctService().getproducts();
+      popular =
+          response.data?.where((item) => item.isFeatured == true).toList() ??
+              [];
+      update();
+    } catch (e) {
+      print("❌ Error in getPopular: $e");
     }
   }
 
   @override
   void onInit() {
-  
     getPanner();
+    getcategories();
+    getPopular();
     print("onInit called");
     // TODO: implement onInit
     super.onInit();

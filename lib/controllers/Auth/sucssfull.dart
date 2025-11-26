@@ -10,7 +10,7 @@ gotohome(){
 
 
 
-Get.offNamed(AppRoutes.homescreen);
+Get.offNamed(AppRoutes.HomeScreen);
  
 }
 

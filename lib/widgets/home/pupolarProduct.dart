@@ -54,8 +54,8 @@ class PopularList extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
-                          child: Image.asset(
-                            popularItem.image!,
+                          child: Image.network(
+                            popularItem.featuredImage!,
                             fit: BoxFit.contain,
                             // color: Colors.black12,
                           ),
@@ -67,7 +67,7 @@ class PopularList extends StatelessWidget {
                     ),
                     child: Text(
                       textWidthBasis: TextWidthBasis.longestLine,
-                      popularItem.name!,
+                      popularItem.title!,
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontWeight: FontWeight.w500),
                     ),

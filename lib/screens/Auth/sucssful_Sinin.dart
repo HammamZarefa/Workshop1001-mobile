@@ -22,19 +22,19 @@ class SucssfulSinin extends StatelessWidget {
         builder: (controller) => Form(
 
               child: Scaffold(
-                backgroundColor: appColors.background,
+                backgroundColor: AppColors.background,
                 body: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: ListView(
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      appParTilte(
+                      AppParTilte(
                         appbarTilte: "Logein Success",
                       ),
 SizedBox(height: 100,),
  Icon(Icons.task_alt_rounded,size: 200,color: Colors.orange,),
 
-                      authTitle(
+                      AuthTitle(
                         title: "Logein Success",
                       ),
                    

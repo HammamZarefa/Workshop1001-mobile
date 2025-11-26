@@ -59,20 +59,6 @@ class CartController extends GetxController {
     return total - discountValue;
   }
 
-  // Future addProductToCart() async {
-  //   await DBHelper.instance.insert({
-  //     "name": "Wireless Controller for PS4",
-  //     "image": ImageAssets.google,
-  //     "count": 2,
-  //     "price": 64.99,
-  //   });
-  //   await DBHelper.instance.insert({
-  //     "name": "tablo",
-  //     "image": ImageAssets.facebook,
-  //     "count": 4,
-  //     "price": 25.10,
-  //   });
-  // }
 Future addProductToCart({
   required String name,
   required String image,

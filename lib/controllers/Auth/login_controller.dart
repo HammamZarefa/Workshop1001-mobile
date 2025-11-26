@@ -23,9 +23,6 @@ class LoginController extends GetxController {
     } else {
       return "not valid";
     }
-    } catch (e) {}
-
-  
   }
 
   Future login() async {
@@ -46,7 +43,7 @@ class LoginController extends GetxController {
   }
 
   gotoSignup() {
-    Get.toNamed(AppRoutes.signup);
+    Get.toNamed(AppRoutes.SinUp);
   }
 
   rememberMeTick() {
@@ -77,19 +74,12 @@ class LoginController extends GetxController {
   }
 
   goToForgetPassword() {
-
-Get.toNamed(AppRoutes.Forget_password);
-
+    Get.toNamed(AppRoutes.Forget_password);
   }
 
- goTosibup() {
-
-Get.toNamed(AppRoutes.SinUp);
-
- }
-
-
-
+  goTosibup() {
+    Get.toNamed(AppRoutes.SinUp);
+  }
 
   @override
   void onInit() {

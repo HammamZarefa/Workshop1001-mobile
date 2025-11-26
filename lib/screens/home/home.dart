@@ -2,6 +2,7 @@ import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
 import 'package:coda_workshop/controllers/nav_controller.dart';
 import 'package:coda_workshop/screens/cart.dart';
+import 'package:coda_workshop/screens/home/categories.dart';
 import 'package:coda_workshop/widgets/home/banner.dart';
 import 'package:coda_workshop/widgets/home/categureList.dart';
 import 'package:coda_workshop/widgets/home/pupolarProduct.dart';
@@ -18,15 +19,16 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
       builder: (controller) {
-        if (controller.pannerData.isEmpty) {
+        if (controller.pannerData.isEmpty || controller.catigures.isEmpty) {
           return Scaffold(
             body: Center(child: CircularProgressIndicator()),
           );
         }
 
         final banner = controller.pannerData.first;
-        final categores = controller.catigures.first;
-
+        final categoriesList = controller.catigures.length > 7
+            ? controller.catigures.take(7).toList()
+            : controller.catigures;
         return Scaffold(
           backgroundColor: AppColors.background,
           body: ListView(
@@ -91,27 +93,46 @@ class HomeScreen extends StatelessWidget {
                 description: banner.description,
                 backgroundColor: AppColors.pannerColor!,
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 10,
-                  bottom: 10,
-                  left: 250.0,
-                ),
-                child: Container(
-                  height: 25,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: MaterialButton(
-                    onPressed: () {},
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15.0),
                     child: Text(
-                      "See all ->",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      "Categores :",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 10,
+                      bottom: 10,
+                      left: 160.0,
+                    ),
+                    child: Container(
+                      height: 25,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: MaterialButton(
+                        onPressed: () {
+                          Get.to(CategoriesScreen());
+                        },
+                        child: Text(
+                          "See all ->",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              CategoriesList(controller: controller),
+              CategoriesList(
+                controller: controller,
+                categories: controller.catigures.length > 7
+                    ? controller.catigures.take(7).toList()
+                    : controller.catigures,
+              ),
               // Padding(
               //   padding: const EdgeInsets.only(
               //       right: 20.0, left: 20, top: 0, bottom: 10),
