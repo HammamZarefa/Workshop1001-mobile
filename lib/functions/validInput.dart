@@ -6,6 +6,8 @@ validInput(String val, int min, int max, String type) {
       return "Not Valid User Name";
     }
   }
+  
+  
   if (type == "email") {
     if (!GetUtils.isEmail(val)) {
       return "Not Valid User Email";

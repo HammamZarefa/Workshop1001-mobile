@@ -3,9 +3,8 @@ import 'package:coda_workshop/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main()  {
+void main() {
   runApp(const MyApp());
-  
 }
 
 class MyApp extends StatelessWidget {
@@ -16,6 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'CODA',
       initialRoute: AppRoutes.splashscreen,
+      // initialRoute: AppRoutes.homescreen,
       getPages: pages,
     );
   }

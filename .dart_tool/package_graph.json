@@ -7,6 +7,7 @@
       "name": "coda_workshop",
       "version": "1.0.0+1",
       "dependencies": [
+        "carousel_slider",
         "cupertino_icons",
         "dio",
         "flutter",
@@ -42,6 +43,13 @@
         "stream_channel",
         "test_api",
         "vector_math"
+      ]
+    },
+    {
+      "name": "carousel_slider",
+      "version": "5.1.1",
+      "dependencies": [
+        "flutter"
       ]
     },
     {
@@ -189,6 +197,21 @@
         "string_scanner",
         "term_glyph"
       ]
+    },
+    {
+      "name": "dio_web_adapter",
+      "version": "2.1.1",
+      "dependencies": [
+        "dio",
+        "http_parser",
+        "meta",
+        "web"
+      ]
+    },
+    {
+      "name": "mime",
+      "version": "2.0.0",
+      "dependencies": []
     },
     {
       "name": "http_parser",
@@ -373,21 +396,6 @@
         "meta",
         "path"
       ]
-    },
-    {
-      "name": "dio_web_adapter",
-      "version": "2.1.1",
-      "dependencies": [
-        "dio",
-        "http_parser",
-        "meta",
-        "web"
-      ]
-    },
-    {
-      "name": "mime",
-      "version": "2.0.0",
-      "dependencies": []
     }
   ],
   "configVersion": 1

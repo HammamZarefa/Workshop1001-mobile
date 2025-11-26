@@ -47,7 +47,9 @@ class loginscreen extends StatelessWidget {
                         child: Authtextfeild(
                           validator: (val) => validInput(val!, 10, 40, "email"),
                           mycontroller: controller.email,
-                          hintText: "Enter your email",
+                          hintText: controller.box.read('tick') == false
+                              ? "Enter your Email"
+                              : controller.hintemail,
                           labelText: "Email",
                           icon: Icons.email_outlined,
                           obscureText: false,
@@ -61,8 +63,11 @@ class loginscreen extends StatelessWidget {
                           child: Authtextfeild(
                             validator: (val) =>
                                 validInput(val!, 5, 15, 'password'),
-                            mycontroller: controller.password,
-                            hintText: "Enter your Password",
+                            mycontroller: controller.password!,
+                            // hintText: "Enter your Password",
+                            hintText: controller.box.read('tick') == false
+                                ? "Enter your Password"
+                                : controller.hintpassword,
                             labelText: "Password",
                             icon: controller.isShow == false
                                 ? Icons.lock_open_outlined
@@ -82,7 +87,9 @@ class loginscreen extends StatelessWidget {
                             activeColor: appColors.background,
                             // activeColor: appColors.primary,
 
-                            value: controller.tick,
+                            value: controller.box.read("tick") != null
+                                ? controller.box.read("tick")
+                                : controller.tick,
                             onChanged: (value) {
                               controller.rememberMeTick();
                             },
@@ -111,7 +118,7 @@ class loginscreen extends StatelessWidget {
                             title: "Continue",
                             onPressed: () {
                               print("Button clicked!");
-                              controller.login();
+                              controller.validate();
                             },
                           )),
 
@@ -119,39 +126,38 @@ class loginscreen extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
-                      Container(
-                        width: 300,
-                        height: 30,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            appsButton(
-                              image: imageAssets.google,
-                              
-                            ),
-                            SizedBox(
-                              width: 25,
-                            ),
-                            appsButton(
-                              image: imageAssets.facebook,
-                            ),
-                            SizedBox(
-                              width: 25,
-                            ),
-                            appsButton(
-                              image: imageAssets.twitter,
-                            ),
-                          ],
-                        ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          appsButton(
+                            image: imageAssets.google,
+                          ),
+                          SizedBox(
+                            width: 25,
+                          ),
+                          appsButton(
+                            image: imageAssets.facebook,
+                          ),
+                          SizedBox(
+                            width: 25,
+                          ),
+                          appsButton(
+                            image: imageAssets.twitter,
+                          ),
+                        ],
                       ),
+
                       SizedBox(
                         height: 20,
                       ),
                       Inkwelltext(
                         FirstText: "Dont have an account?",
                         SecondText: "  Sign Up",
-                        onTap: () {},
+                        onTap: () {
+                          controller.gotoSignup();
+                        },
                       )
                     ],
                   ),
