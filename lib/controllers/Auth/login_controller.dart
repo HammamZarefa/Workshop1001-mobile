@@ -23,6 +23,9 @@ class LoginController extends GetxController {
     } else {
       return "not valid";
     }
+    } catch (e) {}
+
+  
   }
 
   Future login() async {
@@ -73,7 +76,20 @@ class LoginController extends GetxController {
     update();
   }
 
-  goToForgetPassword() {}
+  goToForgetPassword() {
+
+Get.toNamed(AppRoutes.Forget_password);
+
+  }
+
+ goTosibup() {
+
+Get.toNamed(AppRoutes.SinUp);
+
+ }
+
+
+
 
   @override
   void onInit() {

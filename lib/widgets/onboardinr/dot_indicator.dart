@@ -6,6 +6,9 @@ import 'package:get/get.dart';
 class dotIndicator extends StatelessWidget {
    dotIndicator({super.key});
   OnboardingController controller = Get.put(OnboardingController());//*** */
+
+
+  //final OnboardingController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OnboardingController>(

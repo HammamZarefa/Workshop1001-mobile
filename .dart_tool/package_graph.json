@@ -11,9 +11,11 @@
         "cupertino_icons",
         "dio",
         "flutter",
+        "flutter_otp_text_field",
         "get",
         "get_storage",
-        "http"
+        "http",
+        "sqflite"
       ],
       "devDependencies": [
         "flutter_lints",

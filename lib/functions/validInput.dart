@@ -18,6 +18,12 @@ validInput(String val, int min, int max, String type) {
       return "Not Valid  Phone";
     }
   }
+
+
+
+
+
+
    if (val.isEmpty) {
     return " Can't be Empty ";
   }

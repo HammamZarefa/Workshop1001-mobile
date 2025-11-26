@@ -6,6 +6,7 @@ import 'package:coda_workshop/screens/Auth/signUp.dart';
 import 'package:coda_workshop/screens/mainScreen.dart';
 import 'package:coda_workshop/screens/onboarding_screen.dart';
 import 'package:coda_workshop/screens/home/home.dart';
+import 'package:coda_workshop/screens/prodoctes_screen.dart';
 import 'package:coda_workshop/screens/splash_screen/splash_screen.dart';
 import 'package:get/get.dart';
 
@@ -41,4 +42,62 @@ final pages = <GetPage>[
     name: AppRoutes.mainScreen,
     page: () => MainScreen(),
   ),
+
+
+
+
+   GetPage(
+    name: AppRoutes.SinUp,
+    page: () =>  SinUp(),
+  ),
+
+
+
+   GetPage(
+    name: AppRoutes.Complet_profile,
+    page: () =>  CompletProfile(),
+  ),
+
+
+
+
+   GetPage(
+    name: AppRoutes.Forget_password,
+    page: () =>  Forget_password(),
+  ),
+
+
+
+ GetPage(
+    name: AppRoutes.Otp_Vierification,
+    page: () =>  OtpVierification(),
+  ),
+
+
+
+ GetPage(
+    name: AppRoutes.SucssfulSinin,
+    page: () =>  SucssfulSinin(),
+  ),
+
+
+
+ GetPage(
+    name: AppRoutes.ProdoctesScreen,
+    page: () =>  ProductsScreen(),
+  ),
+
+
+ GetPage(
+    name: AppRoutes.FavoritesScreen,
+    page: () => FavoritesScreen(),
+  ),
+
+
+
+
+
+
+
+
 ];
