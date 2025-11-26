@@ -15,8 +15,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'CODA',
-          initialRoute: AppRoutes.splashscreen,
-        // initialRoute: AppRoutes.FavoritesScreen,
+             initialRoute: AppRoutes.splashscreen,
+        
+          // initialRoute: AppRoutes.FavoritesScreen,
       getPages: pages,
     );
   }

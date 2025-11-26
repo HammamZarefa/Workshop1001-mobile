@@ -59,5 +59,6 @@ class FavoriteHelper {
     final res =
         await db.query('favorites', where: 'id = ?', whereArgs: [id]);
     return res.isNotEmpty;
+    
   }
 }

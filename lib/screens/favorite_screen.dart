@@ -1,4 +1,4 @@
-import 'package:coda_workshop/controllers/Auth/Favorite_Controller.dart';
+import 'package:coda_workshop/controllers/Favorite_Controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -31,8 +31,8 @@ class FavoritesScreen extends StatelessWidget {
                   return ListTile(
                     leading: Image.network(
                       item["image"],
-                      width: 60,
-                      height: 60,
+                      width: 100,
+                      height: 100,
                       fit: BoxFit.cover,
                     ),
 

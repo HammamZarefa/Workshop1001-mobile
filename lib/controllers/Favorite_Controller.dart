@@ -39,7 +39,7 @@ class FavoriteController extends GetxController {
       favorites.removeWhere((item) => item["id"] == id);
       favoriteIds.remove(id);
 
-      print("❌ The product has been removed from favorites ${product["title"]}");
+      print(" The product has been removed from favorites ${product["title"]}");
     } else {
     
       await FavoriteHelper.instance.addFavorite(product);
@@ -48,7 +48,7 @@ class FavoriteController extends GetxController {
       favorites.add(Map<String, dynamic>.from(product));
       favoriteIds.add(id);
 
-      print("❤️ The product has been added to favorites ${product["title"]}");
+      print(" The product has been added to favorites ${product["title"]}");
     }
 
    

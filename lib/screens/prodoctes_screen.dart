@@ -2,7 +2,7 @@ import 'package:coda_workshop/controllers/preoducts_controller.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/Auth/Favorite_Controller.dart';
+import '../controllers/Favorite_Controller.dart';
 
 class ProductsScreen extends StatelessWidget {
   final ScrollController scrollController = ScrollController();
@@ -90,7 +90,7 @@ class ProductsScreen extends StatelessWidget {
                                         "${item.price} \$",
                                         style: TextStyle(
                                             fontSize: 15,
-                                            color: Colors.red,
+                                            color: Colors.orange,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Obx(() {
