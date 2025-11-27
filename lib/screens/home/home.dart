@@ -37,14 +37,13 @@ class HomeScreen extends StatelessWidget {
           backgroundColor: AppColors.background,
           body: ListView(
             children: [
-              
               /// ================== Top par ==================
               Padding(
-                padding: EdgeInsets.only(top: 40, left: 20, right: 20, bottom: 5),
+                padding:
+                    EdgeInsets.only(top: 40, left: 20, right: 20, bottom: 5),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-
                     Expanded(
                       child: Container(
                         height: 50,
@@ -73,22 +72,24 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     SizedBox(width: 10),
-
                     CircleAvatar(
                       backgroundColor: AppColors.lightGrey,
                       child: IconButton(
-                        icon: Icon(Icons.shopping_cart_outlined),
+                        icon: Icon(
+                          Icons.shopping_cart_outlined,
+                          color: Colors.black,
+                        ),
                         onPressed: () => Get.to(CartScreen()),
                       ),
                     ),
-
                     SizedBox(width: 10),
-
                     CircleAvatar(
                       backgroundColor: AppColors.lightGrey,
-                      child: Icon(Icons.notifications_active_outlined),
+                      child: Icon(
+                        Icons.notifications_active_outlined,
+                        color: Colors.black,
+                      ),
                     ),
                   ],
                 ),
@@ -112,7 +113,8 @@ class HomeScreen extends StatelessWidget {
                         final item = pc.searchResult[index];
 
                         return ListTile(
-                          leading: Image.network(item.featuredImage!, width: 45),
+                          leading:
+                              Image.network(item.featuredImage!, width: 45),
                           title: Text(item.title!),
                           subtitle: Text("${item.price} \$",
                               style: TextStyle(color: Colors.red)),
@@ -150,7 +152,8 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
 
-              CategoriesList(controller: controller, categories: categoriesList),
+              CategoriesList(
+                  controller: controller, categories: categoriesList),
 
               /// ================== Special & Popular ==================
               SpecialList(controller: controller),
