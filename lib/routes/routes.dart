@@ -7,9 +7,13 @@ class AppRoutes {
   static const String Complet_profile = '/Complet_profile';
   static const String mainScreen = '/mainScreen';
  static const String Otp_Vierification = '/Otp_Vierification';
-static const String  SucssfulSinin = '/ SucssfulSinin';
-static const String Forget_password = '/ Forget_password';
-static const String ProdoctesScreen = '/ ProdoctesScreen';
-static const String FavoritesScreen = '/ FavoritesScreen';
+static const String  SucssfulSinin = '/SucssfulSinin';
+static const String Forget_password = '/Forget_password';
+static const String ProdoctesScreen = '/ProdoctesScreen';
+static const String FavoritesScreen = '/FavoritesScreen';
+static const String ProductDetails_Screen = '/ProductDetails_Screen';
+
+
+
 }
   

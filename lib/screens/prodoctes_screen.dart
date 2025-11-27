@@ -1,8 +1,8 @@
 import 'package:coda_workshop/controllers/preoducts_controller.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/Favorite_Controller.dart';
+import '../routes/routes.dart';
 
 class ProductsScreen extends StatelessWidget {
   final ScrollController scrollController = ScrollController();
@@ -47,13 +47,30 @@ class ProductsScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final item = controller.products[index];
 
-                      return Card(
-                        color: Colors.transparent,
-                        elevation: 0,
-                        shadowColor: Colors.transparent,
-                        child: Stack(
-                          children: [
-                            ListView(
+                      return GestureDetector(
+                        onTap: () {
+                          // تمرير كل البيانات المطلوبة لصفحة التفاصيل
+                          Get.toNamed(
+                            AppRoutes.ProductDetails_Screen,
+                            arguments: {
+                              "id": item.id, // مهم للمفضلة
+                              "title": item.title,
+                              "price": item.price,
+                              "image": item.featuredImage,
+                              "images": [
+                                item.featuredImage,
+                                ...?item.gallery?.map((g) => g.url).toList(),
+                              ],
+                            },
+                          );
+                        },
+                        child: Card(
+                          color: Colors.transparent,
+                          elevation: 0,
+                          shadowColor: Colors.transparent,
+                          child: Stack(
+                            children: [
+                              ListView(
                                 physics: NeverScrollableScrollPhysics(),
                                 children: [
                                   ClipRRect(
@@ -64,7 +81,7 @@ class ProductsScreen extends StatelessWidget {
                                       height: 180,
                                       color: Colors.grey[300],
                                       child: Padding(
-                                        padding: const EdgeInsets.all(30),
+                                        padding: const EdgeInsets.all(20),
                                         child: Image.network(
                                           item.featuredImage!,
                                           height: 130,
@@ -78,8 +95,9 @@ class ProductsScreen extends StatelessWidget {
                                   Text(
                                     item.title!,
                                     style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                   SizedBox(height: 5),
                                   Row(
@@ -89,13 +107,15 @@ class ProductsScreen extends StatelessWidget {
                                       Text(
                                         "${item.price} \$",
                                         style: TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.orange,
-                                            fontWeight: FontWeight.bold),
+                                          fontSize: 15,
+                                          color: Colors.orange,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       Obx(() {
-                                        bool isFav = favController.favoriteIds
-                                            .contains(item.id!);
+                                        bool isFav =
+                                            favController.favoriteIds
+                                                .contains(item.id);
                                         return IconButton(
                                           icon: Icon(
                                             isFav
@@ -104,21 +124,23 @@ class ProductsScreen extends StatelessWidget {
                                             color: Colors.red,
                                           ),
                                           onPressed: () {
-                                            favController.toggleFavorite({
-                                              "id": item.id,
-                                              "title": item.title,
-                                              "price": item.price,
-                                              "image": item.featuredImage,
-                                            });
+                                            if (item.id != null) {
+                                              favController.toggleFavorite({
+                                                "id": item.id,
+                                                "title": item.title,
+                                                "price": item.price,
+                                                "image": item.featuredImage,
+                                              });
+                                            }
                                           },
                                         );
                                       }),
                                     ],
-                                  )
-                                ]),
-
-                          
-                          ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },

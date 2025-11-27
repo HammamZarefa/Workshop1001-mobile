@@ -12,6 +12,7 @@ import 'package:coda_workshop/screens/mainScreen.dart';
 import 'package:coda_workshop/screens/onboarding_screen.dart';
 import 'package:coda_workshop/screens/home/home.dart';
 import 'package:coda_workshop/screens/prodoctes_screen.dart';
+import 'package:coda_workshop/screens/productDetails.dart';
 import 'package:coda_workshop/screens/splash_screen/splash_screen.dart';
 import 'package:get/get.dart';
 
@@ -39,10 +40,7 @@ final pages = <GetPage>[
     name: AppRoutes.SinUp,
     page: () => Signup(),
   ),
-  GetPage(
-    name: AppRoutes.Complet_profile,
-    page: () => CompleteSignup(),
-  ),
+  
   GetPage(
     name: AppRoutes.mainScreen,
     page: () => MainScreen(),
@@ -51,11 +49,7 @@ final pages = <GetPage>[
 
 
 
-   GetPage(
-    name: AppRoutes.SinUp,
-    page: () =>  Signup(),
-  ),
-
+   
 
 
    GetPage(
@@ -98,4 +92,18 @@ final pages = <GetPage>[
     page: () => FavoritesScreen(),
   ),
 
+
+
+
+
+
+
+ GetPage(
+    name: AppRoutes.ProductDetails_Screen,
+    page: () => ProductDetails(),
+  ),
+
+
+
 ];
+
