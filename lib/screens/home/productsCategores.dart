@@ -1,14 +1,15 @@
+import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/Favorite_Controller.dart';
 import 'package:coda_workshop/controllers/preoducts_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class ProductsByCategoryScreen extends StatelessWidget {
   final int categoryId;
   final String categoryName;
 
-  ProductsByCategoryScreen({required this.categoryId, required this.categoryName});
+  ProductsByCategoryScreen(
+      {required this.categoryId, required this.categoryName});
 
   final ProductController controller = Get.put(ProductController());
   final FavoriteController favController = Get.put(FavoriteController());
@@ -18,7 +19,9 @@ class ProductsByCategoryScreen extends StatelessWidget {
     controller.getProductsByCategory(categoryId);
 
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
+        backgroundColor: AppColors.background,
         title: Text(categoryName),
         centerTitle: true,
       ),
@@ -42,15 +45,15 @@ class ProductsByCategoryScreen extends StatelessWidget {
               childAspectRatio: 0.75,
             ),
             itemBuilder: (context, index) {
-              final product = controller.products[index];
+              final product = controller.productsid[index];
 
               return Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.lightGrey,
                   borderRadius: BorderRadius.circular(14),
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.black.withOpacity(0.07),
+                        color: Colors.black12,
                         blurRadius: 6,
                         offset: const Offset(0, 3))
                   ],
@@ -60,8 +63,8 @@ class ProductsByCategoryScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ClipRRect(
-                        borderRadius:
-                            const BorderRadius.vertical(top: Radius.circular(14)),
+                        borderRadius: const BorderRadius.vertical(
+                            top: Radius.circular(14)),
                         child: Image.network(
                           product.featuredImage ?? "",
                           fit: BoxFit.cover,
@@ -86,11 +89,13 @@ class ProductsByCategoryScreen extends StatelessWidget {
                         children: [
                           Text(
                             "${product.price ?? 0} \$",
-                            style: const TextStyle(
-                                color: Colors.red, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.bold),
                           ),
                           Obx(() {
-                            bool isFav = favController.favoriteIds.contains(product.id!);
+                            bool isFav =
+                                favController.favoriteIds.contains(product.id!);
                             return IconButton(
                               icon: Icon(
                                 isFav ? Icons.favorite : Icons.favorite_border,

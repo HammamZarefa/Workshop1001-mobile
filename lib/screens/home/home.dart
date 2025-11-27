@@ -1,6 +1,7 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
 import 'package:coda_workshop/controllers/nav_controller.dart';
+import 'package:coda_workshop/controllers/preoducts_controller.dart';
 import 'package:coda_workshop/screens/cart.dart';
 import 'package:coda_workshop/screens/home/categories.dart';
 import 'package:coda_workshop/widgets/home/banner.dart';
@@ -12,8 +13,10 @@ import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
+
   final HomeController controller = Get.put(HomeController());
   final NavController navController = Get.put(NavController());
+  final ProductController productController = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {
@@ -29,134 +32,127 @@ class HomeScreen extends StatelessWidget {
         final categoriesList = controller.catigures.length > 7
             ? controller.catigures.take(7).toList()
             : controller.catigures;
+
         return Scaffold(
           backgroundColor: AppColors.background,
           body: ListView(
             children: [
+              
+              /// ================== Top par ==================
               Padding(
-                padding: const EdgeInsets.only(
-                    top: 40, left: 20, right: 20, bottom: 5),
+                padding: EdgeInsets.only(top: 40, left: 20, right: 20, bottom: 5),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      width: 220,
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      decoration: BoxDecoration(
-                        color: AppColors.lightGrey,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.search),
-                          SizedBox(width: 8),
-                          Expanded(
-                            child: TextField(
-                              decoration: InputDecoration(
-                                hintText: 'Search product',
-                                border: InputBorder.none,
-                                hintStyle: TextStyle(fontSize: 15),
+
+                    Expanded(
+                      child: Container(
+                        height: 50,
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        decoration: BoxDecoration(
+                          color: AppColors.lightGrey,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.search),
+                            SizedBox(width: 8),
+                            Expanded(
+                              child: TextField(
+                                onChanged: (value) {
+                                  productController.searchWord = value;
+                                  productController.searchCompare();
+                                },
+                                decoration: InputDecoration(
+                                  hintText: 'Search product...',
+                                  border: InputBorder.none,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                    Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10),
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                          color: AppColors.lightGrey,
-                          borderRadius: BorderRadius.circular(60),
-                        ),
-                        child: IconButton(
-                            onPressed: () {
-                              Get.to(CartScreen());
-                            },
-                            icon: Icon(Icons.shopping_cart_outlined))),
-                    Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                          color: AppColors.lightGrey,
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.notifications_active_outlined))),
+
+                    SizedBox(width: 10),
+
+                    CircleAvatar(
+                      backgroundColor: AppColors.lightGrey,
+                      child: IconButton(
+                        icon: Icon(Icons.shopping_cart_outlined),
+                        onPressed: () => Get.to(CartScreen()),
+                      ),
+                    ),
+
+                    SizedBox(width: 10),
+
+                    CircleAvatar(
+                      backgroundColor: AppColors.lightGrey,
+                      child: Icon(Icons.notifications_active_outlined),
+                    ),
                   ],
                 ),
               ),
+
+              GetBuilder<ProductController>(
+                builder: (pc) {
+                  if (pc.searchResult.isEmpty) return SizedBox();
+
+                  return Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    padding: EdgeInsets.all(10),
+                    height: 230,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: ListView.builder(
+                      itemCount: pc.searchResult.length,
+                      itemBuilder: (_, index) {
+                        final item = pc.searchResult[index];
+
+                        return ListTile(
+                          leading: Image.network(item.featuredImage!, width: 45),
+                          title: Text(item.title!),
+                          subtitle: Text("${item.price} \$",
+                              style: TextStyle(color: Colors.red)),
+                          trailing: Icon(Icons.arrow_forward_ios, size: 18),
+                          onTap: () {},
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+
               BannerCard(
                 image: banner.image,
                 title: banner.title,
                 description: banner.description,
                 backgroundColor: AppColors.pannerColor!,
               ),
+
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
-                    child: Text(
-                      "Categores :",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
+                    padding: EdgeInsets.only(left: 15),
+                    child: Text("Categories:",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold)),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 10,
-                      bottom: 10,
-                      left: 160.0,
-                    ),
-                    child: Container(
-                      height: 25,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: MaterialButton(
-                        onPressed: () {
-                          Get.to(CategoriesScreen());
-                        },
-                        child: Text(
-                          "See all ->",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
+                  TextButton(
+                    onPressed: () => Get.to(CategoriesScreen()),
+                    child: Text("See all ->",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.black)),
                   ),
                 ],
               ),
-              CategoriesList(
-                controller: controller,
-                categories: controller.catigures.length > 7
-                    ? controller.catigures.take(7).toList()
-                    : controller.catigures,
-              ),
-              // Padding(
-              //   padding: const EdgeInsets.only(
-              //       right: 20.0, left: 20, top: 0, bottom: 10),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       Text(
-              //         "Special for you",
-              //         style:
-              //             TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              //       ),
-              //       MaterialButton(
-              //         onPressed: () {},
-              //         child: Text(
-              //           "See more",
-              //           style: TextStyle(
-              //               fontWeight: FontWeight.bold,
-              //               color: Colors.grey,
-              //               fontSize: 16),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
+
+              CategoriesList(controller: controller, categories: categoriesList),
+
+              /// ================== Special & Popular ==================
               SpecialList(controller: controller),
               PopularList(controller: controller),
             ],

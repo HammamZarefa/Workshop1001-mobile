@@ -3,7 +3,6 @@ import 'package:coda_workshop/routes/routes.dart';
 import 'package:coda_workshop/screens/Auth/Complet_profieal.dart';
 import 'package:coda_workshop/screens/Auth/Forget_password.dart';
 import 'package:coda_workshop/screens/Auth/Otp_vierification.dart';
-import 'package:coda_workshop/screens/Auth/completeSignup.dart';
 import 'package:coda_workshop/screens/Auth/Loginscreen.dart';
 import 'package:coda_workshop/screens/Auth/signUp.dart';
 import 'package:coda_workshop/screens/Auth/sucssful_Sinin.dart';

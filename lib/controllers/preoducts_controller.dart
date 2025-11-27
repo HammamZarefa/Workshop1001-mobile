@@ -6,9 +6,9 @@ import 'package:get_storage/get_storage.dart' hide Data;
 class ProductController extends GetxController {
   List<Data> products = [];
   List<Data> productsid = [];
-
+  String? searchWord;
   GetStorage box = GetStorage();
-
+List<Data> searchResult = [];
   int page = 1;
   bool isLoading = false;
   bool isMoreLoading = false;
@@ -19,6 +19,28 @@ class ProductController extends GetxController {
     getproductsData();
     super.onInit();
   }
+
+  // Widget? searchCompair(i) {
+  //   if (searchWord == products[i].title) {
+  //     Get.snackbar("Success", "${products[i].price}");
+      
+  //     print("object");
+  //   } else {
+  //     return Center(
+  //       child: Text("dont here"),
+  //     );
+  //   }
+  // }
+void searchCompare() {
+  if(searchWord!.isEmpty){
+    searchResult = [];
+  }else{
+    searchResult = products.where((p) =>
+      p.title!.toLowerCase().contains(searchWord!.toLowerCase())
+    ).toList();
+  }
+  update();
+}
 
   Future<void> getProductsByCategory(int categoryId) async {
     try {
