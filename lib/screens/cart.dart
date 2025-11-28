@@ -95,9 +95,16 @@ class CartScreen extends StatelessWidget {
                                   ),
                                   height: 90,
                                   width: 85,
-                                  child: Image.asset(item.image,
-                                      fit: BoxFit.contain),
+                                  child: Image.network(item.image,
+                                      fit: BoxFit.contain
+                                      
+                                      
+                                      
+                                      ),
                                 ),
+
+
+
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
@@ -239,6 +246,10 @@ class CartScreen extends StatelessWidget {
                                 controller.addProductToCart(
                                     count: 2,
                                     image: ImageAssets.facebook,
+
+
+
+                                    
                                     name: "Wireless Controller for PS4",
                                     price: 200.23);
                                 controller.update();

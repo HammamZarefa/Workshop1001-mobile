@@ -56,11 +56,14 @@ class ProductsScreen extends StatelessWidget {
                               "id": item.id, // مهم للمفضلة
                               "title": item.title,
                               "price": item.price,
+                              "description": item.description, 
+
                               "image": item.featuredImage,
                               "images": [
                                 item.featuredImage,
                                 ...?item.gallery?.map((g) => g.url).toList(),
                               ],
+                              "colors": ["red", "green", "blue","grye"]
                             },
                           );
                         },

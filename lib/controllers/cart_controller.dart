@@ -85,6 +85,14 @@ Future addProductToCart({
     "count": count,
     "price": price,
   });
+  await getCartProducts();
+
+  // تحديث GetX
+  update();
+
+
+
+
 }
 
   Future deleteProduct(int id) async {

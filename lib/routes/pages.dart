@@ -12,7 +12,8 @@ import 'package:coda_workshop/screens/mainScreen.dart';
 import 'package:coda_workshop/screens/onboarding_screen.dart';
 import 'package:coda_workshop/screens/home/home.dart';
 import 'package:coda_workshop/screens/prodoctes_screen.dart';
-import 'package:coda_workshop/screens/productDetails.dart';
+import 'package:coda_workshop/screens/productDetails/productDetails.dart';
+
 import 'package:coda_workshop/screens/splash_screen/splash_screen.dart';
 import 'package:get/get.dart';
 
