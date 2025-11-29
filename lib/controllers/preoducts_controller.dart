@@ -8,12 +8,12 @@ class ProductController extends GetxController {
   List<Data> productsid = [];
   String? searchWord;
   GetStorage box = GetStorage();
-List<Data> searchResult = [];
+  List<Data> searchResult = [];
   int page = 1;
   bool isLoading = false;
   bool isMoreLoading = false;
   final int limit = 10;
-
+   int cateroryId=0;
   @override
   void onInit() {
     getproductsData();
@@ -23,7 +23,7 @@ List<Data> searchResult = [];
   // Widget? searchCompair(i) {
   //   if (searchWord == products[i].title) {
   //     Get.snackbar("Success", "${products[i].price}");
-      
+
   //     print("object");
   //   } else {
   //     return Center(
@@ -31,23 +31,24 @@ List<Data> searchResult = [];
   //     );
   //   }
   // }
-void searchCompare() {
-  if(searchWord!.isEmpty){
-    searchResult = [];
-  }else{
-    searchResult = products.where((p) =>
-      p.title!.toLowerCase().contains(searchWord!.toLowerCase())
-    ).toList();
+  void searchCompare() {
+    if (searchWord!.isEmpty) {
+      searchResult = [];
+    } else {
+      searchResult = products
+          .where(
+              (p) => p.title!.toLowerCase().contains(searchWord!.toLowerCase()))
+          .toList();
+    }
+    update();
   }
-  update();
-}
 
   Future<void> getProductsByCategory(int categoryId) async {
     try {
       isLoading = true;
       update();
 
-      var response = await ProdoctService().getproducts();
+      var response = await ProdoctService().getproducts(page: 1, limit: 200);
 
       productsid = response.data
               ?.where((item) => item.categoryId == categoryId)
@@ -72,9 +73,7 @@ void searchCompare() {
       print("Token: $token");
 
       var res = await ProdoctService().getproducts(page: page, limit: limit);
-
       products = res.data!;
-
       isLoading = false;
       update();
 

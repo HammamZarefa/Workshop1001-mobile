@@ -8,15 +8,17 @@ class ProductsByCategoryScreen extends StatelessWidget {
   final int categoryId;
   final String categoryName;
 
-  ProductsByCategoryScreen(
-      {required this.categoryId, required this.categoryName});
+  ProductsByCategoryScreen({
+    required this.categoryId,
+    required this.categoryName,
+  });
 
-  final ProductController controller = Get.put(ProductController());
+  // ProductController controller = Get.put(ProductController());
   final FavoriteController favController = Get.put(FavoriteController());
 
   @override
   Widget build(BuildContext context) {
-    controller.getProductsByCategory(categoryId);
+    final ProductController controller = Get.find<ProductController>();
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -25,19 +27,21 @@ class ProductsByCategoryScreen extends StatelessWidget {
         title: Text(categoryName),
         centerTitle: true,
       ),
+      
       body: GetBuilder<ProductController>(
+        // initState: (_) => controller.getProductsByCategory(categoryId),
         builder: (_) {
           if (controller.isLoading) {
             return const Center(child: CircularProgressIndicator());
           }
 
-          if (controller.products.isEmpty) {
-            return const Center(child: Text("No products available"));
-          }
+          // if (controller.productsid.isEmpty) {
+          //   return const Center(child: Text("No products available"));
+          // }
 
           return GridView.builder(
             padding: const EdgeInsets.all(12),
-            itemCount: controller.products.length,
+            itemCount: controller.productsid.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 12,
@@ -51,12 +55,7 @@ class ProductsByCategoryScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColors.lightGrey,
                   borderRadius: BorderRadius.circular(14),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 6,
-                        offset: const Offset(0, 3))
-                  ],
+                  boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,18 +94,19 @@ class ProductsByCategoryScreen extends StatelessWidget {
                           ),
                           Obx(() {
                             bool isFav =
-                                favController.favoriteIds.contains(product.id!);
+                                favController.favoriteIds.contains(product.id);
                             return IconButton(
                               icon: Icon(
-                                isFav ? Icons.favorite : Icons.favorite_border,
-                                color: Colors.red,
-                              ),
+                                  isFav
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  color: Colors.red),
                               onPressed: () {
                                 favController.toggleFavorite({
                                   "id": product.id,
                                   "title": product.title,
                                   "price": product.price,
-                                  "image": product.featuredImage,
+                                  "image": product.featuredImage
                                 });
                               },
                             );

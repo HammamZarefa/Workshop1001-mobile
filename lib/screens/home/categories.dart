@@ -1,5 +1,6 @@
 import 'package:coda_workshop/constant/colors.dart';
-import 'package:coda_workshop/routes/routes.dart';
+import 'package:coda_workshop/controllers/preoducts_controller.dart';
+import 'package:coda_workshop/screens/home/productsCategores.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
@@ -8,6 +9,7 @@ class CategoriesScreen extends StatelessWidget {
   CategoriesScreen({super.key});
 
   final HomeController controller = Get.find<HomeController>();
+  final ProductController productController = Get.find<ProductController>();
 
   @override
   Widget build(BuildContext context) {
@@ -52,13 +54,13 @@ class CategoriesScreen extends StatelessWidget {
                   ),
                   child: InkWell(
                     onTap: () {
-                      Get.toNamed(
-                        AppRoutes.productsCategores,
-                        arguments: {
-                          "id": category.id!,
-                          "name": category.title ?? "Category",
-                        },
-                      );
+                      // productController.cateroryId = category.id!;
+                      // productController.update();
+                      // print(productController.cateroryId);
+                      productController.getProductsByCategory(category.id!);
+                      Get.to(ProductsByCategoryScreen(
+                          categoryId: category.id!,
+                          categoryName: category.title!));
                     },
                     borderRadius: BorderRadius.circular(14),
                     child: Column(

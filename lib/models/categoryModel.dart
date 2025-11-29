@@ -31,17 +31,21 @@ class CategoryData {
   int? id;
   String? title;
   int? isActive;
+  String? icon;
   String? createdAt;
-  String? updatedAt;
+  // String? updatedAt; 
 
-  CategoryData({this.id, this.title, this.isActive, this.createdAt, this.updatedAt});
+  CategoryData({this.id, this.title, this.isActive, this.createdAt, this.icon});
 
   CategoryData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     isActive = json['is_active'];
+    icon = json['icon'];
+
     createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+
+    // updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
@@ -49,8 +53,9 @@ class CategoryData {
     data['id'] = this.id;
     data['title'] = this.title;
     data['is_active'] = this.isActive;
+    data['icon'] = this.icon;
+
     data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
     return data;
   }
 }

@@ -47,6 +47,7 @@ GetPage(
   ),
 ),
 
+
   GetPage(
     name: AppRoutes.mainScreen,
     page: () => MainScreen(),
