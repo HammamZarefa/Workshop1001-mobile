@@ -22,7 +22,7 @@ class AddToCartButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: AuthGradientButton(
-        title: "Continue",
+        title: "Add to cart",
         onPressed: () {
           cartController.addProductToCart(
             name: data["title"],

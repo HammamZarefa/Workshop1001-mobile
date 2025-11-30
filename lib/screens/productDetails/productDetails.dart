@@ -5,6 +5,7 @@ import 'package:coda_workshop/screens/productDetails/widgit/ColorAndQuantitySele
 import 'package:coda_workshop/screens/productDetails/widgit/ProductDescription.dart';
 import 'package:coda_workshop/screens/productDetails/widgit/ProductImage.dart';
 import 'package:coda_workshop/screens/productDetails/widgit/ProductTitleAndFavorite.dart';
+import 'package:coda_workshop/screens/productDetails/widgit/RatingStarsWidget.dart';
 import 'package:coda_workshop/screens/productDetails/widgit/ThumbnailImages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,6 +24,8 @@ class ProductDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final RxString selectedColor = "".obs;
     final RxString currentImage = (data["image"] ?? "").toString().obs;
+
+
 
     final List<String> images =
         (data["images"] ?? [data["image"]]).cast<String>();
@@ -43,10 +46,21 @@ class ProductDetails extends StatelessWidget {
     };
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Product Details"),
-        centerTitle: true,
+appBar: AppBar(
+  title: Text("Product Details"),
+  centerTitle: true,
+  actions: [
+    SizedBox(
+      width: 120, // عرض ثابت يمنع الـ Overflow
+      child: Center(
+        child: RatingStarsWidget(
+          averageRating: 4.2,
+          totalRatings: 120,
+        ),
       ),
+    ),
+  ],
+),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: ListView(
@@ -58,7 +72,7 @@ class ProductDetails extends StatelessWidget {
             ProductTitleAndFavorite(data: data, favController: favController),
             const SizedBox(height: 10),
             ProductDescription(description: data["description"] ?? ""),
-            const SizedBox(height: 80),
+            const SizedBox(height: 60),
             ColorAndQuantitySelector(
               colors: colors,
               colorMap: colorMap,
