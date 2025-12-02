@@ -10,21 +10,21 @@ import 'package:get/state_manager.dart';
 class HomeController extends GetxController {
   List<BanerData> pannerData = [];
   List<CategoryData> catigures = [];
-  List<SpecialModel> special = [
-    SpecialModel(
-        image: ImageAssets.logo, title: "Smartphone", subtitle: "18 Brands"),
-    SpecialModel(
-        image: ImageAssets.facebook,
-        title: "Smartphone",
-        subtitle: "18 Brands"),
-    SpecialModel(
-        image: ImageAssets.facebook,
-        title: "Smartphone",
-        subtitle: "18 Brands"),
-    SpecialModel(
-        image: ImageAssets.twitter, title: "Smartphone", subtitle: "18 Brands"),
-    SpecialModel(
-        image: ImageAssets.google, title: "Smartphone", subtitle: "18 Brands"),
+  List<Data> special = [
+    // SpecialModel(
+    //     image: ImageAssets.logo, title: "Smartphone", subtitle: "18 Brands"),
+    // SpecialModel(
+    //     image: ImageAssets.facebook,
+    //     title: "Smartphone",
+    //     subtitle: "18 Brands"),
+    // SpecialModel(
+    //     image: ImageAssets.facebook,
+    //     title: "Smartphone",
+    //     subtitle: "18 Brands"),
+    // SpecialModel(
+    //     image: ImageAssets.twitter, title: "Smartphone", subtitle: "18 Brands"),
+    // SpecialModel(
+    //     image: ImageAssets.google, title: "Smartphone", subtitle: "18 Brands"),
   ];
   List<Data> popular = [];
 
@@ -60,8 +60,21 @@ class HomeController extends GetxController {
     }
   }
 
+  Future getSpecial() async {
+    try {
+      var response = await ProdoctService().getproducts();
+      special =
+          response.data?.where((item) => item.isSpecial == true).toList() ??
+              [];
+      update();
+    } catch (e) {
+      print(" Error in getSpecial***************************: $e");
+    }
+  }
+
   @override
   void onInit() {
+    getSpecial();
     getPanner();
     getcategories();
     getPopular();

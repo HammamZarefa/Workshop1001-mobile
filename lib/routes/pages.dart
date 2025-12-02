@@ -7,7 +7,9 @@ import 'package:coda_workshop/screens/Auth/Loginscreen.dart';
 import 'package:coda_workshop/screens/Auth/signUp.dart';
 import 'package:coda_workshop/screens/Auth/sucssful_Sinin.dart';
 import 'package:coda_workshop/screens/favorite_screen.dart';
+import 'package:coda_workshop/screens/home/popularProuduct.dart';
 import 'package:coda_workshop/screens/home/productsCategores.dart';
+import 'package:coda_workshop/screens/home/spacialProduct.dart';
 import 'package:coda_workshop/screens/mainScreen.dart';
 import 'package:coda_workshop/screens/onboarding_screen.dart';
 import 'package:coda_workshop/screens/home/home.dart';
@@ -102,5 +104,12 @@ GetPage(
     name: AppRoutes.FavoritesScreen,
     page: () => FavoritesScreen(),
   ),
-
+GetPage(
+    name: AppRoutes.spacialProducts,
+    page: () => SpacialProducts(),
+  ),
+  GetPage(
+    name: AppRoutes.popularProducts,
+    page: () => PopularProducts(),
+  ),
 ];

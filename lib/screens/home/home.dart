@@ -2,11 +2,12 @@ import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
 import 'package:coda_workshop/controllers/nav_controller.dart';
 import 'package:coda_workshop/controllers/preoducts_controller.dart';
+import 'package:coda_workshop/routes/routes.dart';
 import 'package:coda_workshop/screens/cart.dart';
 import 'package:coda_workshop/screens/home/categories.dart';
 import 'package:coda_workshop/widgets/home/banner.dart';
 import 'package:coda_workshop/widgets/home/categureList.dart';
-import 'package:coda_workshop/widgets/home/pupolarProduct.dart';
+import 'package:coda_workshop/widgets/home/pupolarList.dart';
 import 'package:coda_workshop/widgets/home/SpecialList.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,11 +37,12 @@ class HomeScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.background,
           body: ListView(
+            physics: NeverScrollableScrollPhysics(),
             children: [
               /// ================== Top par ==================
               Padding(
                 padding:
-                    EdgeInsets.only(top: 40, left: 20, right: 20, bottom: 5),
+                    EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 5),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -126,14 +128,40 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
               ),
-
+              
               BannerCard(
                 image: banner.image,
                 title: banner.title,
                 description: banner.description,
                 backgroundColor: AppColors.pannerColor!,
               ),
-
+Container(
+                decoration: BoxDecoration(color: Colors.transparent),
+                child: InkWell(
+                  onTap: () {
+                    Get.toNamed(AppRoutes.ProdoctesScreen);
+                  },
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(top: 8.0, right: 20, left: 100),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(
+                          Icons.shopping_bag_outlined,
+                          color: AppColors.primary,
+                        ),
+                        Text(
+                          " See all Products",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primary),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

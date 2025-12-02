@@ -1,7 +1,8 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
+import 'package:coda_workshop/controllers/preoducts_controller.dart';
 import 'package:coda_workshop/models/categoryModel.dart';
-import 'package:coda_workshop/routes/routes.dart';
+import 'package:coda_workshop/screens/home/productsCategores.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -9,11 +10,12 @@ import 'package:get/get_core/src/get_main.dart';
 class CategoriesList extends StatelessWidget {
   final List<CategoryData> categories;
 
-  const CategoriesList({
+  CategoriesList({
     super.key,
     required this.categories,
     required HomeController controller,
   });
+  final ProductController productController = Get.find<ProductController>();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class CategoriesList extends StatelessWidget {
           ? const Center(child: Text("No Categories"))
           : ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: categories.length,
+              itemCount: categories.length> 7 ? 7 : categories.length,
               itemBuilder: (context, index) {
                 final category = categories[index];
 
@@ -33,13 +35,10 @@ class CategoriesList extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 6.0, left: 15),
                       child: InkWell(
                         onTap: () {
-                          Get.toNamed(
-                            AppRoutes.productsCategores,
-                            arguments: {
-                              "id": category.id!,
-                              "name": category.title ?? "Category",
-                            },
-                          );
+                          productController.getProductsByCategory(category.id!);
+                          Get.to(ProductsByCategoryScreen(
+                              categoryId: category.id!,
+                              categoryName: category.title!));
                         },
                         child: Container(
                           height: 50,
@@ -48,7 +47,10 @@ class CategoriesList extends StatelessWidget {
                             color: AppColors.lightOrange,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: Icon(Icons.category),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Image.network(category.icon!,),
+                          ),
                         ),
                       ),
                     ),

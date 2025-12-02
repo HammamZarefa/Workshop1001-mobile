@@ -27,59 +27,63 @@ class CategoriesScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
-          return Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: GridView.builder(
-              itemCount: controller.catigures.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1.2,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-              ),
-              itemBuilder: (context, index) {
-                final category = controller.catigures[index];
+         return GridView.builder(
+            padding: const EdgeInsets.all(12),
+            itemCount: controller.catigures.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 12,
+              crossAxisSpacing: 12,
+              childAspectRatio: 0.75,
+            ),
+            itemBuilder: (context, index) {
+          var catigury=controller.catigures[index];
 
-                return Container(
+              return InkWell(
+                onTap: (){
+
+                   productController.getProductsByCategory(catigury.id!);
+                          Get.to(ProductsByCategoryScreen(
+                              categoryId: catigury.id!,
+                              categoryName: catigury.title!));
+                },
+                child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(14),
                     color: AppColors.lightGrey,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 4,
-                        offset: const Offset(0, 3),
+                    borderRadius: BorderRadius.circular(14),
+                    boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.all(
+                               Radius.circular(14)),
+                          child: Image.network(
+                            catigury.icon ?? "",
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                          ),
+                        ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          catigury.title?? "",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            
+                              fontWeight: FontWeight.bold, fontSize: 14),
+                        ),
+                      ),
+                     
                     ],
                   ),
-                  child: InkWell(
-                    onTap: () {
-                      // productController.cateroryId = category.id!;
-                      // productController.update();
-                      // print(productController.cateroryId);
-                      productController.getProductsByCategory(category.id!);
-                      Get.to(ProductsByCategoryScreen(
-                          categoryId: category.id!,
-                          categoryName: category.title!));
-                    },
-                    borderRadius: BorderRadius.circular(14),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.category,
-                            size: 45, color: Colors.blue),
-                        const SizedBox(height: 10),
-                        Text(
-                          category.title ?? "Category",
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
-                        )
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           );
         },
       ),

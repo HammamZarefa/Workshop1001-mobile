@@ -13,5 +13,7 @@ class AppRoutes {
     static const String Complet_profile = '/Complet_profile';
     static const String Forget_password = '/Forget_password';
     static const String productsCategores = '/productsCategores';
+    static const String spacialProducts = '/spacialProducts';
+    static const String popularProducts = '/popularProducts';
 
 }
