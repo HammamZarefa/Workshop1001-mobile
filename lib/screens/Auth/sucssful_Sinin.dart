@@ -1,14 +1,8 @@
-
 import 'package:coda_workshop/constant/colors.dart';
-
-import 'package:coda_workshop/controllers/Auth/login_controller.dart';
 import 'package:coda_workshop/controllers/Auth/sucssfull.dart';
 import 'package:coda_workshop/widgets/Auth/appBarTitle.dart';
-
 import 'package:coda_workshop/widgets/Auth/authMaterialButton.dart';
-
 import 'package:coda_workshop/widgets/Auth/authTitle.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -50,7 +44,6 @@ SizedBox(height: 100,),
                             },
                           )),
 
-                      ///////////////////////////////////////
                  
                     ],
                   ),

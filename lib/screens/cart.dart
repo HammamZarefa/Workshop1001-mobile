@@ -27,7 +27,7 @@ class CartScreen extends StatelessWidget {
                 ),
                 GetBuilder<CartController>(
                   builder: (c) => Text(
-                    "${c.products.length} items",
+                    "${c.localProducts.length} items",
                     style: TextStyle(fontSize: 14),
                   ),
                 ),
@@ -40,7 +40,7 @@ class CartScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: GetBuilder<CartController>(
           builder: (controller) {
-            if (controller.products.isEmpty) {
+            if (controller.localProducts.isEmpty) {
               return Center(child: Text("Cart is empty"));
             }
 
@@ -50,9 +50,9 @@ class CartScreen extends StatelessWidget {
                   Container(
                     height: 530,
                     child: ListView.builder(
-                      itemCount: controller.products.length,
+                      itemCount: controller.localProducts.length,
                       itemBuilder: (context, index) {
-                        final item = controller.products[index];
+                        final item = controller.localProducts[index];
 
                         return Slidable(
                           key: ValueKey(item.id),

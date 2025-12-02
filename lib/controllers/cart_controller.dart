@@ -1,12 +1,13 @@
 import 'package:coda_workshop/api/database/sqlite.dart';
-import 'package:coda_workshop/constant/ImageAssets.dart';
 import 'package:coda_workshop/models/product_model.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:get_storage/get_storage.dart';
 
 class CartController extends GetxController {
-  List<CartModel> products = [];
+  List<CartModel> localProducts = [];
+    List<CartModel> serverProducts = [];
+
   double total = 0;
   double discountValue = 0.0;
   String voucherCode = "";
@@ -15,10 +16,10 @@ class CartController extends GetxController {
   Future getCartProducts() async {
     final data = await DBHelper.instance.getAll();
 
-    products = data.map((e) => CartModel.fromJson(e)).toList();
+    localProducts = data.map((e) => CartModel.fromJson(e)).toList();
 
     update();
-    return products;
+    return localProducts;
   }
 
   void applyVoucher(String code) {
@@ -53,7 +54,7 @@ class CartController extends GetxController {
 
   double get totalPrice {
     double total = 0.0;
-    for (var item in products) {
+    for (var item in localProducts) {
       total += item.price * item.count;
     }
     return total - discountValue;

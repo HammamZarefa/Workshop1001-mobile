@@ -7,12 +7,12 @@ class SlideAble extends StatelessWidget {
   final CartController controller;
 
   SlideAble({super.key, required this.controller});
-  @override
+  @override 
   Widget build(BuildContext context) {
     return Container(
       height: 530,
       child: ListView.builder(itemBuilder: (context, index) {
-        final item = controller.products[index];
+        final item = controller.localProducts[index];
         Slidable(
           key: ValueKey(item.id),
           endActionPane: ActionPane(

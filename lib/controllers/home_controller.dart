@@ -1,8 +1,6 @@
-import 'package:coda_workshop/constant/imageAssets.dart';
 import 'package:coda_workshop/models/bannerModel.dart';
-import 'package:coda_workshop/models/categoryModel.dart' hide Data;
+import 'package:coda_workshop/models/categoryModel.dart' ;
 import 'package:coda_workshop/models/products_model.dart';
-import 'package:coda_workshop/models/specialModel.dart';
 import 'package:coda_workshop/services/home/homeServeces.dart';
 import 'package:coda_workshop/services/prodoct_service.dart';
 import 'package:get/state_manager.dart';
