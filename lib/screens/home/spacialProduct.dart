@@ -25,13 +25,10 @@ class SpacialProducts extends StatelessWidget {
       ),
       
       body: GetBuilder<HomeController>(
-        // initState: (_) => controller.getProductsByCategory(categoryId),
         builder: (_) {
          
 
-          // if (controller.productsid.isEmpty) {
-          //   return const Center(child: Text("No products available"));
-          // }
+         
 
           return GridView.builder(
             padding: const EdgeInsets.all(12),

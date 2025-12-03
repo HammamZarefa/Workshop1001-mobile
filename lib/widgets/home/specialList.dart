@@ -61,7 +61,6 @@ class SpecialList extends StatelessWidget {
                           child: Image.network(
                             specialItem.featuredImage!,
                             fit: BoxFit.fill, width: 220,
-                            // color: Colors.black12,
                           ),
                         ),
                         Container(

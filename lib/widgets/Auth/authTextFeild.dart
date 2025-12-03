@@ -47,11 +47,7 @@ class Authtextfeild extends StatelessWidget {
             size: 25,
           ),
         ),
-        // Icon(
-        //   icon,
-        //   color: Colors.grey,
-        //   size: 25,
-        // ),
+       
 
         hintText: hintText,
         labelText: labelText,

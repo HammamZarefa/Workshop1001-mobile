@@ -137,11 +137,9 @@ class CartScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                  // SlideAble(controller: controller,),
                   Column(
                     children: [
                       Row(
-                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
                             margin: EdgeInsets.only(top: 10),
@@ -261,24 +259,6 @@ class CartScreen extends StatelessWidget {
           },
         ),
       ),
-      // floatingActionButton: Container(
-      //   width: 170,
-      //   height: 47,
-      //   decoration: BoxDecoration(
-      //       borderRadius: BorderRadius.circular(17), color: AppColors.primary),
-      //   child: FloatingActionButton(
-      //     elevation: 0,
-      //     backgroundColor: Colors.transparent,
-      //     onPressed: () {
-      //       controller.addProductToCart();
-      //       controller.getCartProducts();
-      //     },
-      //     child: Text(
-      //       "Check Out",
-      //       style: TextStyle(color: Colors.white, fontSize: 17),
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

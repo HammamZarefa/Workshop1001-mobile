@@ -17,7 +17,6 @@ class HomeScreen extends StatelessWidget {
 
   final HomeController controller = Get.put(HomeController());
   final NavController navController = Get.put(NavController());
-  // final ProductController productController = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {
@@ -144,21 +143,7 @@ Container(
                   child: Padding(
                     padding:
                         const EdgeInsets.only(top: 8.0, right: 20, left: 100),
-                    // child: Row(
-                    //   mainAxisAlignment: MainAxisAlignment.end,
-                    //   children: [
-                    //     Icon(
-                    //       Icons.shopping_bag_outlined,
-                    //       color: AppColors.primary,
-                    //     ),
-                    //     // Text(
-                    //     //   " See all Products",
-                    //     //   style: TextStyle(
-                    //     //       fontWeight: FontWeight.bold,
-                    //     //       color: AppColors.primary),
-                    //     // ),
-                    //   ],
-                    // ),
+                   
                   ),
                 ),
               ),

@@ -13,26 +13,14 @@ class ProductController extends GetxController {
   bool isLoading = false;
   bool isMoreLoading = false;
   final int limit = 10;
-   int cateroryId=0;
+  int cateroryId = 0;
 
-  
   @override
   void onInit() {
     getproductsData();
     super.onInit();
   }
 
-  // Widget? searchCompair(i) {
-  //   if (searchWord == products[i].title) {
-  //     Get.snackbar("Success", "${products[i].price}");
-
-  //     print("object");
-  //   } else {
-  //     return Center(
-  //       child: Text("dont here"),
-  //     );
-  //   }
-  // }
   void searchCompare() {
     if (searchWord!.isEmpty) {
       searchResult = [];
@@ -50,11 +38,9 @@ class ProductController extends GetxController {
       isLoading = true;
       update();
 
-
-      productsid = products
-              .where((item) => item.categoryId == categoryId)
-              .toList() ??
-          [];
+      productsid =
+          products.where((item) => item.categoryId == categoryId).toList() ??
+              [];
 
       isLoading = false;
       update();

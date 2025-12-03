@@ -13,7 +13,6 @@ class ProductsByCategoryScreen extends StatelessWidget {
     required this.categoryName,
   });
 
-  // ProductController controller = Get.put(ProductController());
   final FavoriteController favController = Get.put(FavoriteController());
 
   @override
@@ -27,17 +26,11 @@ class ProductsByCategoryScreen extends StatelessWidget {
         title: Text(categoryName),
         centerTitle: true,
       ),
-      
       body: GetBuilder<ProductController>(
-        // initState: (_) => controller.getProductsByCategory(categoryId),
         builder: (_) {
           if (controller.isLoading) {
             return const Center(child: CircularProgressIndicator());
           }
-
-          // if (controller.productsid.isEmpty) {
-          //   return const Center(child: Text("No products available"));
-          // }
 
           return GridView.builder(
             padding: const EdgeInsets.all(12),
