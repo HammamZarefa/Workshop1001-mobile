@@ -11,8 +11,8 @@
         "cupertino_icons",
         "dio",
         "flutter",
-        "flutter_slidable",
         "flutter_otp_text_field",
+        "flutter_slidable",
         "get",
         "get_storage",
         "http",
@@ -56,6 +56,13 @@
       ]
     },
     {
+      "name": "carousel_slider",
+      "version": "5.1.1",
+      "dependencies": [
+        "flutter"
+      ]
+    },
+    {
       "name": "sqflite",
       "version": "2.4.2",
       "dependencies": [
@@ -68,8 +75,8 @@
       ]
     },
     {
-      "name": "carousel_slider",
-      "version": "5.1.1",
+      "name": "flutter_otp_text_field",
+      "version": "1.5.1+1",
       "dependencies": [
         "flutter"
       ]

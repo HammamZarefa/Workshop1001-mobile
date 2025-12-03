@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class ProductModel {
   int? status;
   String? message;
@@ -11,13 +13,13 @@ class ProductModel {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add( Data.fromJson(v));
+        data!.add(new Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = this.status;
     data['message'] = this.message;
     if (this.data != null) {
@@ -38,10 +40,11 @@ class Data {
   int? stock;
   bool? isActive;
   bool? isFeatured;
-  List<String>? colors;
+  String? colors;
+  bool? isSpecial;
   String? featuredImage;
   List<Gallery>? gallery;
-  int? averageRating;
+  double? averageRating;
 
   Data(
       {this.id,
@@ -55,6 +58,7 @@ class Data {
       this.isActive,
       this.isFeatured,
       this.colors,
+      this.isSpecial,
       this.featuredImage,
       this.gallery,
       this.averageRating});
@@ -72,7 +76,8 @@ class Data {
     stock = json['stock'];
     isActive = json['is_active'];
     isFeatured = json['is_featured'];
-    colors = json['colors'].cast<String>();
+    colors = json['colors'];
+    isSpecial = json['is_special'];
     featuredImage = json['featured_image'];
     if (json['gallery'] != null) {
       gallery = <Gallery>[];
@@ -84,20 +89,21 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['category_id'] = categoryId;
+    data['category_id'] = this.categoryId;
     if (this.category != null) {
-      data['category'] = category!.toJson();
+      data['category'] = this.category!.toJson();
     }
-    data['title'] = title;
-    data['description'] = description;
-    data['price'] = price;
+    data['title'] = this.title;
+    data['description'] = this.description;
+    data['price'] = this.price;
     data['currency'] = this.currency;
     data['stock'] = this.stock;
     data['is_active'] = this.isActive;
     data['is_featured'] = this.isFeatured;
     data['colors'] = this.colors;
+    data['is_special'] = this.isSpecial;
     data['featured_image'] = this.featuredImage;
     if (this.gallery != null) {
       data['gallery'] = this.gallery!.map((v) => v.toJson()).toList();

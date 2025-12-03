@@ -4,14 +4,16 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart' hide Data;
 
 class ProductController extends GetxController {
-
   List<Data> products = [];
+  List<Data> productsid = [];
+  String? searchWord;
   GetStorage box = GetStorage();
-
-  int page = 1;              
-  bool isLoading = false;      
-  bool isMoreLoading = false;  
-  final int limit = 10;        
+  List<Data> searchResult = [];
+  int page = 1;
+  bool isLoading = false;
+  bool isMoreLoading = false;
+  final int limit = 10;
+  int cateroryId = 0;
 
   @override
   void onInit() {
@@ -19,7 +21,36 @@ class ProductController extends GetxController {
     super.onInit();
   }
 
-  
+  void searchCompare() {
+    if (searchWord!.isEmpty) {
+      searchResult = [];
+    } else {
+      searchResult = products
+          .where(
+              (p) => p.title!.toLowerCase().contains(searchWord!.toLowerCase()))
+          .toList();
+    }
+    update();
+  }
+
+  Future<void> getProductsByCategory(int categoryId) async {
+    try {
+      isLoading = true;
+      update();
+
+      productsid =
+          products.where((item) => item.categoryId == categoryId).toList() ??
+              [];
+
+      isLoading = false;
+      update();
+    } catch (e) {
+      print("Error getProductsByCategory: $e");
+      isLoading = false;
+      update();
+    }
+  }
+
   Future<ProductModel> getproductsData() async {
     try {
       isLoading = true;
@@ -29,7 +60,6 @@ class ProductController extends GetxController {
       print("Token: $token");
 
       var res = await ProdoctService().getproducts(page: page, limit: limit);
-
       products = res.data!;
       isLoading = false;
       update();
@@ -42,7 +72,6 @@ class ProductController extends GetxController {
     }
   }
 
-  
   Future<void> loadMore() async {
     if (isMoreLoading) return;
 
@@ -53,7 +82,6 @@ class ProductController extends GetxController {
     try {
       var res = await ProdoctService().getproducts(page: page, limit: limit);
 
-   
       products.addAll(res.data!);
 
       isMoreLoading = false;
@@ -64,14 +92,3 @@ class ProductController extends GetxController {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -27,7 +27,7 @@ class CartScreen extends StatelessWidget {
                 ),
                 GetBuilder<CartController>(
                   builder: (c) => Text(
-                    "${c.products.length} items",
+                    "${c.localProducts.length} items",
                     style: TextStyle(fontSize: 14),
                   ),
                 ),
@@ -40,7 +40,7 @@ class CartScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: GetBuilder<CartController>(
           builder: (controller) {
-            if (controller.products.isEmpty) {
+            if (controller.localProducts.isEmpty) {
               return Center(child: Text("Cart is empty"));
             }
 
@@ -50,9 +50,9 @@ class CartScreen extends StatelessWidget {
                   Container(
                     height: 530,
                     child: ListView.builder(
-                      itemCount: controller.products.length,
+                      itemCount: controller.localProducts.length,
                       itemBuilder: (context, index) {
-                        final item = controller.products[index];
+                        final item = controller.localProducts[index];
 
                         return Slidable(
                           key: ValueKey(item.id),
@@ -137,11 +137,9 @@ class CartScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                  // SlideAble(controller: controller,),
                   Column(
                     children: [
                       Row(
-                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
                             margin: EdgeInsets.only(top: 10),
@@ -261,24 +259,6 @@ class CartScreen extends StatelessWidget {
           },
         ),
       ),
-      // floatingActionButton: Container(
-      //   width: 170,
-      //   height: 47,
-      //   decoration: BoxDecoration(
-      //       borderRadius: BorderRadius.circular(17), color: AppColors.primary),
-      //   child: FloatingActionButton(
-      //     elevation: 0,
-      //     backgroundColor: Colors.transparent,
-      //     onPressed: () {
-      //       controller.addProductToCart();
-      //       controller.getCartProducts();
-      //     },
-      //     child: Text(
-      //       "Check Out",
-      //       style: TextStyle(color: Colors.white, fontSize: 17),
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

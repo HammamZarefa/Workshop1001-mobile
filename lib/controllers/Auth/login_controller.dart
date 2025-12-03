@@ -23,9 +23,6 @@ class LoginController extends GetxController {
     } else {
       return "not valid";
     }
-    } catch (e) {}
-
-  
   }
 
   Future login() async {
@@ -46,17 +43,22 @@ class LoginController extends GetxController {
   }
 
   gotoSignup() {
-    Get.toNamed(AppRoutes.signup);
+    Get.toNamed(AppRoutes.SinUp);
   }
 
   rememberMeTick() {
     if (box.read("tick") == true) {
       box.write("tick", false);
+      email = TextEditingController();
+      password = TextEditingController();
+
       update();
     } else if (box.read("tick") == false) {
       box.write("tick", true);
       hintpassword = box.read('password');
       hintemail = box.read('email');
+      email = TextEditingController(text: hintemail);
+      password = TextEditingController(text: hintpassword);
       update();
     } else {
       box.write("tick", true);
@@ -77,27 +79,24 @@ class LoginController extends GetxController {
   }
 
   goToForgetPassword() {
-
-Get.toNamed(AppRoutes.Forget_password);
-
+    Get.toNamed(AppRoutes.Forget_password);
   }
 
- goTosibup() {
-
-Get.toNamed(AppRoutes.SinUp);
-
- }
-
-
-
+  goTosibup() {
+    Get.toNamed(AppRoutes.SinUp);
+  }
 
   @override
   void onInit() {
     hintpassword = box.read('password');
     hintemail = box.read('email');
-    email = TextEditingController();
-    password = TextEditingController();
-    tick = box.read("tick") ?? false;
+    email = box.read("tick") == true
+        ? TextEditingController(text: hintemail)
+        : TextEditingController();
+password = box.read("tick") == true
+        ? TextEditingController(text: hintpassword)
+        : TextEditingController();   
+         tick = box.read("tick") ?? false;
     isShow;
     // TODO: implement onInit
     super.onInit();

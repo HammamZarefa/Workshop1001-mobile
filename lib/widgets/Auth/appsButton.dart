@@ -12,7 +12,6 @@ class AppsButton extends StatelessWidget {
           height: 35,
           width: 35,
           decoration: BoxDecoration(
-              // borderRadius: BorderRadius.circular(60),
               color: Colors.grey[100]),
           child: Padding(
             padding: const EdgeInsets.all(7.0),

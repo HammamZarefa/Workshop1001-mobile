@@ -5,18 +5,14 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class SinUpController extends GetxController {
-  
   bool isShow = false;
   TextEditingController? email;
   TextEditingController? password;
-  TextEditingController ?password_confirmation;
+  TextEditingController? password_confirmation;
   TextEditingController? firstName;
   TextEditingController? lastName;
   TextEditingController? phonenumper;
   TextEditingController? locition;
-
-
-
 
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
   GlobalKey<FormState> completeForm = GlobalKey<FormState>();
@@ -33,7 +29,7 @@ class SinUpController extends GetxController {
   validateSignupComplete() {
     var formdata = completeForm.currentState;
     if (formdata!.validate()) {
-      signup(); // ← الآن استدعاء api فقط بعد إكمال كل البيانات
+      signup();
     }
   }
 
@@ -47,30 +43,18 @@ class SinUpController extends GetxController {
         lastName!.text,
         phonenumper!.text,
         locition!.text,
-
-
       );
-       if (response != null) {
-      if ((response["token"] != null)) {
-        Get.offAllNamed(AppRoutes.homescreen);
-         
+      if (response != null) {
+        if ((response["token"] != null)) {
+          Get.offAllNamed(AppRoutes.HomeScreen);
+        } else {
+          Get.snackbar("Error", response["message"] ?? "Unknown error");
+        }
       } else {
-        Get.snackbar("Error", response["message"] ?? "Unknown error");
+        Get.snackbar("Error", "Server error");
       }
-    } else {
-      Get.snackbar("Error", "Server error");
-    }
     } catch (e) {}
-
-  
   }
-
-
-
-
-
-
-
 
   showPassword() {
     if (isShow == false) {
@@ -84,16 +68,15 @@ class SinUpController extends GetxController {
     update();
   }
 
-
   @override
   void onInit() {
     email = TextEditingController();
     password = TextEditingController();
-    password_confirmation=TextEditingController();
-    firstName=TextEditingController();
-    lastName=TextEditingController();
-    phonenumper=TextEditingController();
-    locition=TextEditingController();
+    password_confirmation = TextEditingController();
+    firstName = TextEditingController();
+    lastName = TextEditingController();
+    phonenumper = TextEditingController();
+    locition = TextEditingController();
     isShow;
     // TODO: implement onInit
     super.onInit();
@@ -108,7 +91,6 @@ class SinUpController extends GetxController {
     lastName!.dispose();
     phonenumper!.dispose();
     locition!.dispose();
-
 
     super.dispose();
   }

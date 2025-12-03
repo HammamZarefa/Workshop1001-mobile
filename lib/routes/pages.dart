@@ -1,8 +1,15 @@
 import 'package:coda_workshop/controllers/onboarding_controller.dart';
 import 'package:coda_workshop/routes/routes.dart';
-import 'package:coda_workshop/screens/Auth/completeSignup.dart';
+import 'package:coda_workshop/screens/Auth/Complet_profieal.dart';
+import 'package:coda_workshop/screens/Auth/Forget_password.dart';
+import 'package:coda_workshop/screens/Auth/Otp_vierification.dart';
 import 'package:coda_workshop/screens/Auth/Loginscreen.dart';
 import 'package:coda_workshop/screens/Auth/signUp.dart';
+import 'package:coda_workshop/screens/Auth/sucssful_Sinin.dart';
+import 'package:coda_workshop/screens/favorite_screen.dart';
+import 'package:coda_workshop/screens/home/popularProuduct.dart';
+import 'package:coda_workshop/screens/home/productsCategores.dart';
+import 'package:coda_workshop/screens/home/spacialProduct.dart';
 import 'package:coda_workshop/screens/mainScreen.dart';
 import 'package:coda_workshop/screens/onboarding_screen.dart';
 import 'package:coda_workshop/screens/home/home.dart';
@@ -31,13 +38,18 @@ final pages = <GetPage>[
     page: () => Loginscreen(),
   ),
   GetPage(
-    name: AppRoutes.signup,
+    name: AppRoutes.SinUp,
     page: () => Signup(),
   ),
-  GetPage(
-    name: AppRoutes.CompleteSignup,
-    page: () => CompleteSignup(),
+GetPage(
+  name: AppRoutes.productsCategores,
+  page: () => ProductsByCategoryScreen(
+    categoryId: Get.arguments['id'],
+    categoryName: Get.arguments['name'],
   ),
+),
+
+
   GetPage(
     name: AppRoutes.mainScreen,
     page: () => MainScreen(),
@@ -48,7 +60,7 @@ final pages = <GetPage>[
 
    GetPage(
     name: AppRoutes.SinUp,
-    page: () =>  SinUp(),
+    page: () =>  Signup(),
   ),
 
 
@@ -69,7 +81,7 @@ final pages = <GetPage>[
 
 
  GetPage(
-    name: AppRoutes.Otp_Vierification,
+    name: AppRoutes.OtpVierification,
     page: () =>  OtpVierification(),
   ),
 
@@ -92,12 +104,12 @@ final pages = <GetPage>[
     name: AppRoutes.FavoritesScreen,
     page: () => FavoritesScreen(),
   ),
-
-
-
-
-
-
-
-
+GetPage(
+    name: AppRoutes.spacialProducts,
+    page: () => SpacialProducts(),
+  ),
+  GetPage(
+    name: AppRoutes.popularProducts,
+    page: () => PopularProducts(),
+  ),
 ];

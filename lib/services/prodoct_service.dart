@@ -22,18 +22,19 @@ import 'package:coda_workshop/models/products_model.dart';
 class ProdoctService {
   Future<ProductModel> getproducts({int page = 1, int limit = 10}) async {
     try {
-      var res = await Api().dio?.get(
-        'v1/products',
+      var res = await Api().dio.get(
+        'api/v1/products',
         queryParameters: {
           'page': page,
           'limit': limit,
         },
       );
 
-      return ProductModel.fromJson(res!.data);
+      return ProductModel.fromJson(res.data);
 
     } catch (e) {
-      print("Product Service Error: $e");
+      print("Product Service Error: catchervice=============$e");
+
       return ProductModel();
     }
   }
