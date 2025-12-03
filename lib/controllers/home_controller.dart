@@ -1,31 +1,18 @@
+import 'package:coda_workshop/controllers/preoducts_controller.dart';
 import 'package:coda_workshop/models/bannerModel.dart';
-import 'package:coda_workshop/models/categoryModel.dart' ;
+import 'package:coda_workshop/models/categoryModel.dart';
 import 'package:coda_workshop/models/products_model.dart';
 import 'package:coda_workshop/services/home/homeServeces.dart';
-import 'package:coda_workshop/services/prodoct_service.dart';
+import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
 class HomeController extends GetxController {
+   ProductController productController =Get.put(ProductController());
+
   List<BanerData> pannerData = [];
   List<CategoryData> catigures = [];
-  List<Data> special = [
-    // SpecialModel(
-    //     image: ImageAssets.logo, title: "Smartphone", subtitle: "18 Brands"),
-    // SpecialModel(
-    //     image: ImageAssets.facebook,
-    //     title: "Smartphone",
-    //     subtitle: "18 Brands"),
-    // SpecialModel(
-    //     image: ImageAssets.facebook,
-    //     title: "Smartphone",
-    //     subtitle: "18 Brands"),
-    // SpecialModel(
-    //     image: ImageAssets.twitter, title: "Smartphone", subtitle: "18 Brands"),
-    // SpecialModel(
-    //     image: ImageAssets.google, title: "Smartphone", subtitle: "18 Brands"),
-  ];
+  List<Data> special = [];
   List<Data> popular = [];
-
   Future getPanner() async {
     try {
       var response = await homeServices().getbanner();
@@ -48,9 +35,8 @@ class HomeController extends GetxController {
 
   Future getPopular() async {
     try {
-      var response = await ProdoctService().getproducts();
       popular =
-          response.data?.where((item) => item.isFeatured == true).toList() ??
+          productController.products.where((item) => item.isFeatured == true).toList() ??
               [];
       update();
     } catch (e) {
@@ -60,10 +46,8 @@ class HomeController extends GetxController {
 
   Future getSpecial() async {
     try {
-      var response = await ProdoctService().getproducts();
       special =
-          response.data?.where((item) => item.isSpecial == true).toList() ??
-              [];
+          productController.products.where((item) => item.isSpecial == true).toList() ?? [];
       update();
     } catch (e) {
       print(" Error in getSpecial***************************: $e");

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class ProductModel {
   int? status;
   String? message;
@@ -42,7 +44,7 @@ class Data {
   bool? isSpecial;
   String? featuredImage;
   List<Gallery>? gallery;
-  int? averageRating;
+  double? averageRating;
 
   Data(
       {this.id,

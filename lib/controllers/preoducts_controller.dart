@@ -14,6 +14,8 @@ class ProductController extends GetxController {
   bool isMoreLoading = false;
   final int limit = 10;
    int cateroryId=0;
+
+  
   @override
   void onInit() {
     getproductsData();
@@ -48,10 +50,9 @@ class ProductController extends GetxController {
       isLoading = true;
       update();
 
-      var response = await ProdoctService().getproducts(page: 1, limit: 200);
 
-      productsid = response.data
-              ?.where((item) => item.categoryId == categoryId)
+      productsid = products
+              .where((item) => item.categoryId == categoryId)
               .toList() ??
           [];
 

@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
 
   final HomeController controller = Get.put(HomeController());
   final NavController navController = Get.put(NavController());
-  final ProductController productController = Get.put(ProductController());
+  // final ProductController productController = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +61,8 @@ class HomeScreen extends StatelessWidget {
                             Expanded(
                               child: TextField(
                                 onChanged: (value) {
-                                  productController.searchWord = value;
-                                  productController.searchCompare();
+                                  controller.productController.searchWord = value;
+                                  controller.productController.searchCompare();
                                 },
                                 decoration: InputDecoration(
                                   hintText: 'Search product...',
@@ -144,21 +144,21 @@ Container(
                   child: Padding(
                     padding:
                         const EdgeInsets.only(top: 8.0, right: 20, left: 100),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Icon(
-                          Icons.shopping_bag_outlined,
-                          color: AppColors.primary,
-                        ),
-                        Text(
-                          " See all Products",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.primary),
-                        ),
-                      ],
-                    ),
+                    // child: Row(
+                    //   mainAxisAlignment: MainAxisAlignment.end,
+                    //   children: [
+                    //     Icon(
+                    //       Icons.shopping_bag_outlined,
+                    //       color: AppColors.primary,
+                    //     ),
+                    //     // Text(
+                    //     //   " See all Products",
+                    //     //   style: TextStyle(
+                    //     //       fontWeight: FontWeight.bold,
+                    //     //       color: AppColors.primary),
+                    //     // ),
+                    //   ],
+                    // ),
                   ),
                 ),
               ),

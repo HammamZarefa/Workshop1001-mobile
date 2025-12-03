@@ -1,15 +1,12 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/Favorite_Controller.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
+import 'package:coda_workshop/controllers/preoducts_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PopularProducts extends StatelessWidget {
-
-
-  
-
-  // ProductController controller = Get.put(ProductController());
+  ProductController controller = Get.put(ProductController());
   final FavoriteController favController = Get.put(FavoriteController());
 
   @override
@@ -23,12 +20,9 @@ class PopularProducts extends StatelessWidget {
         title: Text("Popular Product"),
         centerTitle: true,
       ),
-      
       body: GetBuilder<HomeController>(
         // initState: (_) => controller.getProductsByCategory(categoryId),
         builder: (_) {
-         
-
           // if (controller.productsid.isEmpty) {
           //   return const Center(child: Text("No products available"));
           // }

@@ -49,11 +49,16 @@ class LoginController extends GetxController {
   rememberMeTick() {
     if (box.read("tick") == true) {
       box.write("tick", false);
+          email = TextEditingController();
+          password = TextEditingController();
+
       update();
     } else if (box.read("tick") == false) {
       box.write("tick", true);
       hintpassword = box.read('password');
       hintemail = box.read('email');
+       email = TextEditingController(text: hintemail);
+          password = TextEditingController(text: hintpassword);
       update();
     } else {
       box.write("tick", true);
