@@ -4,7 +4,6 @@ import 'package:coda_workshop/models/categoryModel.dart';
 import 'package:coda_workshop/models/products_model.dart';
 import 'package:coda_workshop/services/home/homeServeces.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 
 class HomeController extends GetxController {
    ProductController productController =Get.put(ProductController());

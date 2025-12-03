@@ -11,8 +11,6 @@ import 'package:coda_workshop/widgets/Auth/authTitle.dart';
 import 'package:coda_workshop/widgets/Auth/inkWellText.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 
 class Loginscreen extends StatelessWidget {
   Loginscreen({super.key});
@@ -48,9 +46,7 @@ class Loginscreen extends StatelessWidget {
                         child: Authtextfeild(
                           validator: (val) => validInput(val!, 10, 40, "email"),
                           mycontroller: controller.email,
-                          hintText:
-                          
-                              "Enter your Email",
+                          hintText: "Enter your Email",
                           labelText: "Email",
                           icon: Icons.email_outlined,
                           obscureText: false,
@@ -65,8 +61,7 @@ class Loginscreen extends StatelessWidget {
                             validator: (val) =>
                                 validInput(val!, 5, 15, 'password'),
                             mycontroller: controller.password!,
-                            hintText:
-                                 "Enter your Password",
+                            hintText: "Enter your Password",
                             labelText: "Password",
                             icon: controller.isShow == false
                                 ? Icons.lock_open_outlined
