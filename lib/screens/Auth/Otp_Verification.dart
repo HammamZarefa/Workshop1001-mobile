@@ -15,8 +15,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 // ignore: must_be_immutable
-class OtpVierification extends StatelessWidget {
-  OtpVierification({super.key});
+class OtpVerification extends StatelessWidget {
+  OtpVerification({super.key});
   VierificationController controller = Get.put(VierificationController());
   final TimerController timerController = Get.put(TimerController());
   @override

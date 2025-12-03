@@ -1,9 +1,8 @@
 import 'package:coda_workshop/controllers/onboarding_controller.dart';
 import 'package:coda_workshop/routes/routes.dart';
-import 'package:coda_workshop/screens/Auth/Complet_profieal.dart';
-import 'package:coda_workshop/screens/Auth/Forget_password.dart';
-import 'package:coda_workshop/screens/Auth/Otp_vierification.dart';
-import 'package:coda_workshop/screens/Auth/completeSignup.dart';
+import 'package:coda_workshop/screens/Auth/Complete_profile.dart';
+import 'package:coda_workshop/screens/Auth/Forgot_password.dart';
+import 'package:coda_workshop/screens/Auth/Otp_Verification.dart';
 import 'package:coda_workshop/screens/Auth/Loginscreen.dart';
 import 'package:coda_workshop/screens/Auth/signUp.dart';
 import 'package:coda_workshop/screens/Auth/sucssful_Sinin.dart';
@@ -35,11 +34,11 @@ final pages = <GetPage>[
   ),
   GetPage(
     name: AppRoutes.login,
-    page: () => Loginscreen(),
+    page: () => LoginScreen(),
   ),
   GetPage(
     name: AppRoutes.SinUp,
-    page: () => Signup(),
+    page: () => SignUp(),
   ),
   
   GetPage(
@@ -63,21 +62,21 @@ final pages = <GetPage>[
 
    GetPage(
     name: AppRoutes.Forget_password,
-    page: () =>  Forget_password(),
+    page: () =>  ForgotPassword(),
   ),
 
 
 
  GetPage(
     name: AppRoutes.Otp_Vierification,
-    page: () =>  OtpVierification(),
+    page: () =>  OtpVerification(),
   ),
 
 
 
  GetPage(
     name: AppRoutes.SucssfulSinin,
-    page: () =>  SucssfulSinin(),
+    page: () =>  SuccessfulSignIn(),
   ),
 
 

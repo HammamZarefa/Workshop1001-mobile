@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart' hide Data;
 class ProductController extends GetxController {
 
   List<Data> products = [];
+   Data productById =Data();
   GetStorage box = GetStorage();
 List<Gallery>? imaghes=Data().gallery;
   int page = 1;              
@@ -62,7 +63,62 @@ List<Gallery>? imaghes=Data().gallery;
       isMoreLoading = false;
       update();
     }
+
+
+
+
+
   }
+
+
+
+
+  
+  Future<void> showProduct(int id) async {
+   
+    try {
+      var res = await ProdoctService().getProductShow(id);
+
+   
+  productById=res;
+
+     
+    } catch (e) {
+     
+    }
+
+
+
+
+    
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

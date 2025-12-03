@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
       title: 'CODA',
        initialRoute: AppRoutes.splashscreen,
       //  initialRoute: AppRoutes.ProductDetails_Screen
-       
       getPages: pages,
     );
   }

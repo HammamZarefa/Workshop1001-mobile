@@ -1,10 +1,8 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/nav_controller.dart';
-
 import 'package:coda_workshop/screens/favorite_screen.dart';
 import 'package:coda_workshop/screens/home/home.dart';
 import 'package:coda_workshop/screens/prodoctes_screen.dart';
-import 'package:coda_workshop/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

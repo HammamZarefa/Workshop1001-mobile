@@ -13,8 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class Loginscreen extends StatelessWidget {
-  Loginscreen({super.key});
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
   LoginController controller = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {

@@ -37,4 +37,36 @@ class ProdoctService {
       return ProductModel();
     }
   }
+
+
+  Future<Data> getProductShow(int id
+   
+  ) async {
+    try {
+      var res = await Api().dio.get('api/v1/products/$id');
+      return Data.fromJson(res.data);
+    } catch (e) {
+      print(e);
+    }
+    return Data();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

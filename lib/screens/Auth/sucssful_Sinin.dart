@@ -13,8 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class SucssfulSinin extends StatelessWidget {
-  SucssfulSinin({super.key});
+class SuccessfulSignIn extends StatelessWidget {
+  SuccessfulSignIn({super.key});
   Sucssfullcontroller controller = Get.put(Sucssfullcontroller());
   @override
   Widget build(BuildContext context) {

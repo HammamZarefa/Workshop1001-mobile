@@ -1,5 +1,4 @@
 import 'package:coda_workshop/api/database/sqlite.dart';
-import 'package:coda_workshop/constant/ImageAssets.dart';
 import 'package:coda_workshop/models/product_model.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';

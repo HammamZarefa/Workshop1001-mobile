@@ -1,4 +1,4 @@
-import 'package:coda_workshop/controllers/preoducts_controller.dart';
+import 'package:coda_workshop/controllers/product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/Favorite_Controller.dart';
@@ -10,7 +10,7 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final FavoriteController favController = Get.put(FavoriteController());
-
+final ProductController controller=Get.put(ProductController());
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 241, 239, 239),
       appBar: AppBar(
@@ -49,22 +49,35 @@ class ProductsScreen extends StatelessWidget {
 
                       return GestureDetector(
                         onTap: () {
-                          // تمرير كل البيانات المطلوبة لصفحة التفاصيل
+                      controller.showProduct(item.id!);
                           Get.toNamed(
                             AppRoutes.ProductDetails_Screen,
-                            arguments: {
-                              "id": item.id, // مهم للمفضلة
-                              "title": item.title,
-                              "price": item.price,
-                              "description": item.description, 
+                           
 
-                              "image": item.featuredImage,
-                              "images": [
-                                item.featuredImage,
-                                ...?item.gallery?.map((g) => g.url).toList(),
-                              ],
-                              "colors": ["red", "green", "blue","grye"]
-                            },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           );
                         },
                         child: Card(

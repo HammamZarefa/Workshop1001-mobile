@@ -1,7 +1,6 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/constant/imageAssets.dart';
 import 'package:coda_workshop/controllers/Auth/SinUp_controller.dart';
-import 'package:coda_workshop/controllers/Auth/signUp_controller.dart';
 import 'package:coda_workshop/functions/validInput.dart';
 import 'package:coda_workshop/widgets/Auth/appBarTitle.dart';
 import 'package:coda_workshop/widgets/Auth/appsButton.dart';
@@ -13,8 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class Signup extends StatelessWidget {
-  Signup({super.key});
+class SignUp extends StatelessWidget {
+  SignUp({super.key});
   SinUpController controller = Get.put(SinUpController());
   @override
   Widget build(BuildContext context) {
