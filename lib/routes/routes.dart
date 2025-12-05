@@ -12,8 +12,8 @@ static const String Forget_password = '/Forget_password';
 static const String ProdoctesScreen = '/ProdoctesScreen';
 static const String FavoritesScreen = '/FavoritesScreen';
 static const String ProductDetails_Screen = '/ProductDetails_Screen';
-
-
+static const String ProfailScreen = '/ProfailScreen';
+static const String MyAccount_Screen = '/MyAccount_Screen';
 
 }
   

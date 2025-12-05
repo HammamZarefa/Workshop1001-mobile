@@ -7,5 +7,6 @@ class ImageAssets {
   static String twitter = "$imageUrl/twitter.png";
   static String code = "$imageUrl/code.png";
  static String shin = "$imageUrl/shin.jpg";
+ static String ammar = "$imageUrl/ammar.jpg";
 
 }

@@ -1,80 +1,135 @@
 import 'package:coda_workshop/controllers/Favorite_Controller.dart';
 import 'package:coda_workshop/controllers/cart_controller.dart';
+import 'package:coda_workshop/controllers/product_controller.dart';
+import 'package:coda_workshop/models/products_model.dart';
 import 'package:coda_workshop/screens/productDetails/widgit/AddToCartButton.dart';
 import 'package:coda_workshop/screens/productDetails/widgit/ColorAndQuantitySelector.dart';
 import 'package:coda_workshop/screens/productDetails/widgit/ProductDescription.dart';
 import 'package:coda_workshop/screens/productDetails/widgit/ProductImage.dart';
 import 'package:coda_workshop/screens/productDetails/widgit/ProductTitleAndFavorite.dart';
+import 'package:coda_workshop/screens/productDetails/widgit/RatingStarsWidget.dart';
 import 'package:coda_workshop/screens/productDetails/widgit/ThumbnailImages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class ProductDetails extends StatelessWidget {
+  final RxInt quantity = 1.obs;
+  final RxString selectedColor = "".obs;
+
   final FavoriteController favController = Get.put(FavoriteController());
   final CartController cartController = Get.put(CartController());
+  final ProductController controller = Get.find();
 
-  final data = Get.arguments;
-  final RxInt quantity = 1.obs;
-
-  ProductDetails({super.key});
+  ProductDetails({super.key}) {
+    final int id = Get.arguments ?? 0;
+    if (id != 0) {
+      controller.showProduct(id);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final RxString selectedColor = "".obs;
-    final RxString currentImage = (data["image"] ?? "").toString().obs;
+    return GetBuilder<ProductController>(
+      builder: (controller) {
+        if (controller.isLoading || controller.productById.id == null) {
+          return Scaffold(
+            appBar: AppBar(),
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
 
-    final List<String> images =
-        (data["images"] ?? [data["image"]]).cast<String>();
+        final Data product = controller.productById;
 
-    final List<String> colors =
-        (data["colors"] is List) ? List<String>.from(data["colors"]) : [];
+        final RxString currentImage =
+            (product.featuredImage ?? "").toString().obs;
 
-    Map<String, Color> colorMap = {
-      "red": Colors.red,
-      "green": Colors.green,
-      "blue": Colors.blue,
-      "black": Colors.black,
-      "white": Colors.white,
-      "yellow": Colors.yellow,
-      "orange": Colors.orange,
-      "purple": Colors.purple,
-      "grey": Colors.grey,
-    };
+        final List<Gallery> images = [
+          if (product.featuredImage != null)
+            Gallery(id: 0, url: product.featuredImage),
+          ...(product.gallery ?? []),
+        ];
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Product Details"),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: ListView(
-          children: [
-            ProductImage(currentImage: currentImage),
-            const SizedBox(height: 20),
-            ThumbnailImages(images: images, currentImage: currentImage),
-            const SizedBox(height: 20),
-            ProductTitleAndFavorite(data: data, favController: favController),
-            const SizedBox(height: 10),
-            ProductDescription(description: data["description"] ?? ""),
-            const SizedBox(height: 80),
-            ColorAndQuantitySelector(
-              colors: colors,
-              colorMap: colorMap,
-              selectedColor: selectedColor,
-              quantity: quantity,
+        final List<String> colors =
+            product.colors == null ? [] : List<String>.from(product.colors!);
+
+        return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            actions: [
+              SizedBox(
+                width: 120,
+                child: Center(
+                  child: RatingStarsWidget(
+                    productId: product.id ?? 0,
+                    averageRating: (product.averageRating ?? 0.0).toDouble(),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.only(left: 2),
+            child: ListView(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Column(
+                    children: [
+                      ProductImage(currentImage: currentImage),
+                      const SizedBox(height: 20),
+                      ThumbnailImages(
+                        images: images,
+                        currentImage: currentImage,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 7),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 5),
+                  padding: const EdgeInsets.only(top: 10, left: 10),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 247, 244, 244),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ProductTitleAndFavorite(
+                        data: product.toJson(),
+                        favController: favController,
+                        currentImage: currentImage,
+                      ),
+                      const SizedBox(height: 15),
+                      ProductDescription(
+                        description: product.description ?? "",
+                      ),
+                      const SizedBox(height: 20),
+                      ColorAndQuantitySelector(
+                        colors: colors,
+                        selectedColor: selectedColor,
+                        quantity: quantity,
+                      ),
+                      const SizedBox(height: 25),
+                      AddToCartButton(
+                        cartController: cartController,
+                        data: product.toJson(),
+                        currentImage: currentImage,
+                        quantity: quantity,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 20),
-            AddToCartButton(
-              cartController: cartController,
-              data: data,
-              currentImage: currentImage,
-              quantity: quantity,
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

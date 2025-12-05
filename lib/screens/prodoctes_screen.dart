@@ -10,7 +10,7 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final FavoriteController favController = Get.put(FavoriteController());
-final ProductController controller=Get.put(ProductController());
+    final ProductController controller = Get.put(ProductController());
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 241, 239, 239),
       appBar: AppBar(
@@ -49,35 +49,10 @@ final ProductController controller=Get.put(ProductController());
 
                       return GestureDetector(
                         onTap: () {
-                      controller.showProduct(item.id!);
+                          controller.showProduct(item.id!);
                           Get.toNamed(
                             AppRoutes.ProductDetails_Screen,
-                           
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                            arguments: item.id!,
                           );
                         },
                         child: Card(
@@ -129,9 +104,8 @@ final ProductController controller=Get.put(ProductController());
                                         ),
                                       ),
                                       Obx(() {
-                                        bool isFav =
-                                            favController.favoriteIds
-                                                .contains(item.id);
+                                        bool isFav = favController.favoriteIds
+                                            .contains(item.id);
                                         return IconButton(
                                           icon: Icon(
                                             isFav

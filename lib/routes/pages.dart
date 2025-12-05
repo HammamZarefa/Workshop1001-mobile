@@ -12,6 +12,8 @@ import 'package:coda_workshop/screens/onboarding_screen.dart';
 import 'package:coda_workshop/screens/home/home.dart';
 import 'package:coda_workshop/screens/prodoctes_screen.dart';
 import 'package:coda_workshop/screens/productDetails/productDetails.dart';
+import 'package:coda_workshop/screens/profial/MyAccount.dart';
+import 'package:coda_workshop/screens/profial/profail_Screen.dart';
 
 import 'package:coda_workshop/screens/splash_screen/splash_screen.dart';
 import 'package:get/get.dart';
@@ -102,6 +104,23 @@ final pages = <GetPage>[
     name: AppRoutes.ProductDetails_Screen,
     page: () => ProductDetails(),
   ),
+
+
+
+
+ GetPage(
+    name: AppRoutes.ProfailScreen,
+    page: () => ProfailScreen(),
+  ),
+
+
+ GetPage(
+    name: AppRoutes.MyAccount_Screen,
+    page: () => MyAccount_Screen(),
+  ),
+
+
+
 
 
 

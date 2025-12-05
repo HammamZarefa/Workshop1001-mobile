@@ -4,32 +4,34 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart' hide Data;
 
 class ProductController extends GetxController {
-
   List<Data> products = [];
-   Data productById =Data();
+  Data productById = Data();
   GetStorage box = GetStorage();
-List<Gallery>? imaghes=Data().gallery;
-  int page = 1;              
-  bool isLoading = false;      
-  bool isMoreLoading = false;  
-  final int limit = 10;        
+
+  List<Gallery>? imaghes = Data().gallery;
+
+  int page = 1;
+  bool isLoading = false;
+  bool isMoreLoading = false;
+  final int limit = 10;
+
+  int productId = 0;
+  int rating = 0;
+  String comment = "";
 
   @override
   void onInit() {
-    getproductsData();
+    getProductData();
+
     super.onInit();
   }
 
-  
-  Future<ProductModel> getproductsData() async {
+  Future<ProductModel> getProductData() async {
     try {
       isLoading = true;
       update();
 
-      // var token = box.read("token");
-      // print("Token: $token");
-
-      var res = await ProdoctService().getproducts(page: page, limit: limit);
+      var res = await ProdoctService().getProducts(page: page, limit: limit);
 
       products = res.data!;
       isLoading = false;
@@ -43,7 +45,6 @@ List<Gallery>? imaghes=Data().gallery;
     }
   }
 
-  
   Future<void> loadMore() async {
     if (isMoreLoading) return;
 
@@ -52,9 +53,7 @@ List<Gallery>? imaghes=Data().gallery;
     update();
 
     try {
-      var res = await ProdoctService().getproducts(page: page, limit: limit);
-
-   
+      var res = await ProdoctService().getProducts(page: page, limit: limit);
       products.addAll(res.data!);
 
       isMoreLoading = false;
@@ -63,71 +62,42 @@ List<Gallery>? imaghes=Data().gallery;
       isMoreLoading = false;
       update();
     }
-
-
-
-
-
   }
 
-
-
-
-  
   Future<void> showProduct(int id) async {
-   
     try {
+      isLoading = true;
+      productById = Data();
+      update();
+
       var res = await ProdoctService().getProductShow(id);
+      productById = res;
 
-   
-  productById=res;
-
-     
+      isLoading = false;
+      update();
     } catch (e) {
-     
+      isLoading = false;
+      update();
     }
-
-
-
-
-    
   }
 
+  Future<void> sendRating() async {
+    try {
+      var response = await ProdoctService().postRatingData(
+        productId,
+        rating,
+        comment,
+      );
 
+      if (response != null) {
+        await showProduct(productId.toInt());
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        Get.snackbar("Success", "Rating sent successfully");
+      } else {
+        Get.snackbar("Error", "Failed to send rating");
+      }
+    } catch (e) {
+      print("Controller sendRating Error: $e");
+    }
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
