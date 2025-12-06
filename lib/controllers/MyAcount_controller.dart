@@ -46,7 +46,7 @@ class MyAccountController extends GetxController {
     }
   }
 
-  /// إرسال التعديلات إلى API
+  
   Future<void> updateAccount() async {
     if (!MyAccount.currentState!.validate()) return;
 

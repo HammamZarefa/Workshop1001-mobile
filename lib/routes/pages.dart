@@ -115,8 +115,8 @@ final pages = <GetPage>[
 
 
  GetPage(
-    name: AppRoutes.MyAccount_Screen,
-    page: () => MyAccount_Screen(),
+    name: AppRoutes.MyAccountScreen,
+    page: () => MyAccountScreen(),
   ),
 
 

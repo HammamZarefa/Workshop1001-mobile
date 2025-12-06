@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:coda_workshop/controllers/Favorite_Controller.dart';
 import 'package:coda_workshop/controllers/cart_controller.dart';
 import 'package:coda_workshop/controllers/product_controller.dart';
@@ -9,8 +11,6 @@ import 'package:coda_workshop/screens/productDetails/widgit/ProductImage.dart';
 import 'package:coda_workshop/screens/productDetails/widgit/ProductTitleAndFavorite.dart';
 import 'package:coda_workshop/screens/productDetails/widgit/RatingStarsWidget.dart';
 import 'package:coda_workshop/screens/productDetails/widgit/ThumbnailImages.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ProductDetails extends StatelessWidget {
   final RxInt quantity = 1.obs;
@@ -23,7 +23,9 @@ class ProductDetails extends StatelessWidget {
   ProductDetails({super.key}) {
     final int id = Get.arguments ?? 0;
     if (id != 0) {
-      controller.showProduct(id);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        controller.showProduct(id);
+      });
     }
   }
 
@@ -34,14 +36,12 @@ class ProductDetails extends StatelessWidget {
         if (controller.isLoading || controller.productById.id == null) {
           return Scaffold(
             appBar: AppBar(),
-            body: Center(child: CircularProgressIndicator()),
+            body: const Center(child: CircularProgressIndicator()),
           );
         }
 
         final Data product = controller.productById;
-
-        final RxString currentImage =
-            (product.featuredImage ?? "").toString().obs;
+        final RxString currentImage = (product.featuredImage ?? "").obs;
 
         final List<Gallery> images = [
           if (product.featuredImage != null)
@@ -57,76 +57,67 @@ class ProductDetails extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.white,
             actions: [
-              SizedBox(
-                width: 120,
-                child: Center(
-                  child: RatingStarsWidget(
-                    productId: product.id ?? 0,
-                    averageRating: (product.averageRating ?? 0.0).toDouble(),
-                  ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: RatingStarsWidget(
+                  productId: product.id ?? 0,
+                  averageRating: controller.averageRating,
                 ),
               ),
             ],
           ),
-          body: Padding(
+          body: ListView(
             padding: const EdgeInsets.only(left: 2),
-            child: ListView(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Column(
-                    children: [
-                      ProductImage(currentImage: currentImage),
-                      const SizedBox(height: 20),
-                      ThumbnailImages(
-                        images: images,
-                        currentImage: currentImage,
-                      ),
-                    ],
-                  ),
+            children: [
+              Container(
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
                 ),
-                const SizedBox(height: 7),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 5),
-                  padding: const EdgeInsets.only(top: 10, left: 10),
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 247, 244, 244),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ProductTitleAndFavorite(
-                        data: product.toJson(),
-                        favController: favController,
-                        currentImage: currentImage,
-                      ),
-                      const SizedBox(height: 15),
-                      ProductDescription(
-                        description: product.description ?? "",
-                      ),
-                      const SizedBox(height: 20),
-                      ColorAndQuantitySelector(
-                        colors: colors,
-                        selectedColor: selectedColor,
-                        quantity: quantity,
-                      ),
-                      const SizedBox(height: 25),
-                      AddToCartButton(
-                        cartController: cartController,
-                        data: product.toJson(),
-                        currentImage: currentImage,
-                        quantity: quantity,
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  children: [
+                    ProductImage(currentImage: currentImage),
+                    const SizedBox(height: 20),
+                    ThumbnailImages(images: images, currentImage: currentImage),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 7),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 5),
+                padding: const EdgeInsets.only(top: 10, left: 10),
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 247, 244, 244),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ProductTitleAndFavorite(
+                      data: product.toJson(),
+                      favController: favController,
+                      currentImage: currentImage,
+                    ),
+                    const SizedBox(height: 15),
+                    ProductDescription(description: product.description ?? ""),
+                    const SizedBox(height: 20),
+                    ColorAndQuantitySelector(
+                      colors: colors,
+                      selectedColor: selectedColor,
+                      quantity: quantity,
+                    ),
+                    const SizedBox(height: 25),
+                    AddToCartButton(
+                      cartController: cartController,
+                      data: product.toJson(),
+                      currentImage: currentImage,
+                      quantity: quantity,
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         );
       },

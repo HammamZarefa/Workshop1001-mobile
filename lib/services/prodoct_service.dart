@@ -19,18 +19,6 @@ class ProdoctService {
     }
   }
 
-  // Future<Data> getProductShow(int id
-
-  // ) async {
-  //   try {
-  //     var res = await Api().dio.get('api/v1/products/$id');
-  //     return Data.fromJson(res.data);
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  //   return Data();
-  // }
-
   Future<Data> getProductShow(int id) async {
     try {
       var res = await Api().dio.get('api/v1/products/$id');
@@ -43,31 +31,31 @@ class ProdoctService {
   }
 
   Future<dynamic> postRatingData(
-  int product_id, // ← استخدم int بدل double
-  int rating,     // ← استخدم int بدل double
-  String comment,
-) async {
-  try {
-    var res = await Api().dio.post(
-      'api/v1/ratings',
-      data: {
+    int product_id,
+    int rating,
+    String comment,
+  ) async {
+    try {
+      var res = await Api().dio.post(
+        'api/v1/ratings',
+        data: {
+          "product_id": product_id.toString(),
+          "rating": rating.toString(),
+          "comment": comment,
+        },
+      );
+
+      print("REQUEST BODY:");
+      print({
         "product_id": product_id.toString(),
         "rating": rating.toString(),
         "comment": comment,
-      },
-    );
+      });
 
-    print("REQUEST BODY:");
-    print({
-      "product_id": product_id.toString(),
-      "rating": rating.toString(),
-      "comment": comment,
-    });
-
-    return res.data;
-  } catch (e) {
-    print("Rating error: $e");
-    return null;
+      return res.data;
+    } catch (e) {
+      print("Rating error: $e");
+      return null;
+    }
   }
-}
 }

@@ -15,7 +15,7 @@ class MainScreen extends StatelessWidget {
   final List<Widget> pages = [
     HomeScreen(),
    FavoritesScreen(),
-  ProfailScreen()
+   ProfailScreen()
   // ProductsScreen()
   ];
 

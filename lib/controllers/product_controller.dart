@@ -6,9 +6,7 @@ import 'package:get_storage/get_storage.dart' hide Data;
 class ProductController extends GetxController {
   List<Data> products = [];
   Data productById = Data();
-  GetStorage box = GetStorage();
-
-  List<Gallery>? imaghes = Data().gallery;
+  final GetStorage box = GetStorage();
 
   int page = 1;
   bool isLoading = false;
@@ -18,6 +16,8 @@ class ProductController extends GetxController {
   int productId = 0;
   int rating = 0;
   String comment = "";
+
+  RxDouble averageRating = 0.0.obs;
 
   @override
   void onInit() {
@@ -33,7 +33,7 @@ class ProductController extends GetxController {
 
       var res = await ProdoctService().getProducts(page: page, limit: limit);
 
-      products = res.data!;
+      products = res.data ?? [];
       isLoading = false;
       update();
 
@@ -54,7 +54,7 @@ class ProductController extends GetxController {
 
     try {
       var res = await ProdoctService().getProducts(page: page, limit: limit);
-      products.addAll(res.data!);
+      products.addAll(res.data ?? []);
 
       isMoreLoading = false;
       update();
@@ -73,11 +73,18 @@ class ProductController extends GetxController {
       var res = await ProdoctService().getProductShow(id);
       productById = res;
 
+      double backendRating = res.averageRating?.toDouble() ?? 0.0;
+
+      box.write('averageRating_${id}', backendRating);
+
+      averageRating.value = box.read('averageRating_${id}') ?? backendRating;
+
       isLoading = false;
       update();
     } catch (e) {
       isLoading = false;
       update();
+      print("showProduct error: $e");
     }
   }
 
@@ -90,11 +97,21 @@ class ProductController extends GetxController {
       );
 
       if (response != null) {
-        await showProduct(productId.toInt());
+        await showProduct(productId);
 
-        Get.snackbar("Success", "Rating sent successfully");
+        double newRating = productById.averageRating?.toDouble() ?? 0.0;
+        box.write('averageRating_${productId}', newRating);
+        averageRating.value = newRating;
+
+        Get.snackbar(
+          "Success",
+          "Rating sent successfully",
+        );
       } else {
-        Get.snackbar("Error", "Failed to send rating");
+        Get.snackbar(
+          "Error",
+          "Failed to send rating",
+        );
       }
     } catch (e) {
       print("Controller sendRating Error: $e");

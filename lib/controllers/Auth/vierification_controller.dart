@@ -49,7 +49,7 @@ class VierificationController extends GetxController {
 
 
       try {
-        var response = await ResendverificationService().postResendverificationData(email);
+        var response = await ResendVerificationService().postResendverificationData(email);
 
 
 

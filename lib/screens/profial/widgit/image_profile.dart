@@ -1,66 +1,78 @@
-import 'package:coda_workshop/constant/imageAssets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../controllers/profail_controlier.dart';
 
 class ImageProfile extends StatelessWidget {
-  const ImageProfile({super.key});
+  final ProfileController controller;
+
+  const ImageProfile({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 170,
-      height: 185, // زيادة بسيطة لمكان دائرة الكاميرا
-      child: Stack(
-        alignment: Alignment.center, // يجعل كل العناصر في منتصف الـ Stack
-        children: [
-          // ------------------ الصورة الدائرية الأساسية ------------------
-          Container(
-            width: 170,
-            height: 170,
-            decoration: BoxDecoration(
-                   color: const Color.fromARGB(255, 235, 232, 232),
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.3),
-                  blurRadius: 12,
-                  spreadRadius: 2,
-                  offset: Offset(0, 4),
-                ),
-              ],
-              image: DecorationImage(
-                image: AssetImage(ImageAssets.ammar),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-
-          // ------------------ دائرة الكاميرا أسفل منتصف الدائرة ------------------
-          Positioned(
-           right:100,
-            bottom: 0, // تلامس الدائرة الكبيرة
-            child: Container(
-              width: 48,
-              height: 48,
+    return Obx(() {
+      return SizedBox(
+        width: 170,
+        height: 185,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // الصورة الدائرية بدون Asset
+            Container(
+              width: 170,
+              height: 170,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 235, 232, 232),
                 shape: BoxShape.circle,
+                color: Colors.grey[300], // لون الخلفية فقط
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
-                    blurRadius: 6,
-                    offset: Offset(0, 3),
+                    color: Colors.black.withOpacity(0.25),
+                    blurRadius: 12,
+                    spreadRadius: 2,
+                    offset: const Offset(0, 4),
                   ),
                 ],
-              ),
-              child: const Icon(
-                Icons.camera_alt_outlined,
-                size: 24,
-                color: Color.fromARGB(255, 78, 75, 75),
+                image: controller.profileImageUrl.value.isNotEmpty
+                    ? DecorationImage(
+                        image: NetworkImage(controller.profileImageUrl.value),
+                        fit: BoxFit.cover,
+                      )
+                    : null, // بدون صورة افتراضية
               ),
             ),
-          ),
-        ],
-      ),
-    );
+
+            // زر الكاميرا
+            Positioned(
+              right: 90,
+              bottom: 0,
+              child: GestureDetector(
+                onTap: () {
+                  controller.pickAndUploadImage();
+                },
+                child: Container(
+                  width: 48,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 6,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.camera_alt_outlined,
+                    size: 24,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
