@@ -25,7 +25,7 @@ class TimerController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    startTimer(); // ✅ شغل التايمر هنا وليس في build
+    startTimer();
   }
 
   @override

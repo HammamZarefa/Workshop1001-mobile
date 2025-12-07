@@ -4,7 +4,7 @@ import 'package:coda_workshop/services/forgotpassword_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ForgotPasswordcontroller extends GetxController {
+class ForgetPasswordcontroller extends GetxController {
   
   TextEditingController? email;
   
@@ -13,7 +13,7 @@ class ForgotPasswordcontroller extends GetxController {
  
  
  
-   validate_forgotpassword() {
+   validate_forgetpassword() {
 
 
 
@@ -36,7 +36,7 @@ Future Forget_password() async {
       if ((response["token"] != null)) {
     
          Get.offNamed(
-            AppRoutes.Otp_Vierification,
+            AppRoutes.otpVerification,
             arguments: {"email": email!.text},
           );
         
@@ -57,15 +57,15 @@ Future Forget_password() async {
 
 
 
- goTosibup() {
+ goToSignUp() {
 
-Get.toNamed(AppRoutes.SinUp);
+Get.toNamed(AppRoutes.signUp);
 
  }
 
- goTohome() {
+ goToHome() {
 
-Get.toNamed(AppRoutes.homescreen);
+Get.toNamed(AppRoutes.homeScreen);
 
  }
 

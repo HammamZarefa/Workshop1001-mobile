@@ -1,14 +1,13 @@
-// profail_screen.dart
 import 'package:coda_workshop/constant/colors.dart';
-import 'package:coda_workshop/controllers/profail_controlier.dart';
+import 'package:coda_workshop/controllers/profile_controller.dart';
 import 'package:coda_workshop/screens/profial/widgit/buttion.dart';
 import 'package:coda_workshop/screens/profial/widgit/image_profile.dart';
 import 'package:coda_workshop/widgets/Auth/appBarTitle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProfailScreen extends StatelessWidget {
-  ProfailScreen({super.key});
+class ProfileScreen extends StatelessWidget {
+  ProfileScreen({super.key});
 
   final ProfileController controller = Get.put(ProfileController());
 

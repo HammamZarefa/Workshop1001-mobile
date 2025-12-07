@@ -1,33 +1,24 @@
 import 'package:coda_workshop/routes/routes.dart';
 
-
 import 'package:coda_workshop/services/Otp_vierification_service.dart';
 import 'package:coda_workshop/services/Resendverification_service.dart';
 
 import 'package:get/get.dart';
-
 
 class VierificationController extends GetxController {
   late String otp;
 
   late String email;
 
-  Future gotosussifulsinup() async {
+  Future goToSussifulSignUp() async {
     if (otp.isEmpty) {
-      // Get.defaultDialog(
-      //   title: "تنبيه",
-      //   middleText: "يرجى إدخال رمز التحقق قبل المتابعة.",
-      // );
-      
-
       try {
-        var response = await OtpVierificationService().postOtpvierificaionData(email, otp);
-
-
+        var response =
+            await OtpVierificationService().postOtpvierificaionData(email, otp);
 
         if (response != null) {
           if ((response["token"] != null)) {
-            Get.offNamed(AppRoutes.SucssfulSinin );
+            Get.offNamed(AppRoutes.successfulSignIn);
           } else {
             Get.snackbar("Error", response["message"] ?? "Unknown error");
           }
@@ -44,18 +35,16 @@ class VierificationController extends GetxController {
       super.onInit();
     }
 
-     Future      resendVerificationCode() async {
-
-
-
+    Future resendVerificationCode() async {
       try {
-        var response = await ResendVerificationService().postResendverificationData(email);
-
-
+        var response =
+            await ResendVerificationService().postResendverificationData(email);
 
         if (response != null) {
           if ((response["token"] != null)) {
-            Get.offNamed(AppRoutes.homescreen, );
+            Get.offNamed(
+              AppRoutes.homeScreen,
+            );
           } else {
             Get.snackbar("Error", response["message"] ?? "Unknown error");
           }
@@ -65,11 +54,6 @@ class VierificationController extends GetxController {
       } catch (e) {}
     }
 
-
-
-
-
-      update();
-    }
+    update();
   }
-
+}

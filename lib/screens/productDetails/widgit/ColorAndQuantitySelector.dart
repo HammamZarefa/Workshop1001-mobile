@@ -33,7 +33,6 @@ class ColorAndQuantitySelector extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          /// COLORS
           Obx(() => Row(
                 children: colors.map((hexColor) {
                   Color color = hexToColor(hexColor);
@@ -61,7 +60,6 @@ class ColorAndQuantitySelector extends StatelessWidget {
                 }).toList(),
               )),
 
-          /// QUANTITY
           Row(
             children: [
               GestureDetector(

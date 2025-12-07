@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:coda_workshop/controllers/Favorite_Controller.dart';
-import 'package:coda_workshop/controllers/cart_controller.dart';
+import 'package:coda_workshop/controllers/favorite_controller.dart';
+
 import 'package:coda_workshop/controllers/product_controller.dart';
 import 'package:coda_workshop/models/products_model.dart';
 import 'package:coda_workshop/screens/productDetails/widgit/AddToCartButton.dart';
@@ -17,7 +17,7 @@ class ProductDetails extends StatelessWidget {
   final RxString selectedColor = "".obs;
 
   final FavoriteController favController = Get.put(FavoriteController());
-  final CartController cartController = Get.put(CartController());
+
   final ProductController controller = Get.find();
 
   ProductDetails({super.key}) {
@@ -109,7 +109,6 @@ class ProductDetails extends StatelessWidget {
                     ),
                     const SizedBox(height: 25),
                     AddToCartButton(
-                      cartController: cartController,
                       data: product.toJson(),
                       currentImage: currentImage,
                       quantity: quantity,

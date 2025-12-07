@@ -1,7 +1,7 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
 import 'package:coda_workshop/controllers/nav_controller.dart';
-import 'package:coda_workshop/screens/cart.dart';
+
 import 'package:coda_workshop/widgets/home/banner.dart';
 import 'package:coda_workshop/widgets/home/categureList.dart';
 import 'package:coda_workshop/widgets/home/pupolarProduct.dart';
@@ -68,9 +68,7 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(60),
                         ),
                         child: IconButton(
-                            onPressed: () {
-                              Get.to(CartScreen());
-                            },
+                            onPressed: () {},
                             icon: Icon(Icons.shopping_cart_outlined))),
                     Container(
                         height: 40,
@@ -112,30 +110,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               CategoriesList(controller: controller),
-              // Padding(
-              //   padding: const EdgeInsets.only(
-              //       right: 20.0, left: 20, top: 0, bottom: 10),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       Text(
-              //         "Special for you",
-              //         style:
-              //             TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              //       ),
-              //       MaterialButton(
-              //         onPressed: () {},
-              //         child: Text(
-              //           "See more",
-              //           style: TextStyle(
-              //               fontWeight: FontWeight.bold,
-              //               color: Colors.grey,
-              //               fontSize: 16),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
               SpecialList(controller: controller),
               PopularList(controller: controller),
             ],

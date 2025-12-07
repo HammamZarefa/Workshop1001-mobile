@@ -57,7 +57,6 @@ class PopularList extends StatelessWidget {
                           child: Image.asset(
                             popularItem.image!,
                             fit: BoxFit.contain,
-                            // color: Colors.black12,
                           ),
                         )),
                   ),

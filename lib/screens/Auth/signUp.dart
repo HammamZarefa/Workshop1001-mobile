@@ -1,6 +1,6 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/constant/imageAssets.dart';
-import 'package:coda_workshop/controllers/Auth/SinUp_controller.dart';
+import 'package:coda_workshop/controllers/Auth/signup_controller.dart';
 import 'package:coda_workshop/functions/validInput.dart';
 import 'package:coda_workshop/widgets/Auth/appBarTitle.dart';
 import 'package:coda_workshop/widgets/Auth/appsButton.dart';
@@ -14,10 +14,10 @@ import 'package:get/get_core/src/get_main.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({super.key});
-  SinUpController controller = Get.put(SinUpController());
+  SignUpController controller = Get.put(SignUpController());
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SinUpController>(
+    return GetBuilder<SignUpController>(
         builder: (controller) => Form(
               key: controller.formstate,
               child: Scaffold(
@@ -92,14 +92,14 @@ class SignUp extends StatelessWidget {
                             controller.update();
                           },
                           obscureText: controller.isShow,
-                          mycontroller: controller.password_confirmation,
+                          mycontroller: controller.passwordConfirmation,
                           validator: (val) {
-                            // التحقق الأساسي بواسطة validInput
+                            
                             String? validation =
                                 validInput(val!, 5, 20, 'password');
                             if (validation != null) return validation;
 
-                            // التحقق من تطابق كلمة المرور
+                          
                             if (val != controller.password!.text) {
                               return 'Passwords do not match';
                             }

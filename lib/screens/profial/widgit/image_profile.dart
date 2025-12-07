@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../controllers/profail_controlier.dart';
+import '../../../controllers/profile_controller.dart';
 
 class ImageProfile extends StatelessWidget {
   final ProfileController controller;
@@ -16,13 +16,13 @@ class ImageProfile extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            // الصورة الدائرية بدون Asset
+            
             Container(
               width: 170,
               height: 170,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.grey[300], // لون الخلفية فقط
+                color: Colors.grey[300],
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.25),
@@ -31,22 +31,40 @@ class ImageProfile extends StatelessWidget {
                     offset: const Offset(0, 4),
                   ),
                 ],
-                image: controller.profileImageUrl.value.isNotEmpty
-                    ? DecorationImage(
-                        image: NetworkImage(controller.profileImageUrl.value),
+              ),
+              child: ClipOval(
+                child: controller.profileImageUrl.value.isNotEmpty
+                    ? Image.network(
+                        controller.profileImageUrl.value,
                         fit: BoxFit.cover,
+                        width: 170,
+                        height: 170,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Center(
+                            child: CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                      loadingProgress.expectedTotalBytes!
+                                  : null,
+                            ),
+                          );
+                        },
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Icon(Icons.person, size: 60);
+                        },
                       )
-                    : null, // بدون صورة افتراضية
+                    : const Icon(Icons.person, size: 60),
               ),
             ),
 
-            // زر الكاميرا
+            
             Positioned(
               right: 90,
               bottom: 0,
               child: GestureDetector(
                 onTap: () {
-                  controller.pickAndUploadImage();
+                  controller.pickImageSource();
                 },
                 child: Container(
                   width: 48,

@@ -94,11 +94,10 @@ class OtpVerification extends StatelessWidget {
                             title: "Continue",
                             onPressed: () {
                             
-                              controller.gotosussifulsinup();
+                              controller.goToSussifulSignUp();
                             },
                           )),
 
-                      ///////////////////////////////////////
                       SizedBox(
                         height: 10,
                       ),
@@ -122,9 +121,7 @@ SizedBox(height: 30,),
                               onTap: seconds == 0
                                   ? () {
                                       timerController
-                                          .resetTimer(); // ⏱️ إعادة ضبط المؤقت
-                                      // controller
-                                      //     .resendVerificationCode(); // 📩 إعادة إرسال الكود
+                                          .resetTimer();
                                     }
                                   : null,
                               child: RichText(
@@ -136,7 +133,7 @@ SizedBox(height: 30,),
                                         fontSize: 20,
                                         color: seconds == 0
                                             ? Colors.black
-                                            : Colors.grey, // Active or disabled
+                                            : Colors.grey, 
                                         decoration: TextDecoration.underline,
                                         fontWeight: FontWeight.bold,
                                       ),

@@ -50,7 +50,7 @@ class LoginController extends GetxController {
 
 
   gotoSignup() {
-    Get.toNamed(AppRoutes.SinUp);
+    Get.toNamed(AppRoutes.signUp);
   }
 
   rememberMeTick() {
@@ -82,13 +82,13 @@ class LoginController extends GetxController {
 
   goToForgetPassword() {
 
-Get.toNamed(AppRoutes.Forget_password);
+Get.toNamed(AppRoutes.forgotPassword);
 
   }
 
  goTosibup() {
 
-Get.toNamed(AppRoutes.SinUp);
+Get.toNamed(AppRoutes.signUp);
 
  }
 

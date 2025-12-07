@@ -1,19 +1,18 @@
 class AppRoutes {
-  static const String splashscreen = '/splashscreen';
-  static const String homescreen = '/homescreen';
-  static const String onboarding = '/onboarding';
-  static const String login = '/login';
-  static const String SinUp = '/SinUp';
-  static const String Complet_profile = '/Complet_profile';
-  static const String mainScreen = '/mainScreen';
- static const String Otp_Vierification = '/Otp_Vierification';
-static const String  SucssfulSinin = '/SucssfulSinin';
-static const String Forget_password = '/Forget_password';
-static const String ProdoctesScreen = '/ProdoctesScreen';
-static const String FavoritesScreen = '/FavoritesScreen';
-static const String ProductDetails_Screen = '/ProductDetails_Screen';
-static const String ProfailScreen = '/ProfailScreen';
-static const String MyAccountScreen = '/MyAccountScreen';
-
+static const String splashScreen = '/splashScreen';
+static const String homeScreen = '/homeScreen';
+static const String onboarding = '/onboarding';
+static const String login = '/login';
+static const String signUp = '/signUp';
+static const String completeProfile = '/completeProfile';
+static const String mainScreen = '/mainScreen';
+static const String otpVerification = '/otpVerification';
+static const String successfulSignIn = '/successfulSignIn';
+static const String forgotPassword = '/forgotPassword';
+static const String productsScreen = '/productsScreen';
+static const String favoritesScreen = '/favoritesScreen';
+static const String productDetailsScreen = '/productDetailsScreen';
+static const String profileScreen = '/profileScreen';
+static const String myAccountScreen = '/myAccountScreen';
 }
   

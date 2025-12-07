@@ -1,21 +1,59 @@
 import 'dart:io';
 import 'package:coda_workshop/routes/routes.dart';
-
 import 'package:coda_workshop/services/profile_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileController extends GetxController {
   final ProfileService service = ProfileService();
 
   RxString profileImageUrl = "".obs;
-  GetStorage box = GetStorage();
-  Future<void> pickAndUploadImage() async {
+
+  final ImagePicker picker = ImagePicker();
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    getProfileData();
+  }
+
+  Future<void> pickImageSource() async {
+    Get.bottomSheet(
+      Container(
+        padding: const EdgeInsets.all(20),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        child: Wrap(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.photo_library),
+              title: const Text("Choose from Gallery"),
+              onTap: () {
+                Get.back();
+                pickAndUploadImage(ImageSource.gallery);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: const Text("Take a Photo"),
+              onTap: () {
+                Get.back();
+                pickAndUploadImage(ImageSource.camera);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> pickAndUploadImage(ImageSource source) async {
     try {
-      final picker = ImagePicker();
-      final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+      final pickedFile = await picker.pickImage(source: source);
 
       if (pickedFile != null) {
         File imageFile = File(pickedFile.path);
@@ -27,7 +65,7 @@ class ProfileController extends GetxController {
             response["data"]["profile_image"] != null) {
           profileImageUrl.value = response["data"]["profile_image"];
 
-          print("UPDATED IMAGE URL => ${profileImageUrl.value}");
+          await getProfileData();
 
           Get.snackbar(
             "Success",
@@ -55,18 +93,33 @@ class ProfileController extends GetxController {
     }
   }
 
+  Future<void> getProfileData() async {
+    try {
+      var response = await service.getmyaccount();
+
+      if (response != null &&
+          response.data != null &&
+          response.data!.profileImage != null) {
+        profileImageUrl.value =
+            "${response.data!.profileImage!}?t=${DateTime.now().millisecondsSinceEpoch}";
+
+        print("PROFILE IMAGE FROM BACKEND => ${profileImageUrl.value}");
+      }
+    } catch (e) {
+      print("Error fetching profile data: $e");
+    }
+  }
+
   void gotoMyAccount() {
-    Get.toNamed(AppRoutes.MyAccountScreen);
+    Get.toNamed(AppRoutes.myAccountScreen);
   }
 
   Future LogoutProfile() async {
     try {
-      var response = await ProfileService().PostlogoutData();
+      var response = await service.PostlogoutData();
 
       if (response != null) {
         if (response["message"] != null) {
-          box.remove("token");
-
           Get.offAllNamed(AppRoutes.login);
 
           Get.snackbar(

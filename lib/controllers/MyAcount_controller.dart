@@ -9,7 +9,7 @@ class MyAccountController extends GetxController {
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
   TextEditingController email = TextEditingController();
-  TextEditingController phonenumper = TextEditingController();
+  TextEditingController phoneNumber = TextEditingController();
   TextEditingController locition = TextEditingController();
 
   GlobalKey<FormState> MyAccount = GlobalKey<FormState>();
@@ -34,7 +34,7 @@ class MyAccountController extends GetxController {
         firstName.text = accountData!.data!.firstName ?? "";
         lastName.text = accountData!.data!.lastName ?? "";
         email.text = accountData!.data!.email ?? "";
-        phonenumper.text = accountData!.data!.phone ?? "";
+        phoneNumber.text = accountData!.data!.phone ?? "";
         locition.text = accountData!.data!.address ?? "";
       }
 
@@ -46,7 +46,6 @@ class MyAccountController extends GetxController {
     }
   }
 
-  
   Future<void> updateAccount() async {
     if (!MyAccount.currentState!.validate()) return;
 
@@ -55,12 +54,11 @@ class MyAccountController extends GetxController {
         firstName.text,
         lastName.text,
         email.text,
-        phonenumper.text,
+        phoneNumber.text,
         locition.text,
       );
 
       Get.snackbar("Success", "Account updated successfully");
-
     } catch (e) {
       Get.snackbar("Error", "Failed to update account");
     }

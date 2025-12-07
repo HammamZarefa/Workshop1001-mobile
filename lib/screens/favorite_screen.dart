@@ -1,4 +1,4 @@
-import 'package:coda_workshop/controllers/Favorite_Controller.dart';
+import 'package:coda_workshop/controllers/favorite_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';

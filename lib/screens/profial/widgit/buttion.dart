@@ -24,7 +24,7 @@ class CustomButtionProfail extends StatelessWidget {
 
   decoration: BoxDecoration(
     color: const Color.fromARGB(255, 235, 232, 232),
-    borderRadius: BorderRadius.circular(15), // 🔥 التدوير البسيط هنا
+    borderRadius: BorderRadius.circular(15),
   ),
 
   child: MaterialButton(

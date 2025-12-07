@@ -1,7 +1,7 @@
 import 'package:coda_workshop/controllers/product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/Favorite_Controller.dart';
+import '../controllers/favorite_controller.dart';
 import '../routes/routes.dart';
 
 class ProductsScreen extends StatelessWidget {
@@ -51,7 +51,7 @@ class ProductsScreen extends StatelessWidget {
                         onTap: () {
                           controller.showProduct(item.id!);
                           Get.toNamed(
-                            AppRoutes.ProductDetails_Screen,
+                            AppRoutes.productDetailsScreen,
                             arguments: item.id!,
                           );
                         },

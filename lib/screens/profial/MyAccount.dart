@@ -1,4 +1,4 @@
-import 'package:coda_workshop/controllers/MyAcount_controller.dart';
+import 'package:coda_workshop/controllers/myacount_controller.dart';
 import 'package:coda_workshop/functions/validInput.dart';
 import 'package:coda_workshop/constant/colors.dart';
 
@@ -40,7 +40,6 @@ class MyAccountScreen extends StatelessWidget {
                 children: [
                   AppParTilte(appbarTilte: "My Account"),
                   SizedBox(height: 50),
-                  // ---- First Name ----
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: Authtextfeild(
@@ -53,8 +52,6 @@ class MyAccountScreen extends StatelessWidget {
                       keyboardType: TextInputType.name,
                     ),
                   ),
-
-                  // ---- Last Name ----
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: Authtextfeild(
@@ -67,8 +64,6 @@ class MyAccountScreen extends StatelessWidget {
                       keyboardType: TextInputType.name,
                     ),
                   ),
-
-                  // ---- Email ----
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: Authtextfeild(
@@ -81,13 +76,11 @@ class MyAccountScreen extends StatelessWidget {
                       keyboardType: TextInputType.emailAddress,
                     ),
                   ),
-
-                  // ---- Phone ----
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: Authtextfeild(
                       validator: (val) => validInput(val!, 10, 15, "phone"),
-                      mycontroller: controller.phonenumper,
+                      mycontroller: controller.phoneNumber,
                       hintText: "Enter your phone number",
                       labelText: "Phone Number",
                       icon: Icons.phone_android_outlined,
@@ -95,8 +88,6 @@ class MyAccountScreen extends StatelessWidget {
                       keyboardType: TextInputType.phone,
                     ),
                   ),
-
-                  // ---- Address ----
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: Authtextfeild(
@@ -109,7 +100,6 @@ class MyAccountScreen extends StatelessWidget {
                       keyboardType: TextInputType.streetAddress,
                     ),
                   ),
-
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: AuthGradientButton(

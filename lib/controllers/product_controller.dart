@@ -1,12 +1,10 @@
 import 'package:coda_workshop/models/products_model.dart';
 import 'package:coda_workshop/services/prodoct_service.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart' hide Data;
 
 class ProductController extends GetxController {
   List<Data> products = [];
   Data productById = Data();
-  final GetStorage box = GetStorage();
 
   int page = 1;
   bool isLoading = false;
@@ -22,7 +20,6 @@ class ProductController extends GetxController {
   @override
   void onInit() {
     getProductData();
-
     super.onInit();
   }
 
@@ -73,11 +70,7 @@ class ProductController extends GetxController {
       var res = await ProdoctService().getProductShow(id);
       productById = res;
 
-      double backendRating = res.averageRating?.toDouble() ?? 0.0;
-
-      box.write('averageRating_${id}', backendRating);
-
-      averageRating.value = box.read('averageRating_${id}') ?? backendRating;
+      averageRating.value = res.averageRating?.toDouble() ?? 0.0;
 
       isLoading = false;
       update();
@@ -99,9 +92,8 @@ class ProductController extends GetxController {
       if (response != null) {
         await showProduct(productId);
 
-        double newRating = productById.averageRating?.toDouble() ?? 0.0;
-        box.write('averageRating_${productId}', newRating);
-        averageRating.value = newRating;
+        averageRating.value =
+            productById.averageRating?.toDouble() ?? 0.0;
 
         Get.snackbar(
           "Success",

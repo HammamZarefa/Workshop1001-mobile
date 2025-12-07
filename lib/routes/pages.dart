@@ -1,11 +1,11 @@
 import 'package:coda_workshop/controllers/onboarding_controller.dart';
 import 'package:coda_workshop/routes/routes.dart';
-import 'package:coda_workshop/screens/Auth/Complete_profile.dart';
-import 'package:coda_workshop/screens/Auth/Forgot_password.dart';
-import 'package:coda_workshop/screens/Auth/Otp_Verification.dart';
+import 'package:coda_workshop/screens/Auth/complete_profile.dart';
+import 'package:coda_workshop/screens/Auth/forgot_password.dart';
+import 'package:coda_workshop/screens/Auth/otp_verification.dart';
 import 'package:coda_workshop/screens/Auth/Loginscreen.dart';
 import 'package:coda_workshop/screens/Auth/signUp.dart';
-import 'package:coda_workshop/screens/Auth/sucssful_Sinin.dart';
+import 'package:coda_workshop/screens/Auth/successful_signin.dart';
 import 'package:coda_workshop/screens/favorite_screen.dart';
 import 'package:coda_workshop/screens/mainScreen.dart';
 import 'package:coda_workshop/screens/onboarding_screen.dart';
@@ -13,18 +13,18 @@ import 'package:coda_workshop/screens/home/home.dart';
 import 'package:coda_workshop/screens/prodoctes_screen.dart';
 import 'package:coda_workshop/screens/productDetails/productDetails.dart';
 import 'package:coda_workshop/screens/profial/MyAccount.dart';
-import 'package:coda_workshop/screens/profial/profail_Screen.dart';
+import 'package:coda_workshop/screens/profial/profile_Screen.dart';
 
 import 'package:coda_workshop/screens/splash_screen/splash_screen.dart';
 import 'package:get/get.dart';
 
 final pages = <GetPage>[
   GetPage(
-    name: AppRoutes.splashscreen,
+    name: AppRoutes.splashScreen,
     page: () => const SplashScreen(),
   ),
   GetPage(
-    name: AppRoutes.homescreen,
+    name: AppRoutes.homeScreen,
     page: () => HomeScreen(),
   ),
   GetPage(
@@ -39,7 +39,7 @@ final pages = <GetPage>[
     page: () => LoginScreen(),
   ),
   GetPage(
-    name: AppRoutes.SinUp,
+    name: AppRoutes.signUp,
     page: () => SignUp(),
   ),
   
@@ -55,7 +55,7 @@ final pages = <GetPage>[
 
 
    GetPage(
-    name: AppRoutes.Complet_profile,
+    name: AppRoutes.completeProfile,
     page: () =>  CompletProfile(),
   ),
 
@@ -63,34 +63,34 @@ final pages = <GetPage>[
 
 
    GetPage(
-    name: AppRoutes.Forget_password,
+    name: AppRoutes.forgotPassword,
     page: () =>  ForgotPassword(),
   ),
 
 
 
  GetPage(
-    name: AppRoutes.Otp_Vierification,
+    name: AppRoutes.otpVerification,
     page: () =>  OtpVerification(),
   ),
 
 
 
  GetPage(
-    name: AppRoutes.SucssfulSinin,
+    name: AppRoutes.successfulSignIn,
     page: () =>  SuccessfulSignIn(),
   ),
 
 
 
  GetPage(
-    name: AppRoutes.ProdoctesScreen,
+    name: AppRoutes.productsScreen,
     page: () =>  ProductsScreen(),
   ),
 
 
  GetPage(
-    name: AppRoutes.FavoritesScreen,
+    name: AppRoutes.favoritesScreen,
     page: () => FavoritesScreen(),
   ),
 
@@ -101,7 +101,7 @@ final pages = <GetPage>[
 
 
  GetPage(
-    name: AppRoutes.ProductDetails_Screen,
+    name: AppRoutes.productDetailsScreen,
     page: () => ProductDetails(),
   ),
 
@@ -109,13 +109,13 @@ final pages = <GetPage>[
 
 
  GetPage(
-    name: AppRoutes.ProfailScreen,
-    page: () => ProfailScreen(),
+    name: AppRoutes.profileScreen,
+    page: () => ProfileScreen(),
   ),
 
 
  GetPage(
-    name: AppRoutes.MyAccountScreen,
+    name: AppRoutes.myAccountScreen,
     page: () => MyAccountScreen(),
   ),
 

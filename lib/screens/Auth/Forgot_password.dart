@@ -1,4 +1,5 @@
-import 'package:coda_workshop/controllers/Auth/forgot_password.dart';
+import 'package:coda_workshop/controllers/Auth/forget_password.dart';
+
 import 'package:coda_workshop/functions/validInput.dart';
 import 'package:coda_workshop/constant/colors.dart';
 
@@ -17,10 +18,10 @@ import 'package:get/get_core/src/get_main.dart';
 // ignore: must_be_immutable
 class ForgotPassword extends StatelessWidget {
   ForgotPassword({super.key});
-  ForgotPasswordcontroller controller = Get.put(ForgotPasswordcontroller());
+  ForgetPasswordcontroller controller = Get.put(ForgetPasswordcontroller());
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ForgotPasswordcontroller>(
+    return GetBuilder<ForgetPasswordcontroller>(
         builder: (controller) => Form(
               key: controller.formState,
               child: Scaffold(
@@ -64,7 +65,7 @@ class ForgotPassword extends StatelessWidget {
                             title: "Continue",
                             onPressed: () {
                               print("Button clicked!");
-                              controller.goTohome();
+                              controller.goToHome();
                             },
                           )),
 
@@ -74,7 +75,7 @@ class ForgotPassword extends StatelessWidget {
                         FirstText: "Dont have an account?",
                         SecondText: "  Sign Up",
                         onTap: () {
-                          controller.goTosibup();
+                          controller.goToSignUp();
                         },
                       )
                     ],

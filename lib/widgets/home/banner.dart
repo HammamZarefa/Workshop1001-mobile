@@ -32,13 +32,11 @@ class BannerCard extends StatelessWidget {
               child: Image.network(
                 image ?? "",
                 fit: BoxFit.fill,
-                // errorBuilder: (context, error, stack) =>
-                //     Image.asset("assets/images/default.png"),
+               
               ),
             ),
           ),
 
-          // النصوص فوق الصورة
           Container(
             height: 100,
             decoration: BoxDecoration(
