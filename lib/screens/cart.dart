@@ -27,7 +27,7 @@ class CartScreen extends StatelessWidget {
                 ),
                 GetBuilder<CartController>(
                   builder: (c) => Text(
-                    "${c.localProducts.length} items",
+                    "${c.mergedCart.length} items",
                     style: TextStyle(fontSize: 14),
                   ),
                 ),
@@ -40,7 +40,7 @@ class CartScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: GetBuilder<CartController>(
           builder: (controller) {
-            if (controller.localProducts.isEmpty) {
+            if (controller.mergedCart.isEmpty) {
               return Center(child: Text("Cart is empty"));
             }
 
@@ -50,9 +50,9 @@ class CartScreen extends StatelessWidget {
                   Container(
                     height: 530,
                     child: ListView.builder(
-                      itemCount: controller.localProducts.length,
+                      itemCount: controller.mergedCart.length,
                       itemBuilder: (context, index) {
-                        final item = controller.localProducts[index];
+                        final item = controller.mergedCart[index];
 
                         return Slidable(
                           key: ValueKey(item.id),
@@ -65,17 +65,18 @@ class CartScreen extends StatelessWidget {
                                     topRight: Radius.circular(20),
                                     bottomRight: Radius.circular(20)),
                                 onPressed: (_) {
-                                  controller.deleteProduct(item.id!);
+                                  if (controller.mergedCart
+                                      .any((e) => e.id == item.id)) {
+                                    controller.deleteLocalItem(item.id!);
+                                  } else {
+                                  }
                                 },
                                 backgroundColor: Colors.red.shade50,
                                 foregroundColor: Colors.red.shade300,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(
-                                      Icons.delete_outlined,
-                                      size: 30,
-                                    ),
+                                    Icon(Icons.delete_outlined, size: 30),
                                     SizedBox(height: 5),
                                   ],
                                 ),
@@ -95,7 +96,10 @@ class CartScreen extends StatelessWidget {
                                   ),
                                   height: 90,
                                   width: 85,
-                                  child: Image.asset(item.image,
+                                  child: Image.asset(
+                                      item.product?.image ??
+                                          item.product?.image ??
+                                          "",
                                       fit: BoxFit.contain),
                                 ),
                                 Expanded(
@@ -103,7 +107,10 @@ class CartScreen extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(item.name,
+                                      Text(
+                                          item.product?.title ??
+                                              item.product?.title ??
+                                              "",
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.w500)),
@@ -118,7 +125,7 @@ class CartScreen extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            " x${item.count}",
+                                            " x${item.quantity ?? item.quantity}",
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize: 17,
@@ -137,9 +144,11 @@ class CartScreen extends StatelessWidget {
                       },
                     ),
                   ),
+                  // SlideAble(controller: controller,),
                   Column(
                     children: [
                       Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
                             margin: EdgeInsets.only(top: 10),
@@ -234,13 +243,15 @@ class CartScreen extends StatelessWidget {
                               elevation: 0,
                               backgroundColor: Colors.transparent,
                               onPressed: () {
-                                controller.addProductToCart(
-                                    count: 2,
-                                    image: ImageAssets.facebook,
-                                    name: "Wireless Controller for PS4",
-                                    price: 200.23);
+controller.addToLocalCart(
+  name: 'Wireless Controller for PS4',
+  image: ImageAssets.facebook,
+  count: 2,
+  price: 200.23,
+);
+
                                 controller.update();
-                                controller.getCartProducts();
+                                controller.getLocalCart();
                               },
                               child: Text(
                                 "Check Out",
@@ -259,6 +270,29 @@ class CartScreen extends StatelessWidget {
           },
         ),
       ),
+//       floatingActionButton: Container(
+//         width: 170,
+//         height: 47,
+//         decoration: BoxDecoration(
+//             borderRadius: BorderRadius.circular(17), color: AppColors.primary),
+//         child: FloatingActionButton(
+//           elevation: 0,
+//           backgroundColor: Colors.transparent,
+//           onPressed: () {
+// controller.addToLocalCart(
+//   name: 'Wireless Controller for PS4',
+//   image: ImageAssets.facebook,
+//   count: 2,
+//   price: 200.23,
+// );
+//             controller.getLocalCart();
+//           },
+//           child: Text(
+//             "Check Out",
+//             style: TextStyle(color: Colors.white, fontSize: 17),
+//           ),
+//         ),
+      // ),
     );
   }
 }
