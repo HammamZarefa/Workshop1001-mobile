@@ -1,6 +1,8 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
+import 'package:coda_workshop/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SpecialList extends StatelessWidget {
   final HomeController controller;
@@ -21,7 +23,9 @@ class SpecialList extends StatelessWidget {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(AppRoutes.spacialProducts);
+                },
                 child: Text(
                   "See more",
                   style: TextStyle(
@@ -37,7 +41,8 @@ class SpecialList extends StatelessWidget {
           height: 100,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: controller.special.length,
+            itemCount:
+                controller.special.length > 7 ? 7 : controller.special.length,
             itemBuilder: (context, index) {
               final specialItem = controller.special[index];
               return Padding(
@@ -51,10 +56,12 @@ class SpecialList extends StatelessWidget {
                     ),
                     child: Stack(
                       children: [
-                        Image.asset(
-                          specialItem.image!,
-                          fit: BoxFit.cover,
-                          // color: Colors.black12,
+                        ClipRRect(
+                          borderRadius: BorderRadiusGeometry.circular(20),
+                          child: Image.network(
+                            specialItem.featuredImage!,
+                            fit: BoxFit.fill, width: 220,
+                          ),
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -62,8 +69,8 @@ class SpecialList extends StatelessWidget {
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                               colors: [
-                                Colors.black45,
-                                Colors.white38,
+                                Colors.black54,
+                                Colors.white70,
                               ],
                             ),
                             borderRadius: BorderRadius.circular(20),
@@ -82,7 +89,7 @@ class SpecialList extends StatelessWidget {
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                specialItem.subtitle!,
+                                specialItem.description!,
                                 style: TextStyle(color: AppColors.background),
                               ),
                             ],

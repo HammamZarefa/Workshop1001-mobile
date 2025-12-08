@@ -47,7 +47,7 @@ class Authtextfeild extends StatelessWidget {
             size: 25,
           ),
         ),
-      
+       
 
         hintText: hintText,
         labelText: labelText,

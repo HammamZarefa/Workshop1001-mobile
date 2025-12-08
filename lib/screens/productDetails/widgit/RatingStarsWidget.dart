@@ -1,3 +1,4 @@
+import 'package:coda_workshop/controllers/preoducts_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coda_workshop/controllers/product_controller.dart';
@@ -12,7 +13,7 @@ class RatingStarsWidget extends StatelessWidget {
     required this.averageRating,
   });
 
-  final ProductController controller = Get.find();
+  final ProductControllera controller = Get.find();
 
   @override
   Widget build(BuildContext context) {

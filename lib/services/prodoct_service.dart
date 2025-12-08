@@ -14,7 +14,8 @@ class ProdoctService {
 
       return ProductModel.fromJson(res!.data);
     } catch (e) {
-      print("Product Service Error: $e");
+      print("Product Service Error: catchervice=============$e");
+
       return ProductModel();
     }
   }

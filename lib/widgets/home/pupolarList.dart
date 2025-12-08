@@ -1,6 +1,8 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
+import 'package:coda_workshop/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class PopularList extends StatelessWidget {
   final HomeController controller;
@@ -22,7 +24,9 @@ class PopularList extends StatelessWidget {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(AppRoutes.popularProducts);
+                },
                 child: Text(
                   "See more",
                   style: TextStyle(
@@ -38,7 +42,8 @@ class PopularList extends StatelessWidget {
           height: 200,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: controller.popular.length,
+            itemCount:
+                controller.popular.length > 7 ? 7 : controller.popular.length,
             itemBuilder: (context, index) {
               final popularItem = controller.popular[index];
               return Column(
@@ -54,8 +59,8 @@ class PopularList extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
-                          child: Image.asset(
-                            popularItem.image!,
+                          child: Image.network(
+                            popularItem.featuredImage!,
                             fit: BoxFit.contain,
                           ),
                         )),
@@ -66,7 +71,7 @@ class PopularList extends StatelessWidget {
                     ),
                     child: Text(
                       textWidthBasis: TextWidthBasis.longestLine,
-                      popularItem.name!,
+                      popularItem.title!,
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontWeight: FontWeight.w500),
                     ),

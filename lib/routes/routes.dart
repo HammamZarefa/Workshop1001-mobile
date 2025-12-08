@@ -14,5 +14,7 @@ static const String favoritesScreen = '/favoritesScreen';
 static const String productDetailsScreen = '/productDetailsScreen';
 static const String profileScreen = '/profileScreen';
 static const String myAccountScreen = '/myAccountScreen';
+static const String spacialProducts = '/spacialProducts';
+    static const String popularProducts = '/popularProducts';
 }
   

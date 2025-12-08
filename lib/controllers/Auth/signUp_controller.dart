@@ -17,7 +17,7 @@ TextEditingController? location;
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
   GlobalKey<FormState> completeForm = GlobalKey<FormState>();
 
-  GetStorage box = GetStorage();
+//   GetStorage box = GetStorage();
 
   validateSignup() {
     var formdata = formstate.currentState;

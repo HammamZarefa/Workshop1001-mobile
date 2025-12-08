@@ -1,7 +1,7 @@
 import 'package:coda_workshop/constant/imageAssets.dart';
+import 'package:coda_workshop/controllers/Auth/login_controller.dart';
 import 'package:coda_workshop/functions/validInput.dart';
 import 'package:coda_workshop/constant/colors.dart';
-import 'package:coda_workshop/controllers/Auth/login_controller.dart';
 import 'package:coda_workshop/widgets/Auth/appBarTitle.dart';
 import 'package:coda_workshop/widgets/Auth/appsButton.dart';
 import 'package:coda_workshop/widgets/Auth/authMaterialButton.dart';
@@ -11,7 +11,6 @@ import 'package:coda_workshop/widgets/Auth/authTitle.dart';
 import 'package:coda_workshop/widgets/Auth/inkWellText.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -47,9 +46,7 @@ class LoginScreen extends StatelessWidget {
                         child: Authtextfeild(
                           validator: (val) => validInput(val!, 10, 40, "email"),
                           mycontroller: controller.email,
-                          hintText: controller.box.read('tick') == false
-                              ? "Enter your Email"
-                              : controller.hintemail,
+                          hintText: "Enter your Email",
                           labelText: "Email",
                           icon: Icons.email_outlined,
                           obscureText: false,
@@ -64,10 +61,7 @@ class LoginScreen extends StatelessWidget {
                             validator: (val) =>
                                 validInput(val!, 5, 15, 'password'),
                             mycontroller: controller.password!,
-                            // hintText: "Enter your Password",
-                            hintText: controller.box.read('tick') == false
-                                ? "Enter your Password"
-                                : controller.hintpassword,
+                            hintText: "Enter your Password",
                             labelText: "Password",
                             icon: controller.isShow == false
                                 ? Icons.lock_open_outlined

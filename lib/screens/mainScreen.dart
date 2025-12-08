@@ -16,8 +16,8 @@ class MainScreen extends StatelessWidget {
     HomeScreen(),
    FavoritesScreen(),
    
-   ProfileScreen()
-  //ProductsScreen(),
+  //  ProfileScreen()
+  ProductsScreen(),
   ];
 
   @override

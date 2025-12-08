@@ -7,6 +7,8 @@ import 'package:coda_workshop/screens/Auth/Loginscreen.dart';
 import 'package:coda_workshop/screens/Auth/signUp.dart';
 import 'package:coda_workshop/screens/Auth/successful_signin.dart';
 import 'package:coda_workshop/screens/favorite_screen.dart';
+import 'package:coda_workshop/screens/home/popularProuduct.dart';
+import 'package:coda_workshop/screens/home/spacialProduct.dart';
 import 'package:coda_workshop/screens/mainScreen.dart';
 import 'package:coda_workshop/screens/onboarding_screen.dart';
 import 'package:coda_workshop/screens/home/home.dart';
@@ -14,7 +16,6 @@ import 'package:coda_workshop/screens/prodoctes_screen.dart';
 import 'package:coda_workshop/screens/productDetails/productDetails.dart';
 import 'package:coda_workshop/screens/profial/MyAccount.dart';
 import 'package:coda_workshop/screens/profial/profile_Screen.dart';
-
 import 'package:coda_workshop/screens/splash_screen/splash_screen.dart';
 import 'package:get/get.dart';
 
@@ -119,7 +120,14 @@ final pages = <GetPage>[
     page: () => MyAccountScreen(),
   ),
 
-
+GetPage(
+    name: AppRoutes.spacialProducts,
+    page: () => SpacialProducts(),
+  ),
+  GetPage(
+    name: AppRoutes.popularProducts,
+    page: () => PopularProducts(),
+  ),
 
 
 

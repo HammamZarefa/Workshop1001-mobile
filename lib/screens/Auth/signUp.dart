@@ -69,7 +69,7 @@ class SignUp extends StatelessWidget {
                               ? Icons.lock
                               : Icons.lock_open,
                           onPressed: () {
-                            controller.showPassword();
+                          
                             controller.update();
                           },
                           obscureText: controller.isShow,
@@ -88,7 +88,7 @@ class SignUp extends StatelessWidget {
                               ? Icons.lock
                               : Icons.lock_open,
                           onPressed: () {
-                            controller.showPassword();
+                            
                             controller.update();
                           },
                           obscureText: controller.isShow,

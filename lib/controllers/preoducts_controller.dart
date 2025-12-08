@@ -2,7 +2,7 @@ import 'package:coda_workshop/models/products_model.dart';
 import 'package:coda_workshop/services/prodoct_service.dart';
 import 'package:get/get.dart';
 
-class ProductControllera extends GetxController {
+class ProductController extends GetxController {
   List<Data> products = [];
   Data productById = Data();
 
