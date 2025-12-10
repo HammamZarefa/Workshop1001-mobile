@@ -44,7 +44,7 @@ class ForgetPasswordcontroller extends GetxController {
     } catch (e) {}
   }
 
-
+ 
 
  goToSignUp() {
 

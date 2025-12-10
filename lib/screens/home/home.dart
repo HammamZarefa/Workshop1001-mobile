@@ -60,8 +60,7 @@ class HomeScreen extends StatelessWidget {
                             Expanded(
                               child: TextField(
                                 onChanged: (value) {
-                                  controller.productController.searchWord =
-                                      value;
+                                  controller.productController.searchWord = value;
                                   controller.productController.searchCompare();
                                 },
                                 decoration: InputDecoration(
@@ -128,14 +127,14 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
               ),
-
+              
               BannerCard(
                 image: banner.image,
                 title: banner.title,
                 description: banner.description,
                 backgroundColor: AppColors.pannerColor!,
               ),
-              Container(
+Container(
                 decoration: BoxDecoration(color: Colors.transparent),
                 child: InkWell(
                   onTap: () {
@@ -144,6 +143,7 @@ class HomeScreen extends StatelessWidget {
                   child: Padding(
                     padding:
                         const EdgeInsets.only(top: 8.0, right: 20, left: 100),
+                   
                   ),
                 ),
               ),

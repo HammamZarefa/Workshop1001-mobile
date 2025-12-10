@@ -1,36 +1,66 @@
 import 'package:coda_workshop/models/products_model.dart';
 import 'package:coda_workshop/services/prodoct_service.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart' hide Data;
 
 class ProductController extends GetxController {
   List<Data> products = [];
-  Data productById = Data();
-
+  List<Data> productsid = [];
+  String? searchWord;
+  GetStorage box = GetStorage();
+  List<Data> searchResult = [];
   int page = 1;
   bool isLoading = false;
   bool isMoreLoading = false;
   final int limit = 10;
-
-  int productId = 0;
-  int rating = 0;
-  String comment = "";
-
-  RxDouble averageRating = 0.0.obs;
+  int cateroryId = 0;
 
   @override
   void onInit() {
-    getProductData();
+    getproductsData();
     super.onInit();
   }
 
-  Future<ProductModel> getProductData() async {
+  void searchCompare() {
+    if (searchWord!.isEmpty) {
+      searchResult = [];
+    } else {
+      searchResult = products
+          .where(
+              (p) => p.title!.toLowerCase().contains(searchWord!.toLowerCase()))
+          .toList();
+    }
+    update();
+  }
+
+  Future<void> getProductsByCategory(int categoryId) async {
     try {
       isLoading = true;
       update();
 
-      var res = await ProdoctService().getProducts(page: page, limit: limit);
+      productsid =
+          products.where((item) => item.categoryId == categoryId).toList() ??
+              [];
 
-      products = res.data ?? [];
+      isLoading = false;
+      update();
+    } catch (e) {
+      print("Error getProductsByCategory: $e");
+      isLoading = false;
+      update();
+    }
+  }
+
+  Future<ProductModel> getproductsData() async {
+    try {
+      isLoading = true;
+      update();
+
+      // var token = box.read("token");
+      // print("Token: $token");
+
+      var res = await ProdoctService().getProducts(page: page, limit: limit);
+      products = res.data!;
       isLoading = false;
       update();
 
@@ -51,62 +81,14 @@ class ProductController extends GetxController {
 
     try {
       var res = await ProdoctService().getProducts(page: page, limit: limit);
-      products.addAll(res.data ?? []);
+
+      products.addAll(res.data!);
 
       isMoreLoading = false;
       update();
     } catch (e) {
       isMoreLoading = false;
       update();
-    }
-  }
-
-  Future<void> showProduct(int id) async {
-    try {
-      isLoading = true;
-      productById = Data();
-      update();
-
-      var res = await ProdoctService().getProductShow(id);
-      productById = res;
-
-      averageRating.value = res.averageRating?.toDouble() ?? 0.0;
-
-      isLoading = false;
-      update();
-    } catch (e) {
-      isLoading = false;
-      update();
-      print("showProduct error: $e");
-    }
-  }
-
-  Future<void> sendRating() async {
-    try {
-      var response = await ProdoctService().postRatingData(
-        productId,
-        rating,
-        comment,
-      );
-
-      if (response != null) {
-        await showProduct(productId);
-
-        averageRating.value =
-            productById.averageRating?.toDouble() ?? 0.0;
-
-        Get.snackbar(
-          "Success",
-          "Rating sent successfully",
-        );
-      } else {
-        Get.snackbar(
-          "Error",
-          "Failed to send rating",
-        );
-      }
-    } catch (e) {
-      print("Controller sendRating Error: $e");
     }
   }
 }

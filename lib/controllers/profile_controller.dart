@@ -97,7 +97,7 @@ class ProfileController extends GetxController {
     try {
       var response = await service.getmyaccount();
 
-      if (response != null &&
+      if (
           response.data != null &&
           response.data!.profileImage != null) {
         profileImageUrl.value =

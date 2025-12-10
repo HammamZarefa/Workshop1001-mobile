@@ -32,7 +32,11 @@ class LoginController extends GetxController {
       var response =
           await LogInServive().postLogInData(email!.text, password!.text);
       if (response != null) {
+
+        
         if ((response["token"] != null)) {
+
+
           box.write("token", response["token"]);
           Get.offAllNamed(AppRoutes.mainScreen);
         } else {
