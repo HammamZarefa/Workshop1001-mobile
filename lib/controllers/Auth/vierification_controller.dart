@@ -10,7 +10,7 @@ class VierificationController extends GetxController {
 
   late String email;
 
-  Future gotosussifulsinup() async {
+  Future goToSussifulSignUp() async {
     if (otp.isEmpty) {
       try {
         var response =
@@ -18,7 +18,7 @@ class VierificationController extends GetxController {
 
         if (response != null) {
           if ((response["token"] != null)) {
-            Get.offNamed(AppRoutes.SucssfulSinin);
+            Get.offNamed(AppRoutes.successfulSignIn);
           } else {
             Get.snackbar("Error", response["message"] ?? "Unknown error");
           }
@@ -38,12 +38,12 @@ class VierificationController extends GetxController {
     Future resendVerificationCode() async {
       try {
         var response =
-            await ResendverificationService().postResendverificationData(email);
+            await ResendVerificationService().postResendverificationData(email);
 
         if (response != null) {
           if ((response["token"] != null)) {
             Get.offNamed(
-              AppRoutes.HomeScreen,
+              AppRoutes.homeScreen,
             );
           } else {
             Get.snackbar("Error", response["message"] ?? "Unknown error");

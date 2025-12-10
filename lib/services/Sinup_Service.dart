@@ -1,7 +1,6 @@
 import 'package:coda_workshop/api/api.dart';
-import 'package:dio/dio.dart';
 
-class signUpServive {
+class SinupService {
   Future<dynamic> postSignUpData(
     email,
     String password,
@@ -10,25 +9,21 @@ class signUpServive {
     String lastName,
     String phonenumper,
     String locition,
-
-
-
   ) async {
     try {
       var res = await Api().dio.post(
-            'api/v1/register',
-            data: {
-              "email": email,
-              "password": password,
-              "password_confirmation":password_confirmation,
-              "first_name": firstName,
-              "last_name":lastName,
-              "phone": phonenumper,
-              "address": locition,
-            },
-            
-          );
-     
+        'api/v1/register',
+        data: {
+          "email": email,
+          "password": password,
+          "password_confirmation": password_confirmation,
+          "first_name": firstName,
+          "last_name": lastName,
+          "phone": phonenumper,
+          "address": locition,
+        },
+      );
+
       print("REQUEST BODY:");
       print({
         "email": email,
@@ -44,9 +39,3 @@ class signUpServive {
     }
   }
 }
-
-
-
-
-
-

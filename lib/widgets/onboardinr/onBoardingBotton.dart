@@ -1,11 +1,4 @@
-// import 'package:flutter/cupertino.dart';
 
-// class OnBoardingBotton {
-//   PageController? controller;
-
-//   OnBoardingBotton({required this.controller});
-
-// }
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:flutter/material.dart';
 

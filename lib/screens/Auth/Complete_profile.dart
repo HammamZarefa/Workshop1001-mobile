@@ -1,7 +1,6 @@
-import 'package:coda_workshop/controllers/Auth/SinUp_controller.dart';
+import 'package:coda_workshop/controllers/Auth/signup_controller.dart';
 import 'package:coda_workshop/functions/validInput.dart';
 import 'package:coda_workshop/constant/colors.dart';
-
 
 import 'package:coda_workshop/widgets/Auth/appBarTitle.dart';
 
@@ -10,7 +9,6 @@ import 'package:coda_workshop/widgets/Auth/authSubTitle.dart';
 import 'package:coda_workshop/widgets/Auth/authTextFeild.dart';
 import 'package:coda_workshop/widgets/Auth/authTitle.dart';
 
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -18,10 +16,10 @@ import 'package:get/get_core/src/get_main.dart';
 // ignore: must_be_immutable
 class CompletProfile extends StatelessWidget {
   CompletProfile({super.key});
-  SinUpController controller = Get.put(SinUpController());
+  SignUpController controller = Get.put(SignUpController());
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SinUpController>(
+    return GetBuilder<SignUpController>(
         builder: (controller) => Form(
               key: controller.completeForm,
               child: Scaffold(
@@ -49,7 +47,8 @@ class CompletProfile extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             top: 15.0, left: 10, right: 10, bottom: 10),
                         child: Authtextfeild(
-                          validator: (val) => validInput(val!, 10, 40, "username"),
+                          validator: (val) =>
+                              validInput(val!, 10, 40, "username"),
                           mycontroller: controller.firstName,
                           hintText: "Enter your first name",
                           labelText: "First Name",
@@ -59,17 +58,12 @@ class CompletProfile extends StatelessWidget {
                         ),
                       ),
 
-
-
-
-
-
-
                       Padding(
                         padding: const EdgeInsets.only(
                             top: 15.0, left: 10, right: 10, bottom: 10),
                         child: Authtextfeild(
-                          validator: (val) => validInput(val!, 2, 10, "username"),
+                          validator: (val) =>
+                              validInput(val!, 2, 10, "username"),
                           mycontroller: controller.lastName,
                           hintText: "Enter your last name",
                           labelText: "Last Name",
@@ -79,20 +73,13 @@ class CompletProfile extends StatelessWidget {
                         ),
                       ),
 
-
-
-
-
-
-
-
-
                       Padding(
                         padding: const EdgeInsets.only(
                             top: 15.0, left: 10, right: 10, bottom: 10),
                         child: Authtextfeild(
-                          validator: (val) => validInput(val!, 10, 40, "phone number"),
-                          mycontroller: controller.phonenumper,
+                          validator: (val) =>
+                              validInput(val!, 10, 40, "phone number"),
+                          mycontroller: controller.phoneNumber,
                           hintText: "Enter your phone number",
                           labelText: "Phone Number",
                           icon: Icons.phone_android_outlined,
@@ -101,15 +88,13 @@ class CompletProfile extends StatelessWidget {
                         ),
                       ),
 
-
-
-
                       Padding(
                         padding: const EdgeInsets.only(
                             top: 15.0, left: 10, right: 10, bottom: 10),
                         child: Authtextfeild(
-                          validator: (val) => validInput(val!, 10, 40, "Address"),
-                          mycontroller: controller.locition,
+                          validator: (val) =>
+                              validInput(val!, 10, 40, "Address"),
+                          mycontroller: controller.location,
                           hintText: "Enter your address",
                           labelText: "Address",
                           icon: Icons.location_on_outlined,
@@ -118,20 +103,20 @@ class CompletProfile extends StatelessWidget {
                         ),
                       ),
 
-
-
                       Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: AuthGradientButton(
                             title: "Continue",
                             onPressed: () {
                               print("Button clicked!");
-                            controller.signup();
+                              controller.signup();
                             },
                           )),
 
                       ///////////////////////////////////////
-                    SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 5, bottom: 10),
                         child: AuthSubTitle(

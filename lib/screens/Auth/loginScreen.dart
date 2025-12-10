@@ -12,8 +12,8 @@ import 'package:coda_workshop/widgets/Auth/inkWellText.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Loginscreen extends StatelessWidget {
-  Loginscreen({super.key});
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
   LoginController controller = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
@@ -116,7 +116,7 @@ class Loginscreen extends StatelessWidget {
                             },
                           )),
 
-                      ///////////////////////////////////////
+                      ///////////////////////////////////
                       SizedBox(
                         height: 10,
                       ),

@@ -1,4 +1,5 @@
 import 'package:coda_workshop/controllers/preoducts_controller.dart';
+import 'package:coda_workshop/controllers/product_controller.dart';
 import 'package:coda_workshop/models/bannerModel.dart';
 import 'package:coda_workshop/models/categoryModel.dart';
 import 'package:coda_workshop/models/products_model.dart';
@@ -6,7 +7,7 @@ import 'package:coda_workshop/services/home/homeServeces.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-   ProductController productController =Get.put(ProductController());
+   ProductController  productController =Get.put(ProductController());
 
   List<BanerData> pannerData = [];
   List<CategoryData> catigures = [];

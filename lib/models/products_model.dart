@@ -1,4 +1,4 @@
-import 'dart:ffi';
+import 'dart:convert';
 
 class ProductModel {
   int? status;
@@ -40,35 +40,35 @@ class Data {
   int? stock;
   bool? isActive;
   bool? isFeatured;
-  String? colors;
+  List<String>? colors;
   bool? isSpecial;
   String? featuredImage;
   List<Gallery>? gallery;
   double? averageRating;
 
-  Data(
-      {this.id,
-      this.categoryId,
-      this.category,
-      this.title,
-      this.description,
-      this.price,
-      this.currency,
-      this.stock,
-      this.isActive,
-      this.isFeatured,
-      this.colors,
-      this.isSpecial,
-      this.featuredImage,
-      this.gallery,
-      this.averageRating});
+  Data({
+    this.id,
+    this.categoryId,
+    this.category,
+    this.title,
+    this.description,
+    this.price,
+    this.currency,
+    this.stock,
+    this.isActive,
+    this.isFeatured,
+    this.colors,
+    this.isSpecial,
+    this.featuredImage,
+    this.gallery,
+    this.averageRating,
+  });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     categoryId = json['category_id'];
-    category = json['category'] != null
-        ? new Category.fromJson(json['category'])
-        : null;
+    category =
+        json['category'] != null ? Category.fromJson(json['category']) : null;
     title = json['title'];
     description = json['description'];
     price = json['price'];
@@ -76,39 +76,71 @@ class Data {
     stock = json['stock'];
     isActive = json['is_active'];
     isFeatured = json['is_featured'];
-    colors = json['colors'];
+
+    colors = _parseColors(json['colors']);
+
     isSpecial = json['is_special'];
     featuredImage = json['featured_image'];
+
     if (json['gallery'] != null) {
       gallery = <Gallery>[];
       json['gallery'].forEach((v) {
-        gallery!.add(new Gallery.fromJson(v));
+        gallery!.add(Gallery.fromJson(v));
       });
     }
-    averageRating = json['average_rating'];
+
+    averageRating = json['average_rating'] != null
+        ? (json['average_rating'] as num).toDouble()
+        : null;
+  }
+
+  List<String> _parseColors(dynamic raw) {
+    if (raw == null) return [];
+
+    if (raw is List) {
+      return List<String>.from(raw);
+    }
+
+    if (raw is String) {
+      try {
+        final decoded = jsonDecode(raw);
+        if (decoded is List) {
+          return List<String>.from(decoded);
+        }
+      } catch (e) {
+        return [];
+      }
+    }
+
+    return [];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['category_id'] = this.categoryId;
-    if (this.category != null) {
-      data['category'] = this.category!.toJson();
+    final Map<String, dynamic> data = {};
+    data['id'] = id;
+    data['category_id'] = categoryId;
+
+    if (category != null) {
+      data['category'] = category!.toJson();
     }
-    data['title'] = this.title;
-    data['description'] = this.description;
-    data['price'] = this.price;
-    data['currency'] = this.currency;
-    data['stock'] = this.stock;
-    data['is_active'] = this.isActive;
-    data['is_featured'] = this.isFeatured;
-    data['colors'] = this.colors;
-    data['is_special'] = this.isSpecial;
-    data['featured_image'] = this.featuredImage;
-    if (this.gallery != null) {
-      data['gallery'] = this.gallery!.map((v) => v.toJson()).toList();
+
+    data['title'] = title;
+    data['description'] = description;
+    data['price'] = price;
+    data['currency'] = currency;
+    data['stock'] = stock;
+    data['is_active'] = isActive;
+    data['is_featured'] = isFeatured;
+    data['colors'] = colors;
+    data['is_special'] = isSpecial;
+    data['featured_image'] = featuredImage;
+
+    if (gallery != null) {
+      data['gallery'] = gallery!.map((v) => v.toJson()).toList();
     }
-    data['average_rating'] = this.averageRating;
+
+    data['average_rating'] = averageRating;
+
     return data;
   }
 }

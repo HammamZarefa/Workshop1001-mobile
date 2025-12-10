@@ -92,6 +92,6 @@ class SlideAble extends StatelessWidget {
         );
       }),
     );
-    ;
+    
   }
 }

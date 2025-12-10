@@ -1,4 +1,4 @@
-import 'package:coda_workshop/controllers/Favorite_Controller.dart';
+import 'package:coda_workshop/controllers/favorite_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
     final controller = Get.put(FavoriteController());
 
     return Obx(() {
@@ -15,7 +14,6 @@ class FavoritesScreen extends StatelessWidget {
           title: Text("Favorites"),
           centerTitle: true,
         ),
-
         body: controller.favorites.isEmpty
             ? Center(
                 child: Text(
@@ -30,15 +28,15 @@ class FavoritesScreen extends StatelessWidget {
 
                   return ListTile(
                     leading: Image.network(
-                      item["image"],
+                      item["image"] ?? "",
                       width: 100,
                       height: 100,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) =>
+                          Icon(Icons.broken_image, size: 50),
                     ),
-
-                    title: Text(item["title"]),
-                    subtitle: Text("${item["price"]} \$"),
-
+                    title: Text(item["title"] ?? "No Title"),
+                    subtitle: Text("${item["price"] ?? '---'} \$"),
                     trailing: IconButton(
                       icon: Icon(Icons.favorite, color: Colors.red),
                       onPressed: () {

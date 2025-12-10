@@ -56,10 +56,10 @@ class ProductController extends GetxController {
       isLoading = true;
       update();
 
-      var token = box.read("token");
-      print("Token: $token");
+      // var token = box.read("token");
+      // print("Token: $token");
 
-      var res = await ProdoctService().getproducts(page: page, limit: limit);
+      var res = await ProdoctService().getProducts(page: page, limit: limit);
       products = res.data!;
       isLoading = false;
       update();
@@ -80,7 +80,7 @@ class ProductController extends GetxController {
     update();
 
     try {
-      var res = await ProdoctService().getproducts(page: page, limit: limit);
+      var res = await ProdoctService().getProducts(page: page, limit: limit);
 
       products.addAll(res.data!);
 
