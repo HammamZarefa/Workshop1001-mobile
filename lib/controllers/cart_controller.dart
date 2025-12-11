@@ -6,10 +6,11 @@ import 'package:get_storage/get_storage.dart';
 
 class CartController extends GetxController {
   // local
-  List<Model> localCart = [];
+  // List<Model> localCart = [];
   List<CartData> serverList = [];
   // server
   CartData? serverCart;
+  CartData? localCart;
 
   CartServeces cartServices = CartServeces();
   double discountValue = 0.0;
@@ -18,11 +19,30 @@ class CartController extends GetxController {
   bool? offer;
 
   // Local functions
-  Future<void> getLocalCart() async {
-    final data = await DBHelper.instance.getAll();
-    localCart = data.map((e) => Model.fromJson(e)).toList();
-    update();
-  }
+ Future<void> getLocalCart() async {
+  final data = await DBHelper.instance.getAll();
+
+  localCart = CartData(items: []);
+
+  localCart!.items = data.map((e) {
+    final m = Model.fromJson(e);
+
+    return Items(
+      id: m.id,
+      quantity: m.count.toString(),
+      price: m.price.toString(),
+      subtotal: (m.price * m.count).toInt(),
+      product: Product(
+        id: m.id,
+        title: m.name,
+        image: m.image,
+      ),
+    );
+  }).toList();
+
+  update();
+}
+
 
   Future<void> addToLocalCart({
     required String name,
@@ -57,7 +77,8 @@ class CartController extends GetxController {
   Future<void> getServerCart() async {
     try {
       var res = await cartServices.GetCart();
-      serverList = res.data! as List<CartData> ;
+      serverList = [res.data!];
+
       serverCart = res.data;
       update();
     } catch (e) {
@@ -81,29 +102,20 @@ class CartController extends GetxController {
   }
 
   // merge
-  List<Items> get mergedCart {
-    List<Items> merged = [];
+List<Items> get mergedCart {
+  List<Items> merged = [];
 
-    for (var item in localCart) {
-      merged.add(Items(
-        id: item.id,
-        product: Product(
-          id: item.id ?? 0,
-          title: item.name,
-          image: item.image,
-        ),
-        quantity: item.count.toString(),
-        price: item.price.toString(),
-        subtotal: (item.price * item.count).toInt(),
-      ));
-    }
-
-    if (serverCart?.items != null) {
-      merged.addAll(serverCart!.items!);
-    }
-
-    return merged;
+  if (localCart?.items != null) {
+    merged.addAll(localCart!.items!);
   }
+
+  if (serverCart?.items != null) {
+    merged.addAll(serverCart!.items!);
+  }
+
+  return merged;
+}
+
 
   // total price
   double get totalPrice {

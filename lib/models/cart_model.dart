@@ -57,6 +57,8 @@ class CartData {
     data['updated_at'] = this.updatedAt;
     return data;
   }
+
+  operator [](int other) {}
 }
 
 class Items {
@@ -88,6 +90,8 @@ class Items {
     data['subtotal'] = this.subtotal;
     return data;
   }
+
+  void operator [](int other) {}
 }
 
 class Product {

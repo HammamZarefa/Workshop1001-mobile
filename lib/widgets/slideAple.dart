@@ -12,7 +12,7 @@ class SlideAble extends StatelessWidget {
     return Container(
       height: 530,
       child: ListView.builder(itemBuilder: (context, index) {
-        final item = controller.localCart[index];
+        final item = controller.localCart?[index];
         Slidable(
           key: ValueKey(item.id),
           endActionPane: ActionPane(
