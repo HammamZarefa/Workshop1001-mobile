@@ -1,7 +1,9 @@
 import 'package:coda_workshop/constant/colors.dart';
+import 'package:coda_workshop/constant/imageAssets.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
 import 'package:coda_workshop/controllers/nav_controller.dart';
-import 'package:coda_workshop/controllers/preoducts_controller.dart';
+import 'package:coda_workshop/controllers/product_controller.dart';
+import 'package:coda_workshop/models/categoryModel.dart';
 import 'package:coda_workshop/routes/routes.dart';
 import 'package:coda_workshop/screens/cart.dart';
 import 'package:coda_workshop/screens/home/categories.dart';
@@ -22,11 +24,66 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
       builder: (controller) {
-        if (controller.pannerData.isEmpty || controller.catigures.isEmpty) {
-          return Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          );
-        }
+        ///default data
+       if (controller.pannerData.isEmpty || controller.catigures.isEmpty) {
+  return Scaffold(
+    backgroundColor: AppColors.background,
+    body: ListView(
+      physics: NeverScrollableScrollPhysics(),
+      children: [
+        SizedBox(height: 30),
+
+        BannerCard(
+          // image: ImageAssets.google,
+          title: "Welcome!",
+          description: "Find the best products",
+          backgroundColor: AppColors.pannerColor!,
+        ),
+
+        SizedBox(height: 20),
+
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Text(
+            "Categories:",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
+
+        CategoriesList(
+          controller: controller,
+          categories: [
+            CategoryData(
+              id: 0,
+              title: "Category 1",
+              icon:ImageAssets.facebook,
+            ),
+            CategoryData(
+              id: 0,
+              title: "Category 2",
+              icon: ImageAssets.google,
+            ),
+            CategoryData(
+              id: 0,
+              title: "Category 3",
+              icon: ImageAssets.google,
+            ),
+          ],
+        ),
+
+        SizedBox(height: 40),
+
+        Center(
+          child: Text(
+            "Loading real data...",
+            style: TextStyle(color: Colors.grey),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
 
         final banner = controller.pannerData.first;
         final categoriesList = controller.catigures.length > 7
@@ -129,9 +186,9 @@ class HomeScreen extends StatelessWidget {
               ),
               
               BannerCard(
-                image: banner.image,
-                title: banner.title,
-                description: banner.description,
+                image: banner.image?? "",
+                title: banner.title??"title",
+                description: banner.description??"description",
                 backgroundColor: AppColors.pannerColor!,
               ),
 Container(

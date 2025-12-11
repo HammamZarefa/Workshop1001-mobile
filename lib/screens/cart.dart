@@ -27,7 +27,7 @@ class CartScreen extends StatelessWidget {
                 ),
                 GetBuilder<CartController>(
                   builder: (c) => Text(
-                    "${c.mergedCart.length} items",
+                    "${c.serverList.length} items",
                     style: TextStyle(fontSize: 14),
                   ),
                 ),
@@ -40,7 +40,7 @@ class CartScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: GetBuilder<CartController>(
           builder: (controller) {
-            if (controller.mergedCart.isEmpty) {
+            if (controller.serverList.isEmpty) {
               return Center(child: Text("Cart is empty"));
             }
 
@@ -50,9 +50,9 @@ class CartScreen extends StatelessWidget {
                   Container(
                     height: 530,
                     child: ListView.builder(
-                      itemCount: controller.mergedCart.length,
+                      itemCount: controller.serverList.length,
                       itemBuilder: (context, index) {
-                        final item = controller.mergedCart[index];
+                        final item = controller.serverList[index];
 
                         return Slidable(
                           key: ValueKey(item.id),
@@ -65,11 +65,10 @@ class CartScreen extends StatelessWidget {
                                     topRight: Radius.circular(20),
                                     bottomRight: Radius.circular(20)),
                                 onPressed: (_) {
-                                  if (controller.mergedCart
+                                  if (controller.serverList
                                       .any((e) => e.id == item.id)) {
                                     controller.deleteLocalItem(item.id!);
-                                  } else {
-                                  }
+                                  } else {}
                                 },
                                 backgroundColor: Colors.red.shade50,
                                 foregroundColor: Colors.red.shade300,
@@ -97,8 +96,10 @@ class CartScreen extends StatelessWidget {
                                   height: 90,
                                   width: 85,
                                   child: Image.asset(
-                                      item.product?.image ??
-                                          item.product?.image ??
+                                      item.items![index].product?.image ??
+
+                                          // item.product?.image ??
+                                          // item.product?.image ??
                                           "",
                                       fit: BoxFit.contain),
                                 ),
@@ -108,8 +109,10 @@ class CartScreen extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                          item.product?.title ??
-                                              item.product?.title ??
+                                          item.items![index].product?.title ??
+
+                                              // item.product?.title ??
+                                              // item.product?.title ??
                                               "",
                                           style: TextStyle(
                                               fontSize: 20,
@@ -118,14 +121,18 @@ class CartScreen extends StatelessWidget {
                                       Row(
                                         children: [
                                           Text(
-                                            "\$${item.price}",
+                                            "\$${item.items?[index].price}",
+
+                                            // "\$${item.price}",
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: AppColors.primary,
                                             ),
                                           ),
                                           Text(
-                                            " x${item.quantity ?? item.quantity}",
+                                            " x${item.items?[index].quantity }",
+
+                                            // " x${item.quantity ?? item.quantity}",
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize: 17,
@@ -243,12 +250,12 @@ class CartScreen extends StatelessWidget {
                               elevation: 0,
                               backgroundColor: Colors.transparent,
                               onPressed: () {
-controller.addToLocalCart(
-  name: 'Wireless Controller for PS4',
-  image: ImageAssets.facebook,
-  count: 2,
-  price: 200.23,
-);
+                                controller.addToLocalCart(
+                                  name: 'Wireless Controller for PS4',
+                                  image: ImageAssets.facebook,
+                                  count: 2,
+                                  price: 200.23,
+                                );
 
                                 controller.update();
                                 controller.getLocalCart();

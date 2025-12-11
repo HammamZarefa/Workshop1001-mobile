@@ -1,4 +1,4 @@
-import 'package:coda_workshop/controllers/preoducts_controller.dart';
+import 'package:coda_workshop/controllers/product_controller.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

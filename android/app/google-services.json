@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "144049901348",
+    "project_id": "ws01-fe20d",
+    "storage_bucket": "ws01-fe20d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144049901348:android:5cb15b31407a6dc49e6db1",
+        "android_client_info": {
+          "package_name": "com.coda.ws01"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH2L-uSpjMHc42Wq2DtD26rk03Pz20jKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

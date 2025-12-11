@@ -7,7 +7,7 @@ import 'package:get_storage/get_storage.dart';
 class CartController extends GetxController {
   // local
   List<Model> localCart = [];
-
+  List<CartData> serverList = [];
   // server
   CartData? serverCart;
 
@@ -57,6 +57,7 @@ class CartController extends GetxController {
   Future<void> getServerCart() async {
     try {
       var res = await cartServices.GetCart();
+      serverList = res.data! as List<CartData> ;
       serverCart = res.data;
       update();
     } catch (e) {
@@ -68,9 +69,8 @@ class CartController extends GetxController {
       int productId, double price, int quantity) async {
     try {
       var response = await cartServices.postCart(productId, price, quantity);
-       
+
       if (response != null) {
-        
       } else {
         Get.snackbar("Error", "Server error");
       }
@@ -142,6 +142,7 @@ class CartController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    serverList;
     getLocalCart();
     getServerCart();
   }

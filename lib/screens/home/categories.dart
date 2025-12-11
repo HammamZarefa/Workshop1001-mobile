@@ -1,5 +1,6 @@
+import 'package:coda_workshop/constant/ImageAssets.dart';
 import 'package:coda_workshop/constant/colors.dart';
-import 'package:coda_workshop/controllers/preoducts_controller.dart';
+import 'package:coda_workshop/controllers/product_controller.dart';
 import 'package:coda_workshop/screens/home/productsCategores.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,7 +28,7 @@ class CategoriesScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
-         return GridView.builder(
+          return GridView.builder(
             padding: const EdgeInsets.all(12),
             itemCount: controller.catigures.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -37,48 +38,46 @@ class CategoriesScreen extends StatelessWidget {
               childAspectRatio: 0.75,
             ),
             itemBuilder: (context, index) {
-          var catigury=controller.catigures[index];
+              var catigury = controller.catigures[index];
 
               return InkWell(
-                onTap: (){
-
-                   productController.getProductsByCategory(catigury.id!);
-                          Get.to(ProductsByCategoryScreen(
-                              categoryId: catigury.id!,
-                              categoryName: catigury.title!));
+                onTap: () {
+                  productController.getProductsByCategory(catigury.id!);
+                  Get.to(ProductsByCategoryScreen(
+                      categoryId: catigury.id!, categoryName: catigury.title!));
                 },
                 child: Container(
                   decoration: BoxDecoration(
                     color: AppColors.lightGrey,
                     borderRadius: BorderRadius.circular(14),
-                    boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)],
+                    boxShadow: [
+                      BoxShadow(color: Colors.black12, blurRadius: 6)
+                    ],
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Expanded(
                         child: ClipRRect(
-                          borderRadius: const BorderRadius.all(
-                               Radius.circular(14)),
-                          child: Image.network(
-                            catigury.icon ?? "",
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                          ),
-                        ),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(14)),
+                            child: Image.network(
+                              catigury.icon ?? ImageAssets.logo,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Icon(Icons.category);
+                              },
+                            )),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          catigury.title?? "",
+                          catigury.title ?? "",
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
-                            
                               fontWeight: FontWeight.bold, fontSize: 14),
                         ),
                       ),
-                     
                     ],
                   ),
                 ),

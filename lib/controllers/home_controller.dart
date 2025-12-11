@@ -1,4 +1,4 @@
-import 'package:coda_workshop/controllers/preoducts_controller.dart';
+import 'package:coda_workshop/controllers/product_controller.dart';
 import 'package:coda_workshop/models/bannerModel.dart';
 import 'package:coda_workshop/models/categoryModel.dart';
 import 'package:coda_workshop/models/products_model.dart';

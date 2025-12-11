@@ -15,11 +15,23 @@ class CartServeces {
     return CartModel();
   }
 
- Future<CartModel?> postCart(int productId, double price, int quantity) async {
-  try {
-    var res = await Api().dio.post(
-      'api/v1/carts',
-      data: {
+  Future<CartModel?> postCart(int productId, double price, int quantity) async {
+    try {
+      var res = await Api().dio.post(
+        'api/v1/carts',
+        data: {
+          "items": [
+            {
+              "product_id": productId,
+              "price": price,
+              "quantity": quantity,
+            }
+          ]
+        },
+      );
+
+      print("REQUEST BODY:");
+      print({
         "items": [
           {
             "product_id": productId,
@@ -27,25 +39,12 @@ class CartServeces {
             "quantity": quantity,
           }
         ]
-      },
-    );
+      });
 
-    print("REQUEST BODY:");
-    print({
-      "items": [
-        {
-          "product_id": productId,
-          "price": price,
-          "quantity": quantity,
-        }
-      ]
-    });
-
-    return CartModel.fromJson(res.data);
-  } catch (e) {
-    print("Error in postCart .....................: $e");
-    return null;
+      return CartModel.fromJson(res.data);
+    } catch (e) {
+      print("Error in postCart .....................: $e");
+      return null;
+    }
   }
-}
-
 }
