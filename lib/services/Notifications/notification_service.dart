@@ -10,6 +10,7 @@ class NotificationService {
   NotificationService._();
   static final NotificationService instance = NotificationService._();
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;
+      final NotificationController controller = Get.put(NotificationController());
 
   Future<void> init() async {
     await AwesomeNotifications().initialize(
@@ -37,8 +38,10 @@ class NotificationService {
         notificationLayout: NotificationLayout.Default,
       ),
     );
-    String? token = await FirebaseMessaging.instance.getToken();
-    print("📱 FCM Token: $token");
+        controller.addNotification(title, body);
+
+    // String? token = await FirebaseMessaging.instance.getToken();
+    // print("📱 FCM Token: $token");
   }
 
   Future<void> handleFCM(RemoteMessage message) async {
@@ -55,7 +58,6 @@ class NotificationService {
       ),
     );
     print(body);
-      final controller = Get.find<NotificationController>();
 
     controller.addNotification(title, body);
   }
