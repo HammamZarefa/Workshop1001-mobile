@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "144049901348",
-    "project_id": "ws01-fe20d",
-    "storage_bucket": "ws01-fe20d.firebasestorage.app"
+    "project_number": "314174248098",
+    "project_id": "coda-3a4c1",
+    "storage_bucket": "coda-3a4c1.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:144049901348:android:5cb15b31407a6dc49e6db1",
+        "mobilesdk_app_id": "1:314174248098:android:6c1e23d9cae105cb6ab3fb",
         "android_client_info": {
           "package_name": "com.coda.ws01"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDH2L-uSpjMHc42Wq2DtD26rk03Pz20jKM"
+          "current_key": "AIzaSyCp6twcwOvQNIYUNRjTIh_qveURNtRsouI"
         }
       ],
       "services": {

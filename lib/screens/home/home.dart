@@ -7,6 +7,8 @@ import 'package:coda_workshop/models/categoryModel.dart';
 import 'package:coda_workshop/routes/routes.dart';
 import 'package:coda_workshop/screens/cart.dart';
 import 'package:coda_workshop/screens/home/categories.dart';
+import 'package:coda_workshop/screens/notification_screen.dart';
+import 'package:coda_workshop/services/Notifications/notification_service.dart';
 import 'package:coda_workshop/widgets/home/banner.dart';
 import 'package:coda_workshop/widgets/home/categureList.dart';
 import 'package:coda_workshop/widgets/home/pupolarList.dart';
@@ -25,65 +27,58 @@ class HomeScreen extends StatelessWidget {
     return GetBuilder<HomeController>(
       builder: (controller) {
         ///default data
-       if (controller.pannerData.isEmpty || controller.catigures.isEmpty) {
-  return Scaffold(
-    backgroundColor: AppColors.background,
-    body: ListView(
-      physics: NeverScrollableScrollPhysics(),
-      children: [
-        SizedBox(height: 30),
-
-        BannerCard(
-          // image: ImageAssets.google,
-          title: "Welcome!",
-          description: "Find the best products",
-          backgroundColor: AppColors.pannerColor!,
-        ),
-
-        SizedBox(height: 20),
-
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Text(
-            "Categories:",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ),
-
-        CategoriesList(
-          controller: controller,
-          categories: [
-            CategoryData(
-              id: 0,
-              title: "Category 1",
-              icon:ImageAssets.facebook,
+        if (controller.pannerData.isEmpty || controller.catigures.isEmpty) {
+          return Scaffold(
+            backgroundColor: AppColors.background,
+            body: ListView(
+              physics: NeverScrollableScrollPhysics(),
+              children: [
+                SizedBox(height: 30),
+                BannerCard(
+                  // image: ImageAssets.google,
+                  title: "Welcome!",
+                  description: "Find the best products",
+                  backgroundColor: AppColors.pannerColor!,
+                ),
+                SizedBox(height: 20),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    "Categories:",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                CategoriesList(
+                  controller: controller,
+                  categories: [
+                    CategoryData(
+                      id: 0,
+                      title: "Category 1",
+                      icon: ImageAssets.facebook,
+                    ),
+                    CategoryData(
+                      id: 0,
+                      title: "Category 2",
+                      icon: ImageAssets.google,
+                    ),
+                    CategoryData(
+                      id: 0,
+                      title: "Category 3",
+                      icon: ImageAssets.google,
+                    ),
+                  ],
+                ),
+                SizedBox(height: 40),
+                Center(
+                  child: Text(
+                    "Loading real data...",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ),
+              ],
             ),
-            CategoryData(
-              id: 0,
-              title: "Category 2",
-              icon: ImageAssets.google,
-            ),
-            CategoryData(
-              id: 0,
-              title: "Category 3",
-              icon: ImageAssets.google,
-            ),
-          ],
-        ),
-
-        SizedBox(height: 40),
-
-        Center(
-          child: Text(
-            "Loading real data...",
-            style: TextStyle(color: Colors.grey),
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
+          );
+        }
 
         final banner = controller.pannerData.first;
         final categoriesList = controller.catigures.length > 7
@@ -117,7 +112,8 @@ class HomeScreen extends StatelessWidget {
                             Expanded(
                               child: TextField(
                                 onChanged: (value) {
-                                  controller.productController.searchWord = value;
+                                  controller.productController.searchWord =
+                                      value;
                                   controller.productController.searchCompare();
                                 },
                                 decoration: InputDecoration(
@@ -143,12 +139,20 @@ class HomeScreen extends StatelessWidget {
                     ),
                     SizedBox(width: 10),
                     CircleAvatar(
-                      backgroundColor: AppColors.lightGrey,
-                      child: Icon(
-                        Icons.notifications_active_outlined,
-                        color: Colors.black,
-                      ),
-                    ),
+                        backgroundColor: AppColors.lightGrey,
+                        child: IconButton(
+                          onPressed: () {
+                            NotificationService.instance.showLocalNotification(
+                              "Test Notification",
+                              "This is a test notification",
+                            );
+                            Get.to(NotificationScreen());
+                          },
+                          icon: Icon(
+                            Icons.notifications_active_outlined,
+                            color: Colors.black,
+                          ),
+                        )),
                   ],
                 ),
               ),
@@ -184,14 +188,14 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
               ),
-              
+
               BannerCard(
-                image: banner.image?? "",
-                title: banner.title??"title",
-                description: banner.description??"description",
+                image: banner.image ?? "",
+                title: banner.title ?? "title",
+                description: banner.description ?? "description",
                 backgroundColor: AppColors.pannerColor!,
               ),
-Container(
+              Container(
                 decoration: BoxDecoration(color: Colors.transparent),
                 child: InkWell(
                   onTap: () {
@@ -200,7 +204,6 @@ Container(
                   child: Padding(
                     padding:
                         const EdgeInsets.only(top: 8.0, right: 20, left: 100),
-                   
                   ),
                 ),
               ),

@@ -35,6 +35,14 @@ class DBHelper {
                price REAL NOT NULL
       )
     ''');
+    await db.execute('''
+      CREATE TABLE Notifications(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        body TEXT NOT NULL,
+        dateTime TEXT NOT NULL
+      )
+    ''');
   }
 
   Future<int> insert(Map<String, dynamic> row) async {
@@ -55,5 +63,19 @@ class DBHelper {
   Future<int> delete(int id) async {
     final db = await instance.database;
     return await db.delete("Cart", where: "id = ?", whereArgs: [id]);
+  }
+   Future<int> insertNotification(Map<String, dynamic> row) async {
+    final db = await instance.database;
+    return await db.insert("Notifications", row);
+  }
+
+  Future<List<Map<String, dynamic>>> getAllNotifications() async {
+    final db = await instance.database;
+    return await db.query("Notifications", orderBy: "dateTime DESC");
+  }
+
+  Future<int> deleteNotification(int id) async {
+    final db = await instance.database;
+    return await db.delete("Notifications", where: "id = ?", whereArgs: [id]);
   }
 }
