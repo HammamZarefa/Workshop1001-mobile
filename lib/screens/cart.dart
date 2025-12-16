@@ -1,5 +1,6 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/cart_controller.dart';
+import 'package:coda_workshop/widgets/cash_on_delivery_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
@@ -224,15 +225,32 @@ class CartScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(17),
                         color: AppColors.primary,
                       ),
-                      child: FloatingActionButton(
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
-                        onPressed: () {},
-                        child: Text(
-                          "Check Out",
-                          style: TextStyle(color: Colors.white, fontSize: 17),
-                        ),
-                      ),
+                      child:FloatingActionButton(
+  backgroundColor: Colors.transparent,
+  elevation: 0,
+  onPressed: () {
+    Get.defaultDialog(
+      title: "Choose Payment Method",
+      content: Column(
+        children: [
+        ListTile(
+  leading: Icon(Icons.money),
+  title: Text("Cash on Delivery"),
+  onTap: () {
+    Get.back();
+    Get.dialog(CashOnDeliveryDialog());
+  },
+),
+        ],
+      ),
+    );
+  },
+  child: Text(
+    "Check Out",
+    style: TextStyle(color: Colors.white, fontSize: 17),
+  ),
+),
+
                     ),
                   ],
                 ),

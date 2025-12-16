@@ -150,6 +150,39 @@ List<Items> get mergedCart {
     }
     update();
   }
+Future<void> placeOrderCOD() async {
+  try {
+    if (mergedCart.isEmpty) {
+      Get.snackbar("Error", "Your cart is empty");
+      return;
+    }
+
+    var orderData = {
+      "items": mergedCart.map((item) => {
+            "product_id": item.product?.id,
+            "quantity": int.parse(item.quantity ?? "1"),
+            "price": double.parse(item.price ?? "0"),
+          }).toList(),
+      "payment_method": "COD",
+      "total": totalPrice,
+    };
+
+    print("Order Data: $orderData");
+
+    // await Api().dio.post('api/v1/orders', data: orderData);
+
+    Get.snackbar("Success", "Order placed successfully with Cash on Delivery");
+
+    localCart?.items?.clear();
+    serverCart?.items?.clear();
+    discountValue = 0.0;
+    voucherCode = "";
+    // await DBHelper.instance.clear(); 
+    update();
+  } catch (e) {
+    Get.snackbar("Error", "Failed to place order: $e");
+  }
+}
 
   @override
   void onInit() {

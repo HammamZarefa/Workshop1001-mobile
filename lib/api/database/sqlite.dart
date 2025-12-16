@@ -92,4 +92,9 @@ class DBHelper {
     final db = await instance.database;
     return await db.delete("Notifications", where: "id = ?", whereArgs: [id]);
   }
+  Future<void> clear() async {
+  final db = await database;
+  await db.delete("Cart");
+}
+
 }
