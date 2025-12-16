@@ -13,6 +13,7 @@ import 'package:coda_workshop/widgets/home/banner.dart';
 import 'package:coda_workshop/widgets/home/categureList.dart';
 import 'package:coda_workshop/widgets/home/pupolarList.dart';
 import 'package:coda_workshop/widgets/home/SpecialList.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -141,13 +142,14 @@ class HomeScreen extends StatelessWidget {
                     CircleAvatar(
                         backgroundColor: AppColors.lightGrey,
                         child: IconButton(
-                          onPressed: () {
+                          onPressed: () async {
                             NotificationService.instance.showLocalNotification(
                               "Test Notification",
                               "This is a test notification",
                             );
                             Get.to(NotificationScreen());
-                          },
+ String? token = await FirebaseMessaging.instance.getToken();
+  print("📱 FCM Token: $token");                          },
                           icon: Icon(
                             Icons.notifications_active_outlined,
                             color: Colors.black,

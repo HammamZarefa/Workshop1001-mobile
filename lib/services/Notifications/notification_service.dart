@@ -1,4 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:coda_workshop/api/database/sqlite.dart';
 import 'package:coda_workshop/controllers/notification_controller.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -92,12 +93,22 @@ class NotificationService {
 
 // Background handler
 Future<void> firebaseBackgroundHandler(RemoteMessage message) async {
+
+   final title =
+      message.notification?.title ?? message.data['title'] ?? '';
+  final body =
+      message.notification?.body ?? message.data['body'] ?? '';
   await AwesomeNotifications().createNotification(
     content: NotificationContent(
       id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
       channelKey: 'high_channel',
-      title: message.notification?.title ?? message.data['title'] ?? '',
-      body: message.notification?.body ?? message.data['body'] ?? '',
+      title: title,
+      body: body,
     ),
   );
+  await DBHelper.instance.insertNotification({
+    'title': title,
+    'body': body,
+    'dateTime': DateTime.now().toIso8601String(),
+  });
 }
