@@ -33,7 +33,7 @@ class CashOnDeliveryDialog extends StatelessWidget {
               return;
             }
 
-            await controller.placeOrderCOD( );
+            await controller.placeOrderCOD();
             Get.back();
           },
           child: Text("Confirm"),
