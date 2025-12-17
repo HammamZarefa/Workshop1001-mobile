@@ -1,17 +1,19 @@
-import 'package:coda_workshop/controllers/preoducts_controller.dart';
+import 'package:coda_workshop/controllers/product_controller.dart';
 import 'package:coda_workshop/models/bannerModel.dart';
 import 'package:coda_workshop/models/categoryModel.dart';
 import 'package:coda_workshop/models/products_model.dart';
 import 'package:coda_workshop/services/home/homeServeces.dart';
+import 'package:coda_workshop/services/prodoct_service.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-   ProductController productController =Get.put(ProductController());
+  ProductController productController = Get.put(ProductController());
 
   List<BanerData> pannerData = [];
   List<CategoryData> catigures = [];
   List<Data> special = [];
   List<Data> popular = [];
+  List<Data> products = [];
   Future getPanner() async {
     try {
       var response = await homeServices().getbanner();
@@ -32,33 +34,23 @@ class HomeController extends GetxController {
     }
   }
 
-  Future getPopular() async {
+  Future getProducts() async {
     try {
-      popular =
-          productController.products.where((item) => item.isFeatured == true).toList() ??
-              [];
+      var res = await ProdoctService().getproducts();
+      products = res.data ?? [];
+      popular = products.where((item) => item.isFeatured == true).toList();
+      special = products.where((item) => item.isSpecial == true).toList();
       update();
     } catch (e) {
-      print("❌ Error in getPopular: $e");
-    }
-  }
-
-  Future getSpecial() async {
-    try {
-      special =
-          productController.products.where((item) => item.isSpecial == true).toList() ?? [];
-      update();
-    } catch (e) {
-      print(" Error in getSpecial***************************: $e");
+      print("❌ Error in getProducts: $e");
     }
   }
 
   @override
   void onInit() {
-    getSpecial();
+    getProducts();
     getPanner();
     getcategories();
-    getPopular();
     print("onInit called");
     // TODO: implement onInit
     super.onInit();

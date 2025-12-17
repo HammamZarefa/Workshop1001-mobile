@@ -1,4 +1,4 @@
-import 'dart:ffi';
+import 'dart:convert';
 
 class ProductModel {
   int? status;
@@ -13,15 +13,15 @@ class ProductModel {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = {};
+    data['status'] = status;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -40,35 +40,34 @@ class Data {
   int? stock;
   bool? isActive;
   bool? isFeatured;
-  String? colors;
+  List<String>? colors;
   bool? isSpecial;
   String? featuredImage;
   List<Gallery>? gallery;
   double? averageRating;
 
-  Data(
-      {this.id,
-      this.categoryId,
-      this.category,
-      this.title,
-      this.description,
-      this.price,
-      this.currency,
-      this.stock,
-      this.isActive,
-      this.isFeatured,
-      this.colors,
-      this.isSpecial,
-      this.featuredImage,
-      this.gallery,
-      this.averageRating});
+  Data({
+    this.id,
+    this.categoryId,
+    this.category,
+    this.title,
+    this.description,
+    this.price,
+    this.currency,
+    this.stock,
+    this.isActive,
+    this.isFeatured,
+    this.colors,
+    this.isSpecial,
+    this.featuredImage,
+    this.gallery,
+    this.averageRating,
+  });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     categoryId = json['category_id'];
-    category = json['category'] != null
-        ? new Category.fromJson(json['category'])
-        : null;
+    category = json['category'] != null ? Category.fromJson(json['category']) : null;
     title = json['title'];
     description = json['description'];
     price = json['price'];
@@ -76,39 +75,55 @@ class Data {
     stock = json['stock'];
     isActive = json['is_active'];
     isFeatured = json['is_featured'];
-    colors = json['colors'];
+
+    // التعامل مع colors سواء كانت String أو List
+    if (json['colors'] != null) {
+      if (json['colors'] is String) {
+        try {
+          colors = List<String>.from((jsonDecode(json['colors']) as List).map((e) => e.toString()));
+        } catch (e) {
+          colors = [];
+        }
+      } else if (json['colors'] is List) {
+        colors = List<String>.from(json['colors']);
+      } else {
+        colors = [];
+      }
+    } else {
+      colors = [];
+    }
+
     isSpecial = json['is_special'];
     featuredImage = json['featured_image'];
+
     if (json['gallery'] != null) {
       gallery = <Gallery>[];
       json['gallery'].forEach((v) {
-        gallery!.add(new Gallery.fromJson(v));
+        gallery!.add(Gallery.fromJson(v));
       });
     }
-    averageRating = json['average_rating'];
+
+    // averageRating كـ double للتعامل مع int أو double
+    averageRating = json['average_rating'] != null ? (json['average_rating'] as num).toDouble() : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['category_id'] = this.categoryId;
-    if (this.category != null) {
-      data['category'] = this.category!.toJson();
-    }
-    data['title'] = this.title;
-    data['description'] = this.description;
-    data['price'] = this.price;
-    data['currency'] = this.currency;
-    data['stock'] = this.stock;
-    data['is_active'] = this.isActive;
-    data['is_featured'] = this.isFeatured;
-    data['colors'] = this.colors;
-    data['is_special'] = this.isSpecial;
-    data['featured_image'] = this.featuredImage;
-    if (this.gallery != null) {
-      data['gallery'] = this.gallery!.map((v) => v.toJson()).toList();
-    }
-    data['average_rating'] = this.averageRating;
+    final Map<String, dynamic> data = {};
+    data['id'] = id;
+    data['category_id'] = categoryId;
+    if (category != null) data['category'] = category!.toJson();
+    data['title'] = title;
+    data['description'] = description;
+    data['price'] = price;
+    data['currency'] = currency;
+    data['stock'] = stock;
+    data['is_active'] = isActive;
+    data['is_featured'] = isFeatured;
+    data['colors'] = colors;
+    data['is_special'] = isSpecial;
+    data['featured_image'] = featuredImage;
+    if (gallery != null) data['gallery'] = gallery!.map((v) => v.toJson()).toList();
+    data['average_rating'] = averageRating;
     return data;
   }
 }
@@ -131,12 +146,12 @@ class Category {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['is_active'] = this.isActive;
-    data['icon'] = this.icon;
-    data['created_at'] = this.createdAt;
+    final Map<String, dynamic> data = {};
+    data['id'] = id;
+    data['title'] = title;
+    data['is_active'] = isActive;
+    data['icon'] = icon;
+    data['created_at'] = createdAt;
     return data;
   }
 }
@@ -153,9 +168,9 @@ class Gallery {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['url'] = this.url;
+    final Map<String, dynamic> data = {};
+    data['id'] = id;
+    data['url'] = url;
     return data;
   }
 }

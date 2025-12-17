@@ -1,89 +1,161 @@
 import 'package:coda_workshop/api/database/sqlite.dart';
-import 'package:coda_workshop/models/product_model.dart';
+import 'package:coda_workshop/models/cart_model.dart';
+import 'package:coda_workshop/services/home/cartServeces.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:get_storage/get_storage.dart';
 
 class CartController extends GetxController {
-  List<CartModel> localProducts = [];
-    List<CartModel> serverProducts = [];
+  // local
+  // List<Model> localCart = [];
+  List<CartData> serverList = [];
+  // server
+  CartData? serverCart;
+  CartData? localCart;
 
-  double total = 0;
+  CartServeces cartServices = CartServeces();
   double discountValue = 0.0;
   String voucherCode = "";
   GetStorage box = GetStorage();
   bool? offer;
-  Future getCartProducts() async {
-    final data = await DBHelper.instance.getAll();
 
-    localProducts = data.map((e) => CartModel.fromJson(e)).toList();
+  // Local functions
+ Future<void> getLocalCart() async {
+  final data = await DBHelper.instance.getAll();
+
+  localCart = CartData(items: []);
+
+  localCart!.items = data.map((e) {
+    final m = Model.fromJson(e);
+
+    return Items(
+      id: m.id,
+      quantity: m.count.toString(),
+      price: m.price.toString(),
+      subtotal: (m.price * m.count).toInt(),
+      product: Product(
+        id: m.id,
+        title: m.name,
+        image: m.image,
+      ),
+    );
+  }).toList();
+
+  update();
+}
+
+
+  Future<void> addToLocalCart({
+    required String name,
+    required String image,
+    required int count,
+    required double price,
+    int? productId,
+  }) async {
+    Model localItem = Model(
+      name: name,
+      image: image,
+      count: count,
+      price: price,
+    );
+
+    await DBHelper.instance.insert(localItem.toJson());
+    await getLocalCart();
+
+    if (productId != null) {
+      await addToServerCart(productId, price, count);
+    }
 
     update();
-    return localProducts;
   }
 
+  Future<void> deleteLocalItem(int id) async {
+    await DBHelper.instance.delete(id);
+    await getLocalCart();
+  }
+
+  // Server functions
+  Future<void> getServerCart() async {
+    try {
+      var res = await cartServices.GetCart();
+      serverList = [res.data!];
+
+      serverCart = res.data;
+      update();
+    } catch (e) {
+      print("Error fetching server cart: $e");
+    }
+  }
+
+  Future<void> addToServerCart(
+      int productId, double price, int quantity) async {
+    try {
+      var response = await cartServices.postCart(productId, price, quantity);
+
+      if (response != null) {
+      } else {
+        Get.snackbar("Error", "Server error");
+      }
+      await getServerCart();
+    } catch (e) {
+      print("Error adding to server cart: $e");
+    }
+  }
+
+  // merge
+List<Items> get mergedCart {
+  List<Items> merged = [];
+
+  if (localCart?.items != null) {
+    merged.addAll(localCart!.items!);
+  }
+
+  if (serverCart?.items != null) {
+    merged.addAll(serverCart!.items!);
+  }
+
+  return merged;
+}
+
+
+  // total price
+  double get totalPrice {
+    double total = 0.0;
+    for (var item in mergedCart) {
+      total += item.subtotal ?? 0;
+    }
+    return total - discountValue;
+  }
+
+  // voucher code
   void applyVoucher(String code) {
     offer = box.read("offer");
     if (offer == false || offer == null) {
       if (code == "Off10") {
         box.write("offer", true);
-
         discountValue = totalPrice * 0.10;
-        total = total - discountValue;
-        update();
         voucherCode = code;
         Get.snackbar("Success", "Voucher applied: \$10 discount");
       } else if (code == "Off20") {
         box.write("offer", true);
-
         discountValue = totalPrice * 0.20;
-        total = total - discountValue;
-        update();
         voucherCode = code;
         Get.snackbar("Success", "20% discount applied");
       } else {
-        discountValue = 0;
+        discountValue = 0.0;
         voucherCode = "";
         Get.snackbar("Error", "Invalid voucher code");
       }
     } else {
-      Get.snackbar("Error", "you inpute already");
+      Get.snackbar("Error", "You have already used a voucher");
     }
     update();
   }
 
-  double get totalPrice {
-    double total = 0.0;
-    for (var item in localProducts) {
-      total += item.price * item.count;
-    }
-    return total - discountValue;
-  }
-
-Future addProductToCart({
-  required String name,
-  required String image,
-  required int count,
-  required double price,
-}) async {
-  await DBHelper.instance.insert({
-    "name": name,
-    "image": image,
-    "count": count,
-    "price": price,
-  });
-}
-
-  Future deleteProduct(int id) async {
-    await DBHelper.instance.delete(id);
-    getCartProducts();
-  }
-
   @override
   void onInit() {
-    totalPrice;
-    getCartProducts();
-    // TODO: implement onInit
     super.onInit();
+    serverList;
+    getLocalCart();
+    getServerCart();
   }
 }

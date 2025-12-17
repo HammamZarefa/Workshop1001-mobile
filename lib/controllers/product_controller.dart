@@ -1,6 +1,6 @@
 import 'package:coda_workshop/models/products_model.dart';
 import 'package:coda_workshop/services/prodoct_service.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get_storage/get_storage.dart' hide Data;
 
 class ProductController extends GetxController {
@@ -13,7 +13,6 @@ class ProductController extends GetxController {
   bool isLoading = false;
   bool isMoreLoading = false;
   final int limit = 10;
-  int cateroryId = 0;
 
   @override
   void onInit() {
@@ -22,12 +21,12 @@ class ProductController extends GetxController {
   }
 
   void searchCompare() {
-    if (searchWord!.isEmpty) {
+    if (searchWord == null || searchWord!.isEmpty) {
       searchResult = [];
     } else {
       searchResult = products
-          .where(
-              (p) => p.title!.toLowerCase().contains(searchWord!.toLowerCase()))
+          .where((p) =>
+              (p.title ?? "").toLowerCase().contains(searchWord!.toLowerCase()))
           .toList();
     }
     update();
@@ -37,10 +36,10 @@ class ProductController extends GetxController {
     try {
       isLoading = true;
       update();
+      var res = await ProdoctService().getproducts(page: page, limit: limit);
 
       productsid =
-          products.where((item) => item.categoryId == categoryId).toList() ??
-              [];
+          res.data!.where((item) => item.categoryId == categoryId).toList();
 
       isLoading = false;
       update();
@@ -56,14 +55,14 @@ class ProductController extends GetxController {
       isLoading = true;
       update();
 
-      var token = box.read("token");
+      var token = box.read("token") ?? "";
       print("Token: $token");
 
       var res = await ProdoctService().getproducts(page: page, limit: limit);
-      products = res.data!;
+      products = res.data ?? [];
+
       isLoading = false;
       update();
-
       return res;
     } catch (e) {
       isLoading = false;
@@ -81,8 +80,7 @@ class ProductController extends GetxController {
 
     try {
       var res = await ProdoctService().getproducts(page: page, limit: limit);
-
-      products.addAll(res.data!);
+      products.addAll(res.data ?? []);
 
       isMoreLoading = false;
       update();

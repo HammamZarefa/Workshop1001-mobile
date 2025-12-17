@@ -12,7 +12,8 @@ class AppsButton extends StatelessWidget {
           height: 35,
           width: 35,
           decoration: BoxDecoration(
-              color: Colors.grey[100]),
+              // color: Colors.grey[100]
+              ),
           child: Padding(
             padding: const EdgeInsets.all(7.0),
             child: Image.asset(

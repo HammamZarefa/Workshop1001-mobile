@@ -2,10 +2,22 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "_flutterfire_internals",
+      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/_flutterfire_internals-1.3.64",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
       "name": "async",
       "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/async-2.13.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
+    },
+    {
+      "name": "awesome_notifications",
+      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/awesome_notifications-0.10.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "boolean_selector",
@@ -68,6 +80,48 @@
       "languageVersion": "3.7"
     },
     {
+      "name": "file",
+      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/file-6.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "firebase_core",
+      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-4.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "firebase_core_platform_interface",
+      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core_platform_interface-6.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "firebase_core_web",
+      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core_web-3.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "firebase_messaging",
+      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging-16.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "firebase_messaging_platform_interface",
+      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.7.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "firebase_messaging_web",
+      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_web-4.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///C:/Users/Batoul/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -98,6 +152,12 @@
       "languageVersion": "3.8"
     },
     {
+      "name": "flutter_web_plugins",
+      "rootUri": "file:///C:/Users/Batoul/flutter/packages/flutter_web_plugins",
+      "packageUri": "lib/",
+      "languageVersion": "3.8"
+    },
+    {
       "name": "get",
       "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/get-4.7.2",
       "packageUri": "lib/",
@@ -120,6 +180,12 @@
       "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.1.2",
       "packageUri": "lib/",
       "languageVersion": "3.4"
+    },
+    {
+      "name": "intl",
+      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.20.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
     },
     {
       "name": "leak_tracker",
@@ -222,6 +288,12 @@
       "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/plugin_platform_interface-2.1.8",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "process",
+      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/process-4.2.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
     },
     {
       "name": "sky_engine",
@@ -327,9 +399,9 @@
     },
     {
       "name": "xdg_directories",
-      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/xdg_directories-1.1.0",
+      "rootUri": "file:///C:/Users/Batoul/AppData/Local/Pub/Cache/hosted/pub.dev/xdg_directories-0.2.0+3",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
+      "languageVersion": "2.12"
     },
     {
       "name": "coda_workshop",

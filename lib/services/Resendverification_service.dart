@@ -1,5 +1,4 @@
 import 'package:coda_workshop/api/api.dart';
-import 'package:dio/dio.dart';
 
 class ResendverificationService {
   Future<dynamic> postResendverificationData(

@@ -1,5 +1,4 @@
 import 'package:coda_workshop/api/api.dart';
-import 'package:dio/dio.dart';
 
 class signUpServive {
   Future<dynamic> postSignUpData(
@@ -10,9 +9,6 @@ class signUpServive {
     String lastName,
     String phonenumper,
     String locition,
-
-
-
   ) async {
     try {
       var res = await Api().dio.post(
