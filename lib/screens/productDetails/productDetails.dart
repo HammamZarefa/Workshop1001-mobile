@@ -1,4 +1,3 @@
-import 'package:coda_workshop/controllers/preoducts_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coda_workshop/controllers/favorite_controller.dart';
@@ -19,7 +18,7 @@ class ProductDetails extends StatelessWidget {
 
   final FavoriteController favController = Get.put(FavoriteController());
 
-  final ProductControllera controller = Get.find();
+  final ProductController controller = Get.find();
 
   ProductDetails({super.key}) {
     final int id = Get.arguments ?? 0;
@@ -32,7 +31,7 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProductControllera>(
+    return GetBuilder<ProductController>(
       builder: (controller) {
         if (controller.isLoading || controller.productById.id == null) {
           return Scaffold(

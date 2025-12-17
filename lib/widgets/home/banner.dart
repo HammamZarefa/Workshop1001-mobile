@@ -6,9 +6,9 @@ class BannerCard extends StatelessWidget {
   final String? description;
   final Color backgroundColor;
 
-   BannerCard({
+  BannerCard({
     super.key,
-    required this.image,
+    this.image,
     required this.title,
     required this.description,
     required this.backgroundColor,
@@ -17,7 +17,7 @@ class BannerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20,left: 20,right: 20),
+      padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
       child: Stack(
         children: [
           Container(
@@ -29,14 +29,20 @@ class BannerCard extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(25),
-              child: Image.network(
-                image ?? "",
-                fit: BoxFit.fill,
-               
+              child: Center(
+                child: image != null && image!.isNotEmpty
+                    ? Image.network(
+                        image!,
+                        width: 500,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return SizedBox();
+                        },
+                      )
+                    : SizedBox(),
               ),
             ),
           ),
-
           Container(
             height: 100,
             decoration: BoxDecoration(

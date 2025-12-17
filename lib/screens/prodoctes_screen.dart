@@ -1,4 +1,3 @@
-import 'package:coda_workshop/controllers/preoducts_controller.dart';
 import 'package:coda_workshop/controllers/product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +10,7 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final FavoriteController favController = Get.put(FavoriteController());
-    final ProductControllera controller = Get.put(ProductControllera());
+    final ProductController controller = Get.put(ProductController());
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 241, 239, 239),
       appBar: AppBar(
@@ -19,8 +18,8 @@ class ProductsScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 241, 239, 239),
       ),
-      body: GetBuilder<ProductControllera>(
-        init: ProductControllera(),
+      body: GetBuilder<ProductController>(
+        init: ProductController(),
         builder: (controller) {
           scrollController.addListener(() {
             if (scrollController.position.pixels ==
