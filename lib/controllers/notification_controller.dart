@@ -6,7 +6,7 @@ class NotificationController extends GetxController {
   List<NotificationModel> notifications = [];
 
   @override
-  void onInit() {
+  void onInit() { 
         loadNotifications();
 
     super.onInit();

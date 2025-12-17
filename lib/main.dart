@@ -1,3 +1,5 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:coda_workshop/controllers/notification_controller.dart';
 import 'package:coda_workshop/routes/pages.dart';
 import 'package:coda_workshop/routes/routes.dart';
 import 'package:coda_workshop/services/Notifications/notification_service.dart';
