@@ -10,8 +10,14 @@ class VierificationController extends GetxController {
 
   late String email;
 
-  Future goToSussifulSignUp() async {
-    if (otp.isEmpty) {
+  @override
+  void onInit() {
+    email = Get.arguments?['email'] ?? "";
+    super.onInit();
+  }
+
+  Future goToSuccessfulSignUp() async {
+    if (otp.isNotEmpty) {
       try {
         var response =
             await OtpVierificationService().postOtpvierificaionData(email, otp);
@@ -25,35 +31,28 @@ class VierificationController extends GetxController {
         } else {
           Get.snackbar("Error", "Server error");
         }
-      } catch (e) {}
+      } catch (e) {
+        Get.snackbar("Error", e.toString());
+      }
+    } else {
+      Get.snackbar("Error", "Please enter the OTP");
     }
+  }
 
-    @override
-    void onInit() {
-      email = Get.arguments?['email'] ?? "";
-      // TODO: implement onInit
-      super.onInit();
+
+
+ Future resendVerificationCode() async {
+    try {
+      var response =
+          await ResendVerificationService().postResendverificationData(email);
+
+      if (response != null) {
+        Get.snackbar("Success", response["message"] ?? "Code resent successfully");
+      } else {
+        Get.snackbar("Error", "Server error");
+      }
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
     }
-
-    Future resendVerificationCode() async {
-      try {
-        var response =
-            await ResendVerificationService().postResendverificationData(email);
-
-        if (response != null) {
-          if ((response["token"] != null)) {
-            Get.offNamed(
-              AppRoutes.homeScreen,
-            );
-          } else {
-            Get.snackbar("Error", response["message"] ?? "Unknown error");
-          }
-        } else {
-          Get.snackbar("Error", "Server error");
-        }
-      } catch (e) {}
-    }
-
-    update();
   }
 }

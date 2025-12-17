@@ -6,7 +6,7 @@ class ForgotpasswordService {
   ) async {
     try {
       var res = await Api().dio.post(
-        'api/v1/login',
+        'api/v1/forgot-password',
         data: {
           "email": email,
         },

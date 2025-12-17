@@ -6,7 +6,7 @@ class ResendVerificationService {
   ) async {
     try {
       var res = await Api().dio.post(
-        'api/v1/register',
+        'api/v1/reset-password',
         data: {
           "email": email,
         },

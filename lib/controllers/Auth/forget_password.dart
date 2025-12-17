@@ -12,7 +12,7 @@ class ForgetPasswordcontroller extends GetxController {
  
  
  
-   validate_forgetpassword() {
+  
 
 
 
@@ -22,27 +22,25 @@ class ForgetPasswordcontroller extends GetxController {
       Forget_password();
     }
   }
-   }
-  Future Forget_password() async {
-    try {
-      var response =
-          await ForgotpasswordService().postForgotpasswordData(email!.text);
+   Future Forget_password() async {
+  try {
+    var response =
+        await ForgotpasswordService().postForgotpasswordData(email!.text);
 
-       if (response != null) {
-      if ((response["token"] != null)) {
-    
-         Get.offNamed(
-            AppRoutes.otpVerification,
-            arguments: {"email": email!.text},
-          );
-        } else {
-          Get.snackbar("Error", response["message"] ?? "Unknown error");
-        }
-      } else {
-        Get.snackbar("Error", "Server error");
-      }
-    } catch (e) {}
+    if (response != null) {
+      Get.offNamed(
+        AppRoutes.otpVerification,
+        arguments: {"email": email!.text},
+      );
+
+      Get.snackbar("Success", response["message"]);
+    } else {
+      Get.snackbar("Error", "Server error");
+    }
+  } catch (e) {
+    Get.snackbar("Error", e.toString());
   }
+}
 
  
 
@@ -52,11 +50,7 @@ Get.toNamed(AppRoutes.signUp);
 
  }
 
- goToHome() {
 
-Get.toNamed(AppRoutes.homeScreen);
-
- }
 
 
 

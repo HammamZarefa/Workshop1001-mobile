@@ -65,7 +65,7 @@ class ForgotPassword extends StatelessWidget {
                             title: "Continue",
                             onPressed: () {
                               print("Button clicked!");
-                              controller.goToHome();
+                              controller.Forget_password();
                             },
                           )),
 
@@ -75,7 +75,7 @@ class ForgotPassword extends StatelessWidget {
                         FirstText: "Dont have an account?",
                         SecondText: "  Sign Up",
                         onTap: () {
-                          controller.goToSignUp();
+                          controller.validate_forgotpassword();
                         },
                       )
                     ],

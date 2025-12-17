@@ -94,7 +94,7 @@ class OtpVerification extends StatelessWidget {
                             title: "Continue",
                             onPressed: () {
                             
-                              controller.goToSussifulSignUp();
+                              controller.goToSuccessfulSignUp();
                             },
                           )),
 
