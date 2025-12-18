@@ -36,7 +36,7 @@ class HomeController extends GetxController {
 
   Future getProducts() async {
     try {
-      var res = await ProdoctService().getproducts();
+      var res = await ProdoctService().getProducts();
       products = res.data ?? [];
       popular = products.where((item) => item.isFeatured == true).toList();
       special = products.where((item) => item.isSpecial == true).toList();

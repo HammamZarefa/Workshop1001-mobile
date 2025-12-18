@@ -62,7 +62,6 @@ class PopularList extends StatelessWidget {
                           child: Image.network(
                             popularItem.featuredImage!,
                             fit: BoxFit.contain,
-                            // color: Colors.black12,
                           ),
                         )),
                   ),

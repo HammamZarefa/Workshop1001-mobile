@@ -22,15 +22,21 @@ class LoginController extends GetxController {
       login();
     } else {
       return "not valid";
-    }
-  }
+    }}
+   
 
-  Future login() async {
+
+   
+ Future login() async {
     try {
       var response =
           await LogInServive().postLogInData(email!.text, password!.text);
       if (response != null) {
+
+        
         if ((response["token"] != null)) {
+
+
           box.write("token", response["token"]);
           Get.offAllNamed(AppRoutes.mainScreen);
         } else {
@@ -42,8 +48,13 @@ class LoginController extends GetxController {
     } catch (e) {}
   }
 
+
+
+
+
+
   gotoSignup() {
-    Get.toNamed(AppRoutes.SinUp);
+    Get.toNamed(AppRoutes.signUp);
   }
 
   rememberMeTick() {
@@ -79,12 +90,15 @@ class LoginController extends GetxController {
   }
 
   goToForgetPassword() {
-    Get.toNamed(AppRoutes.Forget_password);
+
+Get.toNamed(AppRoutes.forgotPassword);
+
   }
 
-  goTosibup() {
-    Get.toNamed(AppRoutes.SinUp);
-  }
+
+
+
+
 
   @override
   void onInit() {
@@ -108,4 +122,8 @@ password = box.read("tick") == true
     password!.dispose();
     super.dispose();
   }
-}
+  
+  }
+
+ 
+

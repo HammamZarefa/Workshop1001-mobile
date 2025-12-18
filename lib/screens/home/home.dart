@@ -199,7 +199,7 @@ class HomeScreen extends StatelessWidget {
                 decoration: BoxDecoration(color: Colors.transparent),
                 child: InkWell(
                   onTap: () {
-                    Get.toNamed(AppRoutes.ProdoctesScreen);
+                    Get.toNamed(AppRoutes.productsScreen);
                   },
                   child: Padding(
                     padding:

@@ -40,7 +40,8 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'CODA',
-      initialRoute: AppRoutes.splashscreen,
+      initialRoute: AppRoutes.splashScreen,
+      // initialRoute: AppRoutes.HomeScreen,
       getPages: pages,
     );
   }
