@@ -1,5 +1,6 @@
 import 'package:coda_workshop/constant/imageAssets.dart';
 import 'package:coda_workshop/controllers/Auth/login_controller.dart';
+import 'package:coda_workshop/controllers/file%20auth_controller.dart';
 import 'package:coda_workshop/functions/validInput.dart';
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/widgets/Auth/appBarTitle.dart';
@@ -125,7 +126,10 @@ class LoginScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          AppsButton(
+                         AppsButton(
+                            onTap: () {
+                              Get.find<AuthController>().signInWithGoogle();
+                            },
                             image: ImageAssets.google,
                           ),
                           SizedBox(

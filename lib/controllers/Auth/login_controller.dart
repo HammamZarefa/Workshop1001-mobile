@@ -3,7 +3,8 @@ import 'package:coda_workshop/services/Auth/login_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 class LoginController extends GetxController {
   bool tick = false;
   bool isShow = false;
@@ -122,7 +123,7 @@ password = box.read("tick") == true
     password!.dispose();
     super.dispose();
   }
-  
+
   }
 
  

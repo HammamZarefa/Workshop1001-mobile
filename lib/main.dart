@@ -1,5 +1,4 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:coda_workshop/controllers/notification_controller.dart';
+import 'package:coda_workshop/controllers/file%20auth_controller.dart';
 import 'package:coda_workshop/routes/pages.dart';
 import 'package:coda_workshop/routes/routes.dart';
 import 'package:coda_workshop/services/Notifications/notification_service.dart';
@@ -11,6 +10,7 @@ import 'package:get/get.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Get.put(AuthController());
 
   FirebaseMessaging.onBackgroundMessage(firebaseBackgroundHandler);
 
@@ -46,4 +46,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
