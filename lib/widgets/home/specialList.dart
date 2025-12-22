@@ -1,5 +1,6 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
+import 'package:coda_workshop/controllers/product_controller.dart';
 import 'package:coda_workshop/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,8 @@ class SpecialList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+            final ProductController productController = Get.put(ProductController());
+
     return Column(
       children: [
         Padding(
@@ -45,58 +48,65 @@ class SpecialList extends StatelessWidget {
                 controller.special.length > 7 ? 7 : controller.special.length,
             itemBuilder: (context, index) {
               final specialItem = controller.special[index];
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 6.0, left: 20),
-                child: Container(
-                    height: 100,
-                    width: 220,
-                    decoration: BoxDecoration(
-                      color: AppColors.lightOrange,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Stack(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadiusGeometry.circular(20),
-                          child: Image.network(
-                            specialItem.featuredImage!,
-                            fit: BoxFit.fill, width: 220,
+              return InkWell(
+                onTap: (){productController.showProduct(specialItem.id!);
+                          Get.toNamed(
+                            AppRoutes.productDetailsScreen,
+                            arguments: specialItem.id!,
+                          );},
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 6.0, left: 20),
+                  child: Container(
+                      height: 100,
+                      width: 220,
+                      decoration: BoxDecoration(
+                        color: AppColors.lightOrange,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadiusGeometry.circular(20),
+                            child: Image.network(
+                              specialItem.featuredImage!,
+                              fit: BoxFit.fill, width: 220,
+                            ),
                           ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                Colors.black54,
-                                Colors.white70,
+                          Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.black54,
+                                  Colors.white70,
+                                ],
+                              ),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  specialItem.title!,
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: AppColors.background,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  specialItem.description!,
+                                  style: TextStyle(color: AppColors.background),
+                                ),
                               ],
                             ),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                specialItem.title!,
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: AppColors.background,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                specialItem.description!,
-                                style: TextStyle(color: AppColors.background),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    )),
+                          )
+                        ],
+                      )),
+                ),
               );
             },
           ),

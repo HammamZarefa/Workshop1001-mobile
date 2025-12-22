@@ -1,16 +1,10 @@
-import 'package:coda_workshop/api/database/sqlite.dart';
 import 'package:coda_workshop/models/cart_model.dart';
 import 'package:coda_workshop/services/home/cartServeces.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class CartController extends GetxController {
-  // local
-  // List<Model> localCart = [];
-  List<CartData> serverList = [];
-  // server
   CartData? serverCart;
-  CartData? localCart;
 
   CartServeces cartServices = CartServeces();
   double discountValue = 0.0;
@@ -18,66 +12,10 @@ class CartController extends GetxController {
   GetStorage box = GetStorage();
   bool? offer;
 
-  // Local functions
- Future<void> getLocalCart() async {
-  final data = await DBHelper.instance.getAll();
-
-  localCart = CartData(items: []);
-
-  localCart!.items = data.map((e) {
-    final m = Model.fromJson(e);
-
-    return Items(
-      id: m.id,
-      quantity: m.count.toString(),
-      price: m.price.toString(),
-      subtotal: (m.price * m.count).toInt(),
-      product: Product(
-        id: m.id,
-        title: m.name,
-        image: m.image,
-      ),
-    );
-  }).toList();
-
-  update();
-}
-
-
-  Future<void> addToLocalCart({
-    required String name,
-    required String image,
-    required int count,
-    required double price,
-    int? productId,
-  }) async {
-    Model localItem = Model(
-      name: name,
-      image: image,
-      count: count,
-      price: price,
-    );
-
-    await DBHelper.instance.insert(localItem.toJson());
-    await getLocalCart();
-
-    if (productId != null) {
-      await addToServerCart(productId, price, count);
-    }
-
-    update();
-  }
-
-  Future<void> deleteLocalItem(int id) async {
-    await DBHelper.instance.delete(id);
-    await getLocalCart();
-  }
-
   // Server functions
   Future<void> getServerCart() async {
     try {
       var res = await cartServices.GetCart();
-      serverList = [res.data!];
 
       serverCart = res.data;
       update();
@@ -86,8 +24,7 @@ class CartController extends GetxController {
     }
   }
 
-  Future<void> addToServerCart(
-      int productId, double price, int quantity) async {
+  Future<void> addToCart(int productId, double price, int quantity) async {
     try {
       var response = await cartServices.postCart(productId, price, quantity);
 
@@ -101,28 +38,26 @@ class CartController extends GetxController {
     }
   }
 
-  // merge
-List<Items> get mergedCart {
-  List<Items> merged = [];
-
-  if (localCart?.items != null) {
-    merged.addAll(localCart!.items!);
+  Future<void> deleteItem(int id) async {
+    try {
+      await cartServices.deleteFromCart(id);
+      await getServerCart();
+    } catch (e) {
+      print("Delete item failed: $e");
+    }
+    update();
   }
-
-  if (serverCart?.items != null) {
-    merged.addAll(serverCart!.items!);
-  }
-
-  return merged;
-}
-
 
   // total price
   double get totalPrice {
     double total = 0.0;
-    for (var item in mergedCart) {
-      total += item.subtotal ?? 0;
+
+    for (var item in serverCart?.items ?? []) {
+      final price = double.tryParse(item.price ?? "0") ?? 0;
+      final qty = int.tryParse(item.quantity ?? "1") ?? 1;
+      total += price * qty;
     }
+
     return total - discountValue;
   }
 
@@ -151,11 +86,44 @@ List<Items> get mergedCart {
     update();
   }
 
+  Future<void> placeOrderCOD() async {
+    try {
+      if ((serverCart?.items ?? []).isEmpty) {
+        Get.snackbar("Error", "Your cart is empty");
+        return;
+      }
+
+      var orderData = {
+        "items": (serverCart?.items ?? [])
+            .map((item) => {
+                  "product_id": item.product?.id,
+                  "quantity": int.parse(item.quantity ?? "1"),
+                  "price": double.parse(item.price ?? "0"),
+                })
+            .toList(),
+        "payment_method": "COD",
+        "total": totalPrice,
+      };
+
+      print("Order Data: $orderData");
+
+      // await Api().dio.post('api/v1/orders', data: orderData);
+
+      Get.snackbar(
+          "Success", "Order placed successfully with Cash on Delivery");
+
+      serverCart?.items?.clear();
+      discountValue = 0.0;
+      voucherCode = "";
+      update();
+    } catch (e) {
+      Get.snackbar("Error", "Failed to place order: $e");
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();
-    serverList;
-    getLocalCart();
     getServerCart();
   }
 }

@@ -1,28 +1,10 @@
-// import 'package:coda_workshop/api/api.dart';
-
-// import 'package:coda_workshop/models/products_model.dart';
-
-// class ProdoctService {
-//   Future<ProductModel> getproducts() async {
-//     try {
-//       var res = await Api().dio?.get('v1/products');
-//       return ProductModel.fromJson(res!.data);
-//     } catch (e) {
-//       print(e);
-//     }
-//     return ProductModel();
-//   }
-// }
-
-
-
 import 'package:coda_workshop/api/api.dart';
 import 'package:coda_workshop/models/products_model.dart';
 
 class ProdoctService {
-  Future<ProductModel> getproducts({int page = 1, int limit = 10}) async {
+  Future<ProductModel> getProducts({int page = 1, int limit = 10}) async {
     try {
-      var res = await Api().dio.get(
+      var res = await Api().dio?.get(
         'api/v1/products',
         queryParameters: {
           'page': page,
@@ -30,12 +12,51 @@ class ProdoctService {
         },
       );
 
-      return ProductModel.fromJson(res.data);
-
+      return ProductModel.fromJson(res!.data);
     } catch (e) {
       print("Product Service Error: catchervice=============$e");
 
       return ProductModel();
+    }
+  }
+
+  Future<Data> getProductShow(int id) async {
+    try {
+      var res = await Api().dio.get('api/v1/products/$id');
+
+      return Data.fromJson(res.data["data"]["product"]);
+    } catch (e) {
+      print("Get product error: $e");
+      return Data();
+    }
+  }
+
+  Future<dynamic> postRatingData(
+    int product_id,
+    int rating,
+    String comment,
+  ) async {
+    try {
+      var res = await Api().dio.post(
+        'api/v1/ratings',
+        data: {
+          "product_id": product_id.toString(),
+          "rating": rating.toString(),
+          "comment": comment,
+        },
+      );
+
+      print("REQUEST BODY:");
+      print({
+        "product_id": product_id.toString(),
+        "rating": rating.toString(),
+        "comment": comment,
+      });
+
+      return res.data;
+    } catch (e) {
+      print("Rating error: $e");
+      return null;
     }
   }
 }

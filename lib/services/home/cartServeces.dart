@@ -1,5 +1,7 @@
 import 'package:coda_workshop/api/api.dart';
 import 'package:coda_workshop/models/cart_model.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 class CartServeces {
   Future<CartModel> GetCart() async {
@@ -47,4 +49,19 @@ class CartServeces {
       return null;
     }
   }
+
+  Future<CartModel> deleteFromCart(int id) async {
+  try {
+    final res = await Api().dio.delete(
+      'api/v1/carts/items/$id',
+    );
+
+    print("API Response: ${res.data}");
+    return CartModel.fromJson(res.data);
+  } on DioException catch (e) {
+    print("Delete cart error: ${e.response?.data}");
+    rethrow; 
+  }
+}
+
 }

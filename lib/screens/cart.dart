@@ -25,7 +25,7 @@ class CartScreen extends StatelessWidget {
                 Text("Your Cart", style: TextStyle(fontSize: 17)),
                 GetBuilder<CartController>(
                   builder: (c) => Text(
-                    "${c.mergedCart.length ?? 0} items",
+                    "${c.serverCart?.items?.length ?? 0 ?? 0} items",
                     style: TextStyle(fontSize: 14),
                   ),
                 )
@@ -38,12 +38,11 @@ class CartScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: GetBuilder<CartController>(
           builder: (controller) {
-            if (controller.mergedCart == null ||
-                controller.mergedCart.isEmpty) {
+            if (controller.serverCart?.items == null) {
               return Center(child: Text("Cart is empty"));
             }
 
-            final items = controller.mergedCart;
+            final items = controller.serverCart?.items ?? [];
 
             return ListView(
               physics: NeverScrollableScrollPhysics(),
@@ -71,7 +70,13 @@ class CartScreen extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.delete_outlined, size: 30),
+                                  IconButton(
+                                      onPressed: () {
+                                        controller.deleteItem(item!.id!);
+                                        controller.update();
+                                      },
+                                      icon: Icon(Icons.delete_outlined,
+                                          size: 30)),
                                 ],
                               ),
                             ),
@@ -227,7 +232,22 @@ class CartScreen extends StatelessWidget {
                       child: FloatingActionButton(
                         backgroundColor: Colors.transparent,
                         elevation: 0,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.defaultDialog(
+                            title: "Choose Payment Method",
+                            content: Column(
+                              children: [
+                                ListTile(
+                                  leading: Icon(Icons.money),
+                                  title: Text("Cash on Delivery"),
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                         child: Text(
                           "Check Out",
                           style: TextStyle(color: Colors.white, fontSize: 17),

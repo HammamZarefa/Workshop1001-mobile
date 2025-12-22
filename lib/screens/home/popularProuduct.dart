@@ -1,5 +1,5 @@
 import 'package:coda_workshop/constant/colors.dart';
-import 'package:coda_workshop/controllers/Favorite_Controller.dart';
+import 'package:coda_workshop/controllers/favorite_controller.dart';
 import 'package:coda_workshop/controllers/home_controller.dart';
 import 'package:coda_workshop/controllers/product_controller.dart';
 import 'package:flutter/material.dart';

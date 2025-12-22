@@ -3,10 +3,18 @@ import 'package:coda_workshop/services/forgotpassword_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ForgotPasswordcontroller extends GetxController {
+class ForgetPasswordcontroller extends GetxController {
+  
   TextEditingController? email;
 
   GlobalKey<FormState> formState = GlobalKey<FormState>();
+ 
+ 
+ 
+ 
+   validate_forgetpassword() {
+
+
 
   validate_forgotpassword() {
     var formdata = formState.currentState;
@@ -14,16 +22,17 @@ class ForgotPasswordcontroller extends GetxController {
       Forget_password();
     }
   }
-
+   }
   Future Forget_password() async {
     try {
       var response =
           await ForgotpasswordService().postForgotpasswordData(email!.text);
 
-      if (response != null) {
-        if ((response["token"] != null)) {
-          Get.offNamed(
-            AppRoutes.OtpVierification,
+       if (response != null) {
+      if ((response["token"] != null)) {
+    
+         Get.offNamed(
+            AppRoutes.otpVerification,
             arguments: {"email": email!.text},
           );
         } else {
@@ -35,13 +44,23 @@ class ForgotPasswordcontroller extends GetxController {
     } catch (e) {}
   }
 
-  goTosibup() {
-    Get.toNamed(AppRoutes.SinUp);
-  }
+ 
 
-  goTohome() {
-    Get.toNamed(AppRoutes.HomeScreen);
-  }
+ goToSignUp() {
+
+Get.toNamed(AppRoutes.signUp);
+
+ }
+
+ goToHome() {
+
+Get.toNamed(AppRoutes.homeScreen);
+
+ }
+
+
+
+
 
   @override
   void onInit() {

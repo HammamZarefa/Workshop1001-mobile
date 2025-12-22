@@ -24,6 +24,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+            final ProductController productController = Get.put(ProductController());
+
     return GetBuilder<HomeController>(
       builder: (controller) {
         ///default data
@@ -181,7 +183,10 @@ class HomeScreen extends StatelessWidget {
                           subtitle: Text("${item.price} \$",
                               style: TextStyle(color: Colors.red)),
                           trailing: Icon(Icons.arrow_forward_ios, size: 18),
-                          onTap: () {},
+                          onTap: () {  Get.toNamed(
+                          AppRoutes.productDetailsScreen,
+                          arguments: item.id!,
+                        );},
                         );
                       },
                     ),
@@ -199,7 +204,7 @@ class HomeScreen extends StatelessWidget {
                 decoration: BoxDecoration(color: Colors.transparent),
                 child: InkWell(
                   onTap: () {
-                    Get.toNamed(AppRoutes.ProdoctesScreen);
+                    Get.toNamed(AppRoutes.productsScreen);
                   },
                   child: Padding(
                     padding:

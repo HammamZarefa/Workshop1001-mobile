@@ -67,7 +67,8 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     categoryId = json['category_id'];
-    category = json['category'] != null ? Category.fromJson(json['category']) : null;
+    category =
+        json['category'] != null ? Category.fromJson(json['category']) : null;
     title = json['title'];
     description = json['description'];
     price = json['price'];
@@ -76,22 +77,7 @@ class Data {
     isActive = json['is_active'];
     isFeatured = json['is_featured'];
 
-    // التعامل مع colors سواء كانت String أو List
-    if (json['colors'] != null) {
-      if (json['colors'] is String) {
-        try {
-          colors = List<String>.from((jsonDecode(json['colors']) as List).map((e) => e.toString()));
-        } catch (e) {
-          colors = [];
-        }
-      } else if (json['colors'] is List) {
-        colors = List<String>.from(json['colors']);
-      } else {
-        colors = [];
-      }
-    } else {
-      colors = [];
-    }
+    colors = _parseColors(json['colors']);
 
     isSpecial = json['is_special'];
     featuredImage = json['featured_image'];
@@ -103,15 +89,41 @@ class Data {
       });
     }
 
-    // averageRating كـ double للتعامل مع int أو double
-    averageRating = json['average_rating'] != null ? (json['average_rating'] as num).toDouble() : null;
+    averageRating = json['average_rating'] != null
+        ? (json['average_rating'] as num).toDouble()
+        : null;
+  }
+
+  List<String> _parseColors(dynamic raw) {
+    if (raw == null) return [];
+
+    if (raw is List) {
+      return List<String>.from(raw);
+    }
+
+    if (raw is String) {
+      try {
+        final decoded = jsonDecode(raw);
+        if (decoded is List) {
+          return List<String>.from(decoded);
+        }
+      } catch (e) {
+        return [];
+      }
+    }
+
+    return [];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
     data['id'] = id;
     data['category_id'] = categoryId;
-    if (category != null) data['category'] = category!.toJson();
+
+    if (category != null) {
+      data['category'] = category!.toJson();
+    }
+
     data['title'] = title;
     data['description'] = description;
     data['price'] = price;
@@ -122,8 +134,13 @@ class Data {
     data['colors'] = colors;
     data['is_special'] = isSpecial;
     data['featured_image'] = featuredImage;
-    if (gallery != null) data['gallery'] = gallery!.map((v) => v.toJson()).toList();
+
+    if (gallery != null) {
+      data['gallery'] = gallery!.map((v) => v.toJson()).toList();
+    }
+
     data['average_rating'] = averageRating;
+
     return data;
   }
 }
