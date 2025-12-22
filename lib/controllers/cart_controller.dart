@@ -48,16 +48,28 @@ class CartController extends GetxController {
     update();
   }
 
+  Future<void> clearCart() async {
+    if (serverCart?.items == null) return;
+
+    try {
+      for (var item in serverCart!.items!) {
+        await cartServices.deleteFromCart(item.id!);
+        await getServerCart();
+      }
+
+      serverCart!.items!.clear();
+      update();
+    } catch (e) {
+      print("Error clearing cart items: $e");
+    }
+  }
+
   // total price
   double get totalPrice {
     double total = 0.0;
-
-    for (var item in serverCart?.items ?? []) {
-      final price = double.tryParse(item.price ?? "0") ?? 0;
-      final qty = int.tryParse(item.quantity ?? "1") ?? 1;
-      total += price * qty;
+    for (var item in serverCart!.items!) {
+      total += item.subtotal ?? 0;
     }
-
     return total - discountValue;
   }
 
@@ -106,8 +118,6 @@ class CartController extends GetxController {
       };
 
       print("Order Data: $orderData");
-
-      // await Api().dio.post('api/v1/orders', data: orderData);
 
       Get.snackbar(
           "Success", "Order placed successfully with Cash on Delivery");

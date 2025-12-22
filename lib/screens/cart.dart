@@ -1,5 +1,6 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/cart_controller.dart';
+import 'package:coda_workshop/widgets/checkout_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
@@ -16,46 +17,42 @@ class CartScreen extends StatelessWidget {
       appBar: AppBar(
         scrolledUnderElevation: 0,
         backgroundColor: AppColors.background,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 145.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Your Cart", style: TextStyle(fontSize: 17)),
-                GetBuilder<CartController>(
-                  builder: (c) => Text(
-                    "${c.serverCart?.items?.length ?? 0 ?? 0} items",
-                    style: TextStyle(fontSize: 14),
-                  ),
-                )
-              ],
-            ),
-          )
-        ],
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text("Your Cart", style: TextStyle(fontSize: 17)),
+            GetBuilder<CartController>(
+              builder: (c) => Text(
+                "${c.serverCart?.items?.length ?? 0} items",
+                style: TextStyle(fontSize: 14),
+              ),
+            )
+          ],
+        ),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: GetBuilder<CartController>(
           builder: (controller) {
-            if (controller.serverCart?.items == null) {
+            final items = controller.serverCart?.items ?? [];
+
+            if (items.isEmpty) {
               return Center(child: Text("Cart is empty"));
             }
 
-            final items = controller.serverCart?.items ?? [];
-
             return ListView(
-              physics: NeverScrollableScrollPhysics(),
               children: [
                 SizedBox(
                   height: 500,
                   child: ListView.builder(
-                    itemCount: items?.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: items.length,
                     itemBuilder: (context, index) {
-                      final item = items?[index];
+                      final item = items[index];
 
                       return Slidable(
-                        key: ValueKey(item?.id),
+                        key: ValueKey(item.id),
                         endActionPane: ActionPane(
                           motion: ScrollMotion(),
                           extentRatio: 0.15,
@@ -64,19 +61,15 @@ class CartScreen extends StatelessWidget {
                               borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(20),
                                   bottomRight: Radius.circular(20)),
-                              onPressed: (_) {},
+                              onPressed: (_) async {
+                                await controller.deleteItem(item.id!);
+                              },
                               backgroundColor: Colors.red.shade50,
                               foregroundColor: Colors.red.shade300,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  IconButton(
-                                      onPressed: () {
-                                        controller.deleteItem(item!.id!);
-                                        controller.update();
-                                      },
-                                      icon: Icon(Icons.delete_outlined,
-                                          size: 30)),
+                                  Icon(Icons.delete_outlined, size: 30),
                                 ],
                               ),
                             ),
@@ -96,7 +89,8 @@ class CartScreen extends StatelessWidget {
                                 height: 90,
                                 width: 85,
                                 child: Image.network(
-                                  item!.product!.image!,
+                                  item.product?.image ??
+                                      "https://via.placeholder.com/100",
                                   fit: BoxFit.contain,
                                 ),
                               ),
@@ -104,22 +98,24 @@ class CartScreen extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(item.product!.title!,
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w500)),
+                                    Text(
+                                      item.product?.title ?? "No title",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500),
+                                    ),
                                     SizedBox(height: 5),
                                     Row(
                                       children: [
                                         Text(
-                                          "\$${item.price}",
+                                          "\$${item.price ?? '0'}",
                                           style: TextStyle(
                                             fontWeight: FontWeight.w500,
                                             color: AppColors.primary,
                                           ),
                                         ),
                                         Text(
-                                          " x${item.quantity}",
+                                          " x${item.quantity ?? '1'}",
                                           style: TextStyle(
                                             fontWeight: FontWeight.w500,
                                             fontSize: 17,
@@ -140,7 +136,7 @@ class CartScreen extends StatelessWidget {
                 ),
 
                 SizedBox(height: 10),
-//voucher
+                // voucher
                 Row(
                   children: [
                     Container(
@@ -213,7 +209,7 @@ class CartScreen extends StatelessWidget {
                 ),
 
                 SizedBox(height: 20),
-//total+checkout
+                // total+checkout
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -240,9 +236,10 @@ class CartScreen extends StatelessWidget {
                                 ListTile(
                                   leading: Icon(Icons.money),
                                   title: Text("Cash on Delivery"),
-                                  onTap: () {
-                                    Get.back();
-                                  },
+                                  onTap: () {    Get.dialog(
+    CheckoutDialog(items: controller.serverCart?.items ?? []),
+  );
+                       },
                                 ),
                               ],
                             ),
