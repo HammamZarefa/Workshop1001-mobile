@@ -1,5 +1,6 @@
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/profile_controller.dart';
+import 'package:coda_workshop/routes/routes.dart';
 import 'package:coda_workshop/screens/profial/widgit/buttion.dart';
 import 'package:coda_workshop/screens/profial/widgit/image_profile.dart';
 import 'package:coda_workshop/widgets/Auth/appBarTitle.dart';
@@ -40,6 +41,9 @@ class ProfileScreen extends StatelessWidget {
               icon1: Icons.notifications,
               text: "Notification",
               icon2: Icons.navigate_next_outlined,
+              onPressed: () {
+                Get.toNamed(AppRoutes.notification);
+              },
             ),
             const SizedBox(height: 20),
             CustomButtionProfail(

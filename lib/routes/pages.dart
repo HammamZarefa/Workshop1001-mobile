@@ -10,6 +10,7 @@ import 'package:coda_workshop/screens/favorite_screen.dart';
 import 'package:coda_workshop/screens/home/popularProuduct.dart';
 import 'package:coda_workshop/screens/home/spacialProduct.dart';
 import 'package:coda_workshop/screens/mainScreen.dart';
+import 'package:coda_workshop/screens/notification_screen.dart';
 import 'package:coda_workshop/screens/onboarding_screen.dart';
 import 'package:coda_workshop/screens/home/home.dart';
 import 'package:coda_workshop/screens/prodoctes_screen.dart';
@@ -43,84 +44,47 @@ final pages = <GetPage>[
     name: AppRoutes.signUp,
     page: () => SignUp(),
   ),
-  
   GetPage(
     name: AppRoutes.mainScreen,
     page: () => MainScreen(),
   ),
-
-
-
-
-   
-
-
-   GetPage(
+  GetPage(
     name: AppRoutes.completeProfile,
-    page: () =>  CompletProfile(),
+    page: () => CompletProfile(),
   ),
-
-
-
-
-   GetPage(
+  GetPage(
     name: AppRoutes.forgotPassword,
-    page: () =>  ForgotPassword(),
+    page: () => ForgotPassword(),
   ),
-
-
-
- GetPage(
+  GetPage(
     name: AppRoutes.otpVerification,
-    page: () =>  OtpVerification(),
+    page: () => OtpVerification(),
   ),
-
-
-
- GetPage(
+  GetPage(
     name: AppRoutes.successfulSignIn,
-    page: () =>  SuccessfulSignIn(),
+    page: () => SuccessfulSignIn(),
   ),
-
-
-
- GetPage(
+  GetPage(
     name: AppRoutes.productsScreen,
-    page: () =>  ProductsScreen(),
+    page: () => ProductsScreen(),
   ),
-
-
- GetPage(
+  GetPage(
     name: AppRoutes.favoritesScreen,
     page: () => FavoritesScreen(),
   ),
-
-
-
-
-
-
-
- GetPage(
+  GetPage(
     name: AppRoutes.productDetailsScreen,
     page: () => ProductDetails(),
   ),
-
-
-
-
- GetPage(
+  GetPage(
     name: AppRoutes.profileScreen,
     page: () => ProfileScreen(),
   ),
-
-
- GetPage(
+  GetPage(
     name: AppRoutes.myAccountScreen,
     page: () => MyAccountScreen(),
   ),
-
-GetPage(
+  GetPage(
     name: AppRoutes.spacialProducts,
     page: () => SpacialProducts(),
   ),
@@ -128,9 +92,8 @@ GetPage(
     name: AppRoutes.popularProducts,
     page: () => PopularProducts(),
   ),
-
-
-
-
+    GetPage(
+    name: AppRoutes.notification,
+    page: () => NotificationScreen(),
+  ),
 ];
-

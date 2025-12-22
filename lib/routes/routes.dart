@@ -16,5 +16,7 @@ static const String profileScreen = '/profileScreen';
 static const String myAccountScreen = '/myAccountScreen';
 static const String spacialProducts = '/spacialProducts';
     static const String popularProducts = '/popularProducts';
+        static const String notification = '/notification';
+
 }
   

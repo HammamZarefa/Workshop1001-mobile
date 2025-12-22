@@ -236,10 +236,13 @@ class CartScreen extends StatelessWidget {
                                 ListTile(
                                   leading: Icon(Icons.money),
                                   title: Text("Cash on Delivery"),
-                                  onTap: () {    Get.dialog(
-    CheckoutDialog(items: controller.serverCart?.items ?? []),
-  );
-                       },
+                                  onTap: () {
+                                    Get.dialog(
+                                      CheckoutDialog(
+                                          items: controller.serverCart?.items ??
+                                              []),
+                                    );
+                                  },
                                 ),
                               ],
                             ),

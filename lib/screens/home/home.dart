@@ -8,13 +8,13 @@ import 'package:coda_workshop/routes/routes.dart';
 import 'package:coda_workshop/screens/cart.dart';
 import 'package:coda_workshop/screens/home/categories.dart';
 import 'package:coda_workshop/screens/notification_screen.dart';
-import 'package:coda_workshop/services/Notifications/notification_service.dart';
 import 'package:coda_workshop/widgets/home/banner.dart';
 import 'package:coda_workshop/widgets/home/categureList.dart';
 import 'package:coda_workshop/widgets/home/pupolarList.dart';
 import 'package:coda_workshop/widgets/home/SpecialList.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-            final ProductController productController = Get.put(ProductController());
+    final ProductController productController = Get.put(ProductController());
 
     return GetBuilder<HomeController>(
       builder: (controller) {
@@ -37,7 +37,6 @@ class HomeScreen extends StatelessWidget {
               children: [
                 SizedBox(height: 30),
                 BannerCard(
-                  // image: ImageAssets.google,
                   title: "Welcome!",
                   description: "Find the best products",
                   backgroundColor: AppColors.pannerColor!,
@@ -72,11 +71,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 40),
                 Center(
-                  child: Text(
-                    "Loading real data...",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ),
+                    child: Lottie.asset(ImageAssets.cartLottie, height: 150)),
               ],
             ),
           );
@@ -144,10 +139,6 @@ class HomeScreen extends StatelessWidget {
                         backgroundColor: AppColors.lightGrey,
                         child: IconButton(
                           onPressed: () {
-                            NotificationService.instance.showLocalNotification(
-                              "Test Notification",
-                              "This is a test notification",
-                            );
                             Get.to(NotificationScreen());
                           },
                           icon: Icon(
@@ -183,10 +174,12 @@ class HomeScreen extends StatelessWidget {
                           subtitle: Text("${item.price} \$",
                               style: TextStyle(color: Colors.red)),
                           trailing: Icon(Icons.arrow_forward_ios, size: 18),
-                          onTap: () {  Get.toNamed(
-                          AppRoutes.productDetailsScreen,
-                          arguments: item.id!,
-                        );},
+                          onTap: () {
+                            Get.toNamed(
+                              AppRoutes.productDetailsScreen,
+                              arguments: item.id!,
+                            );
+                          },
                         );
                       },
                     ),
