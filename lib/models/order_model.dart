@@ -89,8 +89,8 @@ class Data {
 class OrderItems {
   int? id;
   Product? product;
-  String? price;
-  String? quantity;
+  double? price;
+  int? quantity;
   String? note;
   int? subtotal;
 
@@ -105,11 +105,12 @@ class OrderItems {
   OrderItems.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     product =
-        json['product'] != null ? new Product.fromJson(json['product']) : null;
-    price = json['price'];
-    quantity = json['quantity'];
+        json['product'] != null ? Product.fromJson(json['product']) : null;
+
+    price = double.tryParse(json['price'].toString());
+    quantity = double.tryParse(json['quantity'].toString())?.toInt();
     note = json['note'];
-    subtotal = json['subtotal'];
+    subtotal = int.tryParse(json['subtotal'].toString());
   }
 
   Map<String, dynamic> toJson() {

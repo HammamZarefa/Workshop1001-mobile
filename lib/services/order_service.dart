@@ -6,12 +6,14 @@ class OrderService {
   Future<OrderModel?> postOrder(
       String shippingAddress, String currency, List<Items> items) async {
     try {
-      final itemList = items.map((item) => {
-            'product_id': item.product?.id,
-            'price': double.tryParse(item.price ?? "0") ?? 0,
-            'quantity': int.tryParse(item.quantity ?? "1") ?? 1,
-            'note': '', 
-          }).toList();
+      final itemList = items
+          .map((item) => {
+                'product_id': item.product!.id,
+                'price': double.parse(item.price ?? '0'),
+                'quantity': double.parse(item.quantity!).toInt(),
+                'note': '',
+              })
+          .toList();
 
       var res = await Api().dio.post('api/v1/orders', data: {
         'shipping_address': shippingAddress,

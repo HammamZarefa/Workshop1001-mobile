@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
 
     return GetBuilder<HomeController>(
       builder: (controller) {
-        ///default data
+        //default data
         if (controller.pannerData.isEmpty || controller.catigures.isEmpty) {
           return Scaffold(
             backgroundColor: AppColors.background,

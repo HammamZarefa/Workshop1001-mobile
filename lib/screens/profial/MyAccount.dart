@@ -16,7 +16,7 @@ class MyAccountScreen extends StatelessWidget {
   MyAccountScreen({super.key});
 
   MyAccountController controller = Get.put(MyAccountController());
-
+  
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MyAccountController>(

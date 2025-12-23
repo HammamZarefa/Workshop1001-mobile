@@ -11,10 +11,12 @@ class CartController extends GetxController {
   String voucherCode = "";
   GetStorage box = GetStorage();
   bool? offer;
+  bool isLoading = true;
 
   // Server functions
   Future<void> getServerCart() async {
     try {
+      isLoading=false;
       var res = await cartServices.GetCart();
 
       serverCart = res.data;

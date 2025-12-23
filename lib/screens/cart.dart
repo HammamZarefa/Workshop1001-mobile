@@ -1,9 +1,11 @@
+import 'package:coda_workshop/constant/ImageAssets.dart';
 import 'package:coda_workshop/constant/colors.dart';
 import 'package:coda_workshop/controllers/cart_controller.dart';
 import 'package:coda_workshop/widgets/checkout_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class CartScreen extends StatelessWidget {
   CartScreen({super.key});
@@ -36,7 +38,9 @@ class CartScreen extends StatelessWidget {
         child: GetBuilder<CartController>(
           builder: (controller) {
             final items = controller.serverCart?.items ?? [];
-
+            if (controller.isLoading == true) {
+              return Center(child: Lottie.asset(ImageAssets.cartLottie));
+            }
             if (items.isEmpty) {
               return Center(child: Text("Cart is empty"));
             }
